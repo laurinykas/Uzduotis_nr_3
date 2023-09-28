@@ -44,23 +44,23 @@ struct Duomenys {
 
 };
 void isvestis ();
-int studentu_kiekis();
+int Studentu_kiekis();
 void ivedimas (int i);
-int s = studentu_kiekis();
+int s_kiekis = Studentu_kiekis();
 vector <Duomenys> stud;
-Duomenys dn;
+Duomenys duomenys;
 int main() {
+    for(int eiles_nr = 0; eiles_nr < s_kiekis; eiles_nr++){
+        ivedimas(eiles_nr);
+        stud.push_back(duomenys);
 
-    for(int d = 0;d < s;d++){
-        ivedimas(d);
-        stud.push_back(dn);
     }
     isvestis();
 
 }
 
 
-int studentu_kiekis() {
+int Studentu_kiekis() {
 
     int studentu_sk = 0;
     cout << "Iveskite studentu kieki: " << endl;cin >> studentu_sk;
@@ -97,63 +97,64 @@ void ivedimas ( int i){
     if (ranka_auto == 'R' or ranka_auto == 'r'){
         while(uzsibaigimas == 0){
             int namu_d = 0;
-            int g = stud[i].nd.size();
+            int namu_d_eile = stud[i].nd.size();
             do{
-                cout << "Iveskite nr. "<< g + 1 <<" pazymi: "<< endl; cin >> namu_d;
-                if(namu_d != 0){
-                    if(namu_d >0 and namu_d <=10 ){
-                        stud[i].nd.push_back(namu_d);
-                        cout << "Ar bus dar pazymiu ? (T/N)"<< endl ;cin>> tp;
-                        do{
-                            if(tp and(tp =='T' or tp == 't' or tp == 'n' or tp == 'N')){
-                                if(tp == 'T' or tp == 't'){
-                                    continue;
-                                }
-                                if(tp == 'n' or tp == 'N'){
-                                    uzsibaigimas = 1;
-                                }
+                cout << "Iveskite nr. " << namu_d_eile + 1 << " pazymi: " << endl; cin >> namu_d;
+                //if(namu_d != 0){
+                if(namu_d >0 and namu_d <=10 ){
+                    stud[i].nd.push_back(namu_d);
+                    cout << "Ar bus dar pazymiu ? (T/N)"<< endl ;cin>> tp;
+                    do{
+                        if(tp and(tp =='T' or tp == 't' or tp == 'n' or tp == 'N')){
+                            if(tp == 'T' or tp == 't'){
+                                continue;
                             }
-                            else{
-                                cout<< "Iveskite tinkama atsakyma T arba N !"<< endl;cin.clear();
-                                cin.ignore(10000, '\n');cin>> tp;
+                            if(tp == 'n' or tp == 'N'){
+                                uzsibaigimas = 1;
                             }
-                        }while(tp !='T' and tp != 't' and tp != 'n' and tp != 'N');
-                    }
-                    else{
-                        cout<<"Iveskite tinkama skaicius nuo 1 iki 10!"<< endl ;cin.clear();
-                        cin.ignore(10000, '\n'); cin>> namu_d;
-                    }
-
-
+                        }
+                        else{
+                            cout<< "Iveskite tinkama atsakyma T arba N !"<< endl;cin.clear();
+                            cin.ignore(10000, '\n');
+                        }
+                    }while(tp !='T' and tp != 't' and tp != 'n' and tp != 'N');
                 }
                 else{
-                    cout<< "Iveskite nenulini skaiciu, nuo 1 iki 10!"<<endl ;cin.clear();
-                    cin.ignore(10000, '\n'); cin>> namu_d;
-
+                    cout<<"Iveskite tinkama skaicius nuo 1 iki 10!"<< endl ;cin.clear();
+                    cin.ignore(10000, '\n');
                 }
 
-            }
 
+                // }
+                // else{
+                //   cout<< "Iveskite nenulini skaiciu, nuo 1 iki 10!"<<endl ;cin.clear();
+                //  cin.ignore(10000, '\n'); cin>> namu_d;
+
+                //}
+
+
+            }
             while( namu_d == 0);
         }
     }
     else{
         int nd_skaicius = 0; int sk = 0;
         // random gen
-        cout <<"Iveskite kiek namu darbu noresite sugeneruoti"<< endl; cin>> nd_skaicius;
+
         do {
+            cout <<"Iveskite kiek namu darbu noresite sugeneruoti"<< endl; cin>> nd_skaicius;
             srand((unsigned )time(0));
             if (nd_skaicius and nd_skaicius > 0) {
                 for (int e = 0;e < nd_skaicius; e++){
                     sk = (rand() % 10) + 1;
                     stud[i].nd.push_back(sk);
+
                 }
 
             } else {
                 cout << "Iveskite skaiciu didesni nei 1! : " << endl;
                 cin.clear();
                 cin.ignore(10000, '\n');
-                cin >> nd_skaicius;
             }
         }
         while(nd_skaicius < 0 or nd_skaicius == 0);
@@ -165,15 +166,16 @@ void ivedimas ( int i){
         if(egz_ivedimas and( egz_ivedimas == 'R'|| egz_ivedimas == 'r'|| egz_ivedimas == 'A' || egz_ivedimas == 'a')){
             if (egz_ivedimas=='R' or egz_ivedimas == 'r' )
             {
-                cout << "Iveskite egzamino rezultata"<< endl ; cin>> egz;
+
                 do{
+                    cout << "Iveskite egzamino rezultata:"<< endl ; cin>> egz;
                     if(egz and egz > 0 and egz <=10){
                         stud[i].egzaminas = egz;
 
                     }
                     else{
                         cout<< "Iveskite nenulini skaiciu, nuo 1 iki 10!"<<endl ;cin.clear();
-                        cin.ignore(10000, '\n'); cin>> egz;}}
+                        cin.ignore(10000, '\n'); }}
                 while(!egz or egz > 10 or egz <0 );
 
             }
@@ -214,19 +216,19 @@ void isvestis ( ) {
 
             if (pasirinkimas == 1) {
                 cout<< setw(20)<<"Vardas"<<setw(20)<<"Pavarde"<<setw(17)<<"Galutinis(vid)"<<endl;
-                for (int i = 0; s > i; i++) {
+                for (int i = 0; s_kiekis > i; i++) {
                     cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
                          << std::setprecision(2) << stud[i].vid << setw(17);}
 
             } else if (pasirinkimas == 2) {
                 cout<< setw(20)<<"Vardas"<<setw(20)<<"Pavarde"<< setw(20)<<"Galutinis(med)"<<endl;
-                for (int i = 0; s > i; i++) {
+                for (int i = 0; s_kiekis > i; i++) {
                     cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
                          << std::setprecision(2) << stud[i].med << endl;
                 }
             } else {
                 cout<< setw(20)<<"Vardas"<<setw(20)<<"Pavarde"<<setw(17)<<"Galutinis(vid)"<< setw(20)<<"Galutinis(med)"<<endl;
-                for (int i = 0; s > i; i++) {
+                for (int i = 0; s_kiekis > i; i++) {
                     cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
                          << std::setprecision(2) << stud[i].vid << setw(17) << stud[i].med << endl;
                 }
