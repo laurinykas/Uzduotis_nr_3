@@ -125,13 +125,6 @@ void ivedimas ( int i){
                 }
 
 
-                // }
-                // else{
-                //   cout<< "Iveskite nenulini skaiciu, nuo 1 iki 10!"<<endl ;cin.clear();
-                //  cin.ignore(10000, '\n'); cin>> namu_d;
-
-                //}
-
 
             }
             while( namu_d == 0);
