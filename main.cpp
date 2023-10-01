@@ -2,12 +2,32 @@
 #include "funkcijos.h"
 int main() {
 
-  /*  for (int eiles_nr = 0; eiles_nr < s_kiekis; eiles_nr++) {
-        ivedimas(eiles_nr);
-        stud.push_back(duomenys);
+    char ranka_failas;
+    do {
+        cout << "Ar duomenis rasytite ranka ar nuskaitysite is failo(R/F)?" << endl;
+        cin >> ranka_failas;
+        if (ranka_failas &&
+            (ranka_failas == 'R' || ranka_failas == 'r' || ranka_failas == 'F' || ranka_failas == 'f')) {
+            if (ranka_failas == 'R' || ranka_failas == 'r') {
+               s_kiekis = Studentu_kiekis();
+                for (int eiles_nr = 0; eiles_nr < s_kiekis; eiles_nr++) {
+                    ivedimas(eiles_nr);
+                    stud.push_back(duomenys);
 
-    }*/
-    readStudentDataFromFile("kursiokai.txt");
-    isvestis();
+                }
+            } else {
+                stud.push_back(duomenys);
+                readfromFile(stud);
+                isvestis();
+            }
+
+
+        } else {
+            cout << "Iveskite R arba F" << endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }
+    } while (ranka_failas != 'R' and ranka_failas != 'r' and ranka_failas != 'F' and ranka_failas != 'f');
+
 
 }

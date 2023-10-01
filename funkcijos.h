@@ -13,9 +13,8 @@
 void isvestis ();
 int Studentu_kiekis();
 void ivedimas (int i);
-int s_kiekis ; //= Studentu_kiekis();
-bool parseStudentLine(const std::string& line, Duomenys& student);
-vector<Duomenys> readStudentDataFromFile(const std::string& filename);
+int s_kiekis ;
+void readfromFile(vector<Duomenys> &sar);
 vector <Duomenys> stud;
 Duomenys duomenys;
 
@@ -244,50 +243,45 @@ void isvestis ( ) {
 
 }
 
-bool parseStudentLine(const std::string& line, Duomenys& student) {
-    std::istringstream iss(line);
-    if (!(iss >> student.vardas >> student.pavarde)) {
-        return false; // Unable to read names
-    }
+void readfromFile(vector<Duomenys> &stud){
+    string filename="kursiokai.txt";
+    try{
+        ifstream fileread(filename);cout << "1" << endl;
+        if(!fileread.fail()){
+            int sk;cout<<"2"<<endl;
+            string line;
+            string temp,pirmaEil;cout<<"3"<<endl;
+            int kiekNd = -3;
+            getline(fileread >> std::ws, pirmaEil);
+            std::stringstream iss(pirmaEil); cout<<"4"<<endl;
+            while(iss >> temp)
+            {
+                kiekNd++; cout<<"lol"<<endl;
+            }cout<<"5"<<endl;
+            while(std::getline(fileread >> std::ws, line)){
+                Duomenys s ;
+                std::stringstream iss(line);
+                iss>> s.vardas; cout<<"6"<<endl;
+                iss >> s.pavarde;
+                for(int i = 0; i < kiekNd; i++){
+                    iss>> sk;
+                    s.nd.push_back(sk);cout<<"7"<<endl;
+                }
+                iss >> sk;
+                s.egzaminas=sk;cout<<"8"<<endl;
+                s.Vidurkis();
+                s.Mediana();
+                stud.push_back(duomenys);
+            }
 
-    student.nd.clear();
-    int grade;
-    for (int i = 0; i < 15; i++) {
-        if (!(iss >> grade)) {
-            return false; // Unable to read all grades
         }
-        student.nd.push_back(grade);
-    }
-
-    if (!(iss >> student.egzaminas)) {
-        return false; // Unable to read exam score
-    }
-
-    return true;
-}
-
-// Function to read data from a file
-vector<Duomenys> readStudentDataFromFile(const std::string& filename) {
-    std::vector<Duomenys> students;
-    std::ifstream file(filename);
-
-    if (!file.is_open()) {
-        throw std::runtime_error("File doesn't exist");
-    }
-
-    std::string line;
-    int lineNumber = 0;
-
-    while (std::getline(file, line)) {
-        lineNumber++;
-        Duomenys student;
-        if (parseStudentLine(line, student)) {
-            students.push_back(student);
-        } else {
-            throw std::runtime_error("Error parsing data on line " + std::to_string(lineNumber));
+        else{
+            throw std::runtime_error(filename);
         }
-    }
 
-    file.close();
-    return students;
+    }
+    catch(std::exception &e){
+        cout << "Ivyko problema nuskaitant faila: " << e.what() << "\n";
+        std::exit(0);
+    }
 }
