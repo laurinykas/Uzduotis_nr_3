@@ -10,6 +10,7 @@ struct Duomenys {
     double egzaminas = 0;
     double vid = 0;
     double med = 0;
+    int studentu_kiekis = 0;
 
     void Vidurkis() {
 
