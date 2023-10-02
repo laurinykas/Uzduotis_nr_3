@@ -14,11 +14,15 @@ int main() {
                     ivedimas(eiles_nr);
                     stud.push_back(duomenys);
 
+
                 }
+                info = 1;
+                isvestis(info);
             } else {
                 stud.push_back(duomenys);
                 readfromFile(stud);
-                isvestis();
+                info = 2;
+                isvestis(info);
             }
 
 

@@ -10,10 +10,11 @@
 #include "bibliotekos.h"
 #include "strukturos.h"
 
-void isvestis ();
+void isvestis (int isvesties_tipas);
 int Studentu_kiekis();
 void ivedimas (int i);
 int s_kiekis = 0;
+int info ;
 void readfromFile(vector<Duomenys> &sar);
 vector <Duomenys> stud;
 Duomenys duomenys;
@@ -200,51 +201,75 @@ void ivedimas ( int i) {
 
 
 }
-void isvestis ( ) {
-
+void isvestis (int isvesties_tipas ) {
 
 
     int pasirinkimas;
-    cout << "Ar norite vidurkio - 1 , medianos - 2 ar abieju - 3 ? :" << endl; cin >> pasirinkimas;
+    cout << "Ar norite vidurkio - 1 , medianos - 2 ar abieju - 3 ? :" << endl;
+    cin >> pasirinkimas;
     do {
         if (pasirinkimas && (pasirinkimas == 1 || pasirinkimas == 2 || pasirinkimas == 3)) {
 
             if (pasirinkimas == 1) {
-                cout<< setw(20)<<"Vardas"<<setw(20)<<"Pavarde"<<setw(17)<<"Galutinis(vid)"<<endl;
-                for (int i = 0; s_kiekis > i; i++) {
-                    cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
-                         << std::setprecision(2) << stud[i].vid << setw(17)<<endl;}
+                cout << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << endl;
+                if (isvesties_tipas == 1) {
+                    for (int i = 0; s_kiekis > i; i++) {
+                        cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
+                             << std::setprecision(2) << stud[i].vid << setw(17) << endl;
+                    }
 
+                } else {
+                    for (int i = 1; s_kiekis >= i; i++) {
+                        cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
+                             << std::setprecision(2) << stud[i].vid << setw(17) << endl;
+                    }
+
+                }
             } else if (pasirinkimas == 2) {
-                cout<< setw(20)<<"Vardas"<<setw(20)<<"Pavarde"<< setw(20)<<"Galutinis(med)"<<endl;
-                for (int i = 0; s_kiekis > i; i++) {
-                    cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
-                         << std::setprecision(2) << stud[i].med << endl;
+                cout << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis(med)" << endl;
+                if (isvesties_tipas == 1) {
+                    for (int i = 0; s_kiekis > i; i++) {
+                        cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
+                             << std::setprecision(2) << stud[i].med << endl;
+                    }
+                } else {
+                    for (int i = 1; s_kiekis >= i; i++) {
+                        cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
+                             << std::setprecision(2) << stud[i].med << endl;
+                    }
                 }
             } else {
-                cout<< setw(20)<<"Vardas"<<setw(20)<<"Pavarde"<<setw(17)<<"Galutinis(vid)"<< setw(20)<<"Galutinis(med)"<<endl;
-                for (int i = 0; s_kiekis > i; i++) {
-                    cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
-                         << std::setprecision(2) << stud[i].vid << setw(17) << stud[i].med << endl;
+                cout << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << setw(20)
+                     << "Galutinis(med)" << endl;
+                if (isvesties_tipas == 1) {
+                    for (int i = 0; s_kiekis > i; i++) {
+                        cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
+                             << std::setprecision(2) << stud[i].vid << setw(17) << stud[i].med << endl;
+                    }
+                } else {
+                    for (int i = 1; s_kiekis >= i; i++) {
+                        cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
+                             << std::setprecision(2) << stud[i].vid << setw(17) << stud[i].med << endl;
+                    }
                 }
             }
 
-        }
-        else {
-            cout << "Iveskite nenulini skaiciu, nuo 1 iki 3!" << endl;
-            cin.clear();
-            cin.ignore(10000, '\n');
-            cin >> pasirinkimas;
-        }
+        }else {
+                cout << "Iveskite nenulini skaiciu, nuo 1 iki 3!" << endl;
+                cin.clear();
+                cin.ignore(10000, '\n');
+                cin >> pasirinkimas;
+            }
+
     }while (pasirinkimas != 1 and pasirinkimas != 2 and pasirinkimas != 3);
 
 
-}
 
+}
 void readfromFile(vector<Duomenys> &stud){
     string filename="kursiokai.txt";
     try{
-        ifstream fileread(filename);//cout << "1" << endl;
+        ifstream fileread(filename);
         if(!fileread.fail()){
             int sk;//Studentu kiekis? never gets used?
             string line;
@@ -254,10 +279,10 @@ void readfromFile(vector<Duomenys> &stud){
             std::stringstream iss(pirmaEil);
             while(iss >> temp)
             {
-                kiekNd++; //cout<<"lol"<<endl;
+                kiekNd++;
             }
-            while(std::getline(fileread >> std::ws, line)){
-                Duomenys s ; //this is fine :dog_in_fire:
+            while((std::getline(fileread >> std::ws, line))){
+                Duomenys s ;
                 std::stringstream iss(line);
                 iss>> s.vardas;
                 iss >> s.pavarde;
@@ -269,8 +294,8 @@ void readfromFile(vector<Duomenys> &stud){
                 s.egzaminas=sk;
                 s.Vidurkis();
                 s.Mediana();
-                stud.push_back(s); //duomenys unchanging lol
                 s_kiekis++;
+                stud.push_back(s);
             }
 
         }
