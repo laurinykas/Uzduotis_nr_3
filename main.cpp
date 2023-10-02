@@ -17,11 +17,13 @@ int main() {
 
                 }
                 info = 1;
+                //sort(stud.begin(),stud.end(), palyginimas);
                 isvestis(info);
             } else {
                 stud.push_back(duomenys);
                 readfromFile(stud);
                 info = 2;
+                sort(stud.begin(),stud.end(), palyginimas);
                 isvestis(info);
             }
 

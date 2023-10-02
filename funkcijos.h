@@ -16,6 +16,7 @@ void ivedimas (int i);
 int s_kiekis = 0;
 int info ;
 void readfromFile(vector<Duomenys> &sar);
+bool palyginimas(Duomenys& a, Duomenys b);
 vector <Duomenys> stud;
 Duomenys duomenys;
 
@@ -309,3 +310,10 @@ void readfromFile(vector<Duomenys> &stud){
         std::exit(0);
     }
 }
+bool palyginimas( Duomenys& a, Duomenys b){
+        if (a.vardas == b.vardas){
+
+            return a.pavarde < b.pavarde;}
+
+        return a.vardas < b.vardas;
+    }
