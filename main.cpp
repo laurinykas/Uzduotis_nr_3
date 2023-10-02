@@ -9,7 +9,7 @@ int main() {
         if (ranka_failas &&
             (ranka_failas == 'R' || ranka_failas == 'r' || ranka_failas == 'F' || ranka_failas == 'f')) {
             if (ranka_failas == 'R' || ranka_failas == 'r') {
-               s_kiekis = Studentu_kiekis();
+                s_kiekis = Studentu_kiekis();
                 for (int eiles_nr = 0; eiles_nr < s_kiekis; eiles_nr++) {
                     ivedimas(eiles_nr);
                     stud.push_back(duomenys);

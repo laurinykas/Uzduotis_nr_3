@@ -13,7 +13,7 @@
 void isvestis ();
 int Studentu_kiekis();
 void ivedimas (int i);
-int s_kiekis ;
+int s_kiekis = 0;
 void readfromFile(vector<Duomenys> &sar);
 vector <Duomenys> stud;
 Duomenys duomenys;
@@ -209,13 +209,11 @@ void isvestis ( ) {
     do {
         if (pasirinkimas && (pasirinkimas == 1 || pasirinkimas == 2 || pasirinkimas == 3)) {
 
-
-
             if (pasirinkimas == 1) {
                 cout<< setw(20)<<"Vardas"<<setw(20)<<"Pavarde"<<setw(17)<<"Galutinis(vid)"<<endl;
                 for (int i = 0; s_kiekis > i; i++) {
                     cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
-                         << std::setprecision(2) << stud[i].vid << setw(17);}
+                         << std::setprecision(2) << stud[i].vid << setw(17)<<endl;}
 
             } else if (pasirinkimas == 2) {
                 cout<< setw(20)<<"Vardas"<<setw(20)<<"Pavarde"<< setw(20)<<"Galutinis(med)"<<endl;
@@ -246,32 +244,33 @@ void isvestis ( ) {
 void readfromFile(vector<Duomenys> &stud){
     string filename="kursiokai.txt";
     try{
-        ifstream fileread(filename);cout << "1" << endl;
+        ifstream fileread(filename);//cout << "1" << endl;
         if(!fileread.fail()){
-            int sk;cout<<"2"<<endl;
+            int sk;//Studentu kiekis? never gets used?
             string line;
-            string temp,pirmaEil;cout<<"3"<<endl;
+            string temp,pirmaEil;
             int kiekNd = -3;
             getline(fileread >> std::ws, pirmaEil);
-            std::stringstream iss(pirmaEil); cout<<"4"<<endl;
+            std::stringstream iss(pirmaEil);
             while(iss >> temp)
             {
-                kiekNd++; cout<<"lol"<<endl;
-            }cout<<"5"<<endl;
+                kiekNd++; //cout<<"lol"<<endl;
+            }
             while(std::getline(fileread >> std::ws, line)){
-                Duomenys s ;
+                Duomenys s ; //this is fine :dog_in_fire:
                 std::stringstream iss(line);
-                iss>> s.vardas; cout<<"6"<<endl;
+                iss>> s.vardas;
                 iss >> s.pavarde;
                 for(int i = 0; i < kiekNd; i++){
                     iss>> sk;
-                    s.nd.push_back(sk);cout<<"7"<<endl;
+                    s.nd.push_back(sk);
                 }
                 iss >> sk;
-                s.egzaminas=sk;cout<<"8"<<endl;
+                s.egzaminas=sk;
                 s.Vidurkis();
                 s.Mediana();
-                stud.push_back(duomenys);
+                stud.push_back(s); //duomenys unchanging lol
+                s_kiekis++;
             }
 
         }
