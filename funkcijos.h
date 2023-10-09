@@ -213,6 +213,7 @@ void isvestis (int isvesties_tipas ) {
 
             if (pasirinkimas == 1) {
                 cout << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << endl;
+                cout << "          _________________________________________________" << endl;
                 if (isvesties_tipas == 1) {
                     for (int i = 0; s_kiekis > i; i++) {
                         cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
@@ -228,6 +229,7 @@ void isvestis (int isvesties_tipas ) {
                 }
             } else if (pasirinkimas == 2) {
                 cout << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis(med)" << endl;
+                cout << "          _________________________________________________" << endl;
                 if (isvesties_tipas == 1) {
                     for (int i = 0; s_kiekis > i; i++) {
                         cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
@@ -242,6 +244,7 @@ void isvestis (int isvesties_tipas ) {
             } else {
                 cout << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << setw(20)
                      << "Galutinis(med)" << endl;
+                cout << "          ____________________________________________________________________" << endl;
                 if (isvesties_tipas == 1) {
                     for (int i = 0; s_kiekis > i; i++) {
                         cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed

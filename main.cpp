@@ -36,5 +36,5 @@ int main() {
         }
     } while (ranka_failas != 'R' and ranka_failas != 'r' and ranka_failas != 'F' and ranka_failas != 'f');
 
-
+    system("pause");
 }
