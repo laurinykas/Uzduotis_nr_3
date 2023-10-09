@@ -7,4 +7,9 @@
 * Yra įdėti saugumo garantai, kad programa veiktų tvarkingai( pažymiai yra visada skaičiai nuo 1 iki 10 ir t.t).
 * Galima suvesti neribotą kiekį namų darbų ir studentų .
 
+## v0.1.1
+* Galimybė nuskaityti studentus iš failo.
+* Įdėta naudotojo apsauga, jei failas neegzistuotų.
+* Studentai dabar yra ir rūšiuojami.
+
   
