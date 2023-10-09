@@ -12,11 +12,11 @@
 
 void isvestis (int isvesties_tipas);
 int Studentu_kiekis();
-void ivedimas (int i);
+void ivedimas (int studentu_kiekis);
 int s_kiekis = 0;
 int info ;
 void readfromFile(vector<Duomenys> &sar);
-bool palyginimas(Duomenys& a, Duomenys b);
+bool palyginimas(Duomenys a, Duomenys b);
 vector <Duomenys> stud;
 Duomenys duomenys;
 
@@ -40,11 +40,11 @@ int Studentu_kiekis() {
 
 
 
-void ivedimas ( int i) {
+void ivedimas ( int studentu_kiekis) {
     stud.push_back(Duomenys());
     char bent_vienas_nd_ranka;
-    cout << "Iveskite studento varda : " << endl;cin >> stud[i].vardas;
-    cout << "Iveskite studento pavarde : " << endl;cin >> stud[i].pavarde;
+    cout << "Iveskite studento varda : " << endl;cin >> stud[studentu_kiekis].vardas;
+    cout << "Iveskite studento pavarde : " << endl;cin >> stud[studentu_kiekis].pavarde;
 
 
     do {
@@ -76,13 +76,13 @@ void ivedimas ( int i) {
 
                     while (uzsibaigimas == 0) {
                         int namu_d = 0;
-                        int namu_d_eile = stud[i].nd.size();
+                        int namu_d_eile = stud[studentu_kiekis].nd.size();
                         do {
                             cout << "Iveskite nr. " << namu_d_eile + 1 << " pazymi: " << endl;
                             cin >> namu_d;
                             //if(namu_d != 0){
                             if (namu_d > 0 and namu_d <= 10) {
-                                stud[i].nd.push_back(namu_d);
+                                stud[studentu_kiekis].nd.push_back(namu_d);
                                 cout << "Ar bus dar pazymiu ? (T/N)" << endl;
                                 cin >> tp;
                                 do {
@@ -122,7 +122,7 @@ void ivedimas ( int i) {
                         if (nd_skaicius and nd_skaicius > 0) {
                             for (int e = 0; e < nd_skaicius; e++) {
                                 sk = (rand() % 10) + 1;
-                                stud[i].nd.push_back(sk);
+                                stud[studentu_kiekis].nd.push_back(sk);
 
                             }
 
@@ -161,7 +161,7 @@ void ivedimas ( int i) {
                             do{
                                 cout << "Iveskite egzamino rezultata:"<< endl ; cin>> egz;
                                 if(egz and egz > 0 and egz <=10){
-                                    stud[i].egzaminas = egz;
+                                    stud[studentu_kiekis].egzaminas = egz;
 
                                 }
                                 else{
@@ -173,7 +173,7 @@ void ivedimas ( int i) {
                         else{
                             srand((unsigned )time(0));
                             egz = (rand() % 10) + 1;
-                            stud[i].egzaminas = egz;
+                            stud[studentu_kiekis].egzaminas = egz;
                         }
                     }
                     else{
@@ -188,7 +188,7 @@ void ivedimas ( int i) {
                 }while(egz_ivedimas != 'A' && egz_ivedimas != 'a' && egz_ivedimas != 'R' && egz_ivedimas != 'r');
             }
             else {
-                stud[i].egzaminas = 0;
+                stud[studentu_kiekis].egzaminas = 0;
             }
         }
         else{
@@ -197,8 +197,8 @@ void ivedimas ( int i) {
     }
     while(bent_vienas_egz != 'T' and bent_vienas_egz != 't' and bent_vienas_egz != 'N' and  bent_vienas_egz != 'n');
 
-    stud[i].Vidurkis();
-    stud[i].Mediana();
+    stud[studentu_kiekis].Vidurkis();
+    stud[studentu_kiekis].Mediana();
 
 
 }
@@ -272,7 +272,7 @@ void readfromFile(vector<Duomenys> &stud){
     try{
         ifstream fileread(filename);
         if(!fileread.fail()){
-            int sk;//Studentu kiekis? never gets used?
+            int sk;
             string line;
             string temp,pirmaEil;
             int kiekNd = -3;
@@ -310,7 +310,7 @@ void readfromFile(vector<Duomenys> &stud){
         std::exit(0);
     }
 }
-bool palyginimas( Duomenys& a, Duomenys b){
+bool palyginimas( Duomenys a, Duomenys b){
         if (a.vardas == b.vardas){
 
             return a.pavarde < b.pavarde;}
