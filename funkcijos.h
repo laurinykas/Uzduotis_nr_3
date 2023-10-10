@@ -11,10 +11,10 @@
 #include "strukturos.h"
 
 void isvestis (int isvesties_tipas);
-int Studentu_kiekis();
+//int Studentu_kiekis();
 void ivedimas (int studentu_kiekis);
 void studentu_generavimas(int studentu_k,int  namu_d);
-//int s_kiekis = 0;
+int s_kiekis = 0;
 int info ;
 void readfromFile(vector<Duomenys> &sar);
 bool palyginimas(Duomenys a, Duomenys b);

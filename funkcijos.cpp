@@ -4,9 +4,9 @@
 #include "funkcijos.h"
 
 
-int Studentu_kiekis() {
+/*int Studentu_kiekis() {
 
-    int studentu_sk = 0;
+    int studentu_sk ;
     cout << "Iveskite studentu kieki: " << endl;cin >> studentu_sk;
     do {
 
@@ -20,8 +20,9 @@ int Studentu_kiekis() {
             cin >> studentu_sk;}
 
     }
-    while (!(studentu_sk && studentu_sk > 0));}
-
+    while (!(studentu_sk || studentu_sk < 0));
+}
+*/
 
 
 void ivedimas ( int studentu_kiekis) {
@@ -307,7 +308,9 @@ bool palyginimas( Duomenys a, Duomenys b){
 
 //TODO SUKURTI FUNKCIJA GAMINTI KURSIOKU FAILUS 1 000, 10 000, 100 000, 1 000 000, 10 000 000
 void studentu_generavimas(int studentu_k,int  namu_d){
+    cout<< "1"<<endl;
     string failo_vardas = "student"+ to_string(studentu_k)+ ".txt";
+    cout<< "2"<<endl;
     stringstream eilute;
     ofstream out (failo_vardas);
     eilute << "Vardas" << setw(16) << "Pavarde";
@@ -317,7 +320,7 @@ void studentu_generavimas(int studentu_k,int  namu_d){
 
     }
     eilute << setw(16) << "Egz" <<endl;
-    srand((unsigned )time(0));
+    srand((unsigned )time(nullptr));
     for(int i=0;i<studentu_k;i++){
         eilute << "Vardas" << i+1 << setw(16) << "Pavarde" << i+1;
         for(int j=0; j<namu_d; j++){

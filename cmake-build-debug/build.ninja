@@ -55,6 +55,12 @@ build CMakeFiles/Uzduotis_nr_1.dir/main.cpp.obj: CXX_COMPILER__Uzduotis_nr_1_uns
   OBJECT_DIR = CMakeFiles\Uzduotis_nr_1.dir
   OBJECT_FILE_DIR = CMakeFiles\Uzduotis_nr_1.dir
 
+build CMakeFiles/Uzduotis_nr_1.dir/funkcijos.cpp.obj: CXX_COMPILER__Uzduotis_nr_1_unscanned_Debug C$:/Users/Laurynas/Documents/GitHub/Uzduotis-nr-1/funkcijos.cpp || cmake_object_order_depends_target_Uzduotis_nr_1
+  DEP_FILE = CMakeFiles\Uzduotis_nr_1.dir\funkcijos.cpp.obj.d
+  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Uzduotis_nr_1.dir
+  OBJECT_FILE_DIR = CMakeFiles\Uzduotis_nr_1.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Uzduotis_nr_1
@@ -63,7 +69,7 @@ build CMakeFiles/Uzduotis_nr_1.dir/main.cpp.obj: CXX_COMPILER__Uzduotis_nr_1_uns
 #############################################
 # Link the executable Uzduotis_nr_1.exe
 
-build Uzduotis_nr_1.exe: CXX_EXECUTABLE_LINKER__Uzduotis_nr_1_Debug CMakeFiles/Uzduotis_nr_1.dir/main.cpp.obj
+build Uzduotis_nr_1.exe: CXX_EXECUTABLE_LINKER__Uzduotis_nr_1_Debug CMakeFiles/Uzduotis_nr_1.dir/main.cpp.obj CMakeFiles/Uzduotis_nr_1.dir/funkcijos.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Uzduotis_nr_1.dir
