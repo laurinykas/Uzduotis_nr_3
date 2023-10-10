@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_executable(Uzduotis_nr_1
         main.cpp
-        funkcijos.h
         bibliotekos.h
         strukturos.h
-        funkcijos.cpp)
+        funkcija.h)

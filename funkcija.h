@@ -1,10 +1,25 @@
 //
 // Created by Laurynas on 10/10/2023.
 //
-#include "funkcijos.h"
 
+#ifndef UZDUOTIS_NR_1_FUNKCIJA_H
+#define UZDUOTIS_NR_1_FUNKCIJA_H
 
-/*int Studentu_kiekis() {
+#include "bibliotekos.h"
+#include "strukturos.h"
+
+void isvestis (int isvesties_tipas);
+int Studentu_kiekis();
+void ivedimas (int studentu_kiekis);
+void studentu_generavimas(int studentu_k,int  namu_d);
+int s_kiekis = 0;
+int info ;
+void readfromFile(vector<Duomenys> &sar);
+bool palyginimas(Duomenys a, Duomenys b);
+vector <Duomenys> stud;
+Duomenys duomenys;
+
+int Studentu_kiekis() {
 
     int studentu_sk ;
     cout << "Iveskite studentu kieki: " << endl;cin >> studentu_sk;
@@ -22,7 +37,6 @@
     }
     while (!(studentu_sk || studentu_sk < 0));
 }
-*/
 
 
 void ivedimas ( int studentu_kiekis) {
@@ -315,19 +329,19 @@ void studentu_generavimas(int studentu_k,int  namu_d){
     ofstream out (failo_vardas);
     eilute << "Vardas" << setw(16) << "Pavarde";
     for (int i=0;i < namu_d; i++){
-       eilute << setw(16) << "ND" << i+1;
+        eilute << setw(16) << "ND" << i+1;
 
 
     }
     eilute << setw(16) << "Egz" <<endl;
-    srand((unsigned )time(nullptr));
+    srand((unsigned )time(0));
     for(int i=0;i<studentu_k;i++){
         eilute << "Vardas" << i+1 << setw(16) << "Pavarde" << i+1;
         for(int j=0; j<namu_d; j++){
             eilute << setw(16) << (rand() % 10) + 1;
 
         }
-    eilute << setw(16) << (rand() % 10) + 1 <<endl;
+        eilute << setw(16) << (rand() % 10) + 1 <<endl;
 
     }
     out <<eilute.str();
@@ -349,3 +363,4 @@ void studentu_generavimas(int studentu_k,int  namu_d){
 
 //TODO PADARYTI FUNKCIJA KURI KURTU FAILUS
 
+#endif //UZDUOTIS_NR_1_FUNKCIJA_H

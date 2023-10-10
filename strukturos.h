@@ -1,6 +1,10 @@
 //
 // Created by Laurynas on 10/1/2023.
 //
+#ifndef STRUKTUROS_H_INCLUDED
+#define STRUKTUROS_H_INCLUDED
+
+
 #include "bibliotekos.h"
 
 struct Duomenys {
@@ -37,3 +41,4 @@ struct Duomenys {
         med = 0.4 * med + 0.6 * egzaminas;
     }
 };
+#endif

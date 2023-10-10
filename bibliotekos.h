@@ -5,7 +5,7 @@
 #ifndef UZDUOTIS_NR_1_BIBLIOTEKOS_H
 #define UZDUOTIS_NR_1_BIBLIOTEKOS_H
 
-#endif //UZDUOTIS_NR_1_BIBLIOTEKOS_H
+
 
 #pragma once
 #include <bits/stdc++.h>
@@ -31,3 +31,5 @@ using std::ifstream;
 using std::to_string;
 using std::stringstream;
 using std::ofstream;
+
+#endif UZDUOTIS_NR_1_BIBLIOTEKOS_H
