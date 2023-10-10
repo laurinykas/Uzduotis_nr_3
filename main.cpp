@@ -1,8 +1,10 @@
 
 #include "funkcijos.h"
+
 int main() {
 
-    char ranka_failas;
+    studentu_generavimas(10,5);
+   /* char ranka_failas;
     do {
         cout << "Ar duomenis rasytite ranka ar nuskaitysite is failo(R/F)?" << endl;
         cin >> ranka_failas;
@@ -32,9 +34,12 @@ int main() {
         } else {
             cout << "Iveskite R arba F" << endl;
             cin.clear();
-            cin.ignore(1000, '\n');
+            cin.ignore(10000, '\n');
         }
     } while (ranka_failas != 'R' and ranka_failas != 'r' and ranka_failas != 'F' and ranka_failas != 'f');
 
     system("pause");
+*/
+
+
 }

@@ -7,4 +7,5 @@ add_executable(Uzduotis_nr_1
         main.cpp
         funkcijos.h
         bibliotekos.h
-        strukturos.h)
+        strukturos.h
+        funkcijos.cpp)
