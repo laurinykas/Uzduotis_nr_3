@@ -15,8 +15,19 @@ struct Duomenys {
     double vid = 0;
     double med = 0;
     int studentu_kiekis = 0;
-    bool kietumas ;
     double galutinis = 0;
+
+    void Galutinis (int input ){
+        if(input == 1){
+            galutinis = vid ;
+        }
+        else {
+            galutinis = med;
+        }
+
+
+
+    }
 
 
     void Vidurkis() {
