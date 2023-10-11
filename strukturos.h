@@ -16,6 +16,7 @@ struct Duomenys {
     double med = 0;
     int studentu_kiekis = 0;
     bool kietumas ;
+    double galutinis = 0;
 
 
     void Vidurkis() {
@@ -42,14 +43,7 @@ struct Duomenys {
         }
         med = 0.4 * med + 0.6 * egzaminas;
     }
-    void Islaike(int balas){
-        if (balas >= 5){
-            kietumas = true;
-        }
-        else{
-            kietumas = false;
-        }
-    }
+
 
 
     }
