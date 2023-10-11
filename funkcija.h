@@ -12,15 +12,19 @@ void isvestis (int isvesties_tipas);
 int Studentu_kiekis();
 void ivedimas (int studentu_kiekis);
 void studentu_generavimas(int &s_kiekis, int  namu_d);
-int s_kiekis = 0;
-int info ;
-string failo_pav = "";
-void readfromFile(vector<Duomenys> &stud, string filename);
+void Studentu_skaldymas ();
+void readfromFile( string filename, vector<Duomenys> &stud);
 bool palyginimas(Duomenys a, Duomenys b);
 void Kategorija(int s_kiekis);
-vector <Duomenys> stud;
-Duomenys duomenys;
+void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas);
 
+vector <Duomenys> stud;
+vector<Duomenys> kieti;
+vector<Duomenys> vargsai;
+Duomenys duomenys;
+int s_kiekis = 0;
+int info;
+string failo_pav ;
 int Studentu_kiekis() {
 
     int studentu_sk ;
@@ -271,8 +275,8 @@ void isvestis (int isvesties_tipas ) {
 
 
 }
-void readfromFile(vector<Duomenys> &stud, string filename){
-    ;
+void readfromFile( string filename, vector<Duomenys> &stud){
+
     try{
         ifstream fileread(filename);
         if(!fileread.fail()){
@@ -352,11 +356,7 @@ void studentu_generavimas(int &s_kiekis, int  namu_d){
 
 }
 
-//TODO SUKURTI POZYMI (GREICIAUSIAI STRUKTUROJ) KUR DAUGIAU 5 AR MAZIAU 5 GALUTINIS
 
-// 1.pagamintas failas
-// 2. nuskaitomas failas
-// 3 . reikia kategorijos
 
 void Kategorija(int s_kiekis){
     int med_ar_vid;
@@ -386,9 +386,94 @@ void Kategorija(int s_kiekis){
     }
     while(med_ar_vid != 1 && med_ar_vid != 2);
 }
+void Studentu_skaldymas (){
+    for( auto  el :stud){
+        cout<< "2"<<endl;
+        if(el.kietumas){
+            cout << "3"<<endl;
+            kieti.push_back(el);
+        }
+        else{
+            cout<<"4"<<endl;
+            vargsai.push_back(el);
+        }
+        stud.clear();
+        stud.shrink_to_fit();
+cout<<"5"<<endl;
+    }
 
+
+
+
+}
 
 
 //TODO PADARYTI FUNKCIJA KURI KURTU FAILUS
+
+void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas) {
+
+
+    ofstream out(failo_vardas);
+    stringstream eilute;
+    int pasirinkimas;
+    cout << "Ar norite vidurkio - 1 , medianos - 2 ar abieju - 3 ? :" << endl;
+    cin >> pasirinkimas;
+    do {
+        if (pasirinkimas ) {
+
+            if (pasirinkimas == 1) {
+                eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << endl;
+                eilute << left << "          _________________________________________________" << endl;
+                for (int i = 0; i < vektorius.size(); i++) {
+                    eilute << left << setw(20) << vektorius[i].vardas << setw(20) << vektorius[i].pavarde << setw(17)
+                           << std::fixed
+                           << std::setprecision(2) << stud[i].vid << setw(17) << endl;
+
+
+                }
+
+
+            } else if (pasirinkimas == 2) {
+                eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(med)" << endl;
+                eilute << left << "          _________________________________________________" << endl;
+                for (int i = 0; i < vektorius.size(); i++) {
+                    eilute << left << setw(20) << vektorius[i].vardas << setw(20) << vektorius[i].pavarde << setw(17)
+                           << std::fixed
+                           << std::setprecision(2) << stud[i].med << setw(17) << endl;
+
+
+                }
+
+
+            } else {
+                eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)"
+                       << setw(20) << "Galutinis(vid)" << endl;
+                eilute << left << "          _________________________________________________" << endl;
+                for (int i = 0; i < vektorius.size(); i++) {
+                    eilute << left << setw(20) << vektorius[i].vardas << setw(20) << vektorius[i].pavarde << setw(17)
+                           << std::fixed
+                           << std::setprecision(2) << stud[i].vid << setw(17) << stud[i].med << endl;
+
+                }
+
+            }
+        } else {
+                cout << "Iveskite nenulini skaiciu, nuo 1 iki 3!" << endl;
+                cin.clear();
+                cin.ignore(10000, '\n');
+                cin >> pasirinkimas;
+            }
+            out << eilute.str();
+            eilute.clear();
+            out.close();
+
+
+
+
+    } while (pasirinkimas != 1 and pasirinkimas != 2 and pasirinkimas != 3);
+
+
+}
+
 
 #endif //UZDUOTIS_NR_1_FUNKCIJA_H

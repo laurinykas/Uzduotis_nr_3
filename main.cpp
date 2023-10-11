@@ -2,10 +2,14 @@
 #include "funkcija.h"
 
 int main() {
-    s_kiekis = 3000;
-    studentu_generavimas(s_kiekis,16);
-    readfromFile(stud,failo_pav);
-    Kategorija(s_kiekis);
+    s_kiekis = 5000;
+    studentu_generavimas(s_kiekis,3);
+    readfromFile("kursiokai.txt",stud);
+    isvestis(1);
+ //   Kategorija(s_kiekis);cout<< "1"<<endl;
+ //   Studentu_skaldymas ();cout<<"iseina"<<endl;
+ //   Failu_kurimas (kieti,"kieti.txt");
+  //  Failu_kurimas(vargsai,"vargsai.txt");
 
     /*char ranka_failas;
     do {

@@ -31,5 +31,6 @@ using std::ifstream;
 using std::to_string;
 using std::stringstream;
 using std::ofstream;
+using std::left;
 
 #endif UZDUOTIS_NR_1_BIBLIOTEKOS_H
