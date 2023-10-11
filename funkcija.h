@@ -10,19 +10,20 @@
 
 void isvestis (int isvesties_tipas);
 int Studentu_kiekis();
+int Nd_kiekis();
 void ivedimas (int studentu_kiekis);
-void studentu_generavimas(int &s_kiekis, int  namu_d);
+void studentu_generavimas(int st_k, int  namu_d);
 void Studentu_skaldymas ();
 void readfromFile( string filename, vector<Duomenys> &stud);
 bool palyginimas(Duomenys a, Duomenys b);
-void Kategorija(int s_kiekis);
+void Kategorija(int studentu_k);
 void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas);
 
 vector <Duomenys> stud;
 vector<Duomenys> kieti;
 vector<Duomenys> vargsai;
 Duomenys duomenys;
-int s_kiekis = 0;
+int studentu_kiekis = 0;
 int info;
 string failo_pav ;
 int Studentu_kiekis() {
@@ -42,6 +43,24 @@ int Studentu_kiekis() {
 
     }
     while (!(studentu_sk || studentu_sk < 0));
+}
+int Nd_kiekis() {
+
+    int nd_sk ;
+    cout << "Iveskite namu darbu  kieki: " << endl;cin >> nd_sk;
+    do {
+
+        if (nd_sk && nd_sk > 0) {
+            return nd_sk;}
+        else {
+            cout << "Neteisingai ivestas namu darbu skaicius, bandykite dar karta\n"
+                    "Iveskite namu darbu kieki: ";
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cin >> nd_sk;}
+
+    }
+    while (!(nd_sk || nd_sk < 0));
 }
 
 
@@ -218,15 +237,15 @@ void isvestis (int isvesties_tipas ) {
 
             if (pasirinkimas == 1) {
                 cout << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << endl;
-                cout << "          _________________________________________________" << endl;
+                cout << "____________________________________________________________________" << endl;
                 if (isvesties_tipas == 1) {
-                    for (int i = 0; s_kiekis > i; i++) {
+                    for (int i = 0; studentu_kiekis > i; i++) {
                         cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
                              << std::setprecision(2) << stud[i].vid << setw(17) << endl;
                     }
 
                 } else {
-                    for (int i = 1; s_kiekis >= i; i++) {
+                    for (int i = 1; studentu_kiekis >= i; i++) {
                         cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
                              << std::setprecision(2) << stud[i].vid << setw(17) << endl;
                     }
@@ -234,14 +253,14 @@ void isvestis (int isvesties_tipas ) {
                 }
             } else if (pasirinkimas == 2) {
                 cout << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis(med)" << endl;
-                cout << "          _________________________________________________" << endl;
+                cout << "_____________________________________________________________________" << endl;
                 if (isvesties_tipas == 1) {
-                    for (int i = 0; s_kiekis > i; i++) {
+                    for (int i = 0; studentu_kiekis > i; i++) {
                         cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
                              << std::setprecision(2) << stud[i].med << endl;
                     }
                 } else {
-                    for (int i = 1; s_kiekis >= i; i++) {
+                    for (int i = 1; studentu_kiekis >= i; i++) {
                         cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
                              << std::setprecision(2) << stud[i].med << endl;
                     }
@@ -249,14 +268,14 @@ void isvestis (int isvesties_tipas ) {
             } else {
                 cout << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << setw(20)
                      << "Galutinis(med)" << endl;
-                cout << "          ____________________________________________________________________" << endl;
+                cout << "___________________________________________________________________________________________" << endl;
                 if (isvesties_tipas == 1) {
-                    for (int i = 0; s_kiekis > i; i++) {
+                    for (int i = 0; studentu_kiekis > i; i++) {
                         cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
                              << std::setprecision(2) << stud[i].vid << setw(17) << stud[i].med << endl;
                     }
                 } else {
-                    for (int i = 1; s_kiekis >= i; i++) {
+                    for (int i = 1; studentu_kiekis >= i; i++) {
                         cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
                              << std::setprecision(2) << stud[i].vid << setw(17) << stud[i].med << endl;
                     }
@@ -303,7 +322,7 @@ void readfromFile( string filename, vector<Duomenys> &stud){
                 s.egzaminas=sk;
                 s.Vidurkis();
                 s.Mediana();
-                s_kiekis++;
+                studentu_kiekis++;
                 stud.push_back(s);
             }
 
@@ -327,8 +346,8 @@ bool palyginimas( Duomenys a, Duomenys b){
 }
 
 
-void studentu_generavimas(int &s_kiekis, int  namu_d){
-    string failo_vardas = "student" + to_string(s_kiekis) + ".txt";
+void studentu_generavimas(int studentu_kiekis, int  namu_d){
+    string failo_vardas = "student" + to_string(studentu_kiekis) + ".txt";
     stringstream eilute;
     ofstream out (failo_vardas);
     eilute << "Vardas" << setw(15) << "Pavarde";
@@ -339,7 +358,7 @@ void studentu_generavimas(int &s_kiekis, int  namu_d){
     }
     eilute << setw(15) << "Egz" <<endl;
     srand((unsigned )time(0));
-    for(int i=0; i < s_kiekis; i++){
+    for(int i=0; i < studentu_kiekis; i++){
         eilute << "Vardas" << i+1 << setw(15) << "Pavarde" << i+1;
         for(int j=0; j<namu_d; j++){
             eilute << setw(15) << (rand() % 10) + 1;
@@ -358,18 +377,18 @@ void studentu_generavimas(int &s_kiekis, int  namu_d){
 
 
 
-void Kategorija(int s_kiekis){
+void Kategorija(int studentu_k){
     int med_ar_vid;
     cout<< "Ar galutiniam balui naudosite vidurki ar mediana(1 - vidurkis, 2 - mediana)?"<<endl; cin>>med_ar_vid;
     do{
         if(med_ar_vid && (med_ar_vid == 1 || med_ar_vid == 2)){
             if (med_ar_vid == 1){
-                for(int i=0; i < s_kiekis; i++){
+                for(int i=0; i < studentu_k; i++){
                     stud[i].galutinis = stud[i].vid;
             }
             }
             else {
-                for(int i=0; i < s_kiekis; i++){
+                for(int i=0; i < studentu_k; i++){
                     stud[i].galutinis = stud[i].med;
                 }
             }
@@ -420,7 +439,7 @@ void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas) {
 
             if (pasirinkimas == 1) {
                 eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << endl;
-                eilute << left << "          _________________________________________________" << endl;
+                eilute << left << "______________________________________________________________________________" << endl;
                 for (int i = 1; i < vektorius.size(); i++) {
                     eilute << left << setw(20) << vektorius[i].vardas << setw(20) << vektorius[i].pavarde << setw(17)
                            << std::fixed
@@ -432,7 +451,7 @@ void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas) {
 
             } else if (pasirinkimas == 2) {
                 eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(med)" << endl;
-                eilute << left << "          _________________________________________________" << endl;
+                eilute << left << "________________________________________________________________________________" << endl;
                 for (int i = 1; i < vektorius.size(); i++) {
                     eilute << left << setw(20) << vektorius[i].vardas << setw(20) << vektorius[i].pavarde << setw(17)
                            << std::fixed
@@ -444,8 +463,8 @@ void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas) {
 
             } else {
                 eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)"
-                       << setw(20) << "Galutinis(vid)" << endl;
-                eilute << left << "          _________________________________________________" << endl;
+                       << setw(20) << "Galutinis(med)" << endl;
+                eilute << left << "________________________________________________________________________" << endl;
                 for (int i = 1; i < vektorius.size(); i++) {
                     eilute << left << setw(20) << vektorius[i].vardas << setw(20) << vektorius[i].pavarde << setw(17)
                            << std::fixed
