@@ -11,11 +11,13 @@
 void isvestis (int isvesties_tipas);
 int Studentu_kiekis();
 void ivedimas (int studentu_kiekis);
-void studentu_generavimas(int studentu_k,int  namu_d);
+void studentu_generavimas(int &s_kiekis, int  namu_d);
 int s_kiekis = 0;
 int info ;
-void readfromFile(vector<Duomenys> &sar);
+string failo_pav = "";
+void readfromFile(vector<Duomenys> &stud, string filename);
 bool palyginimas(Duomenys a, Duomenys b);
+void Kategorija(int s_kiekis);
 vector <Duomenys> stud;
 Duomenys duomenys;
 
@@ -269,8 +271,8 @@ void isvestis (int isvesties_tipas ) {
 
 
 }
-void readfromFile(vector<Duomenys> &stud){
-    string filename="kursiokai.txt";
+void readfromFile(vector<Duomenys> &stud, string filename){
+    ;
     try{
         ifstream fileread(filename);
         if(!fileread.fail()){
@@ -321,10 +323,8 @@ bool palyginimas( Duomenys a, Duomenys b){
 }
 
 
-void studentu_generavimas(int &studentu_k,int  namu_d){
-    cout<< "1"<<endl;
-    string failo_vardas = "student"+ to_string(studentu_k)+ ".txt";
-    cout<< "2"<<endl;
+void studentu_generavimas(int &s_kiekis, int  namu_d){
+    string failo_vardas = "student" + to_string(s_kiekis) + ".txt";
     stringstream eilute;
     ofstream out (failo_vardas);
     eilute << "Vardas" << setw(15) << "Pavarde";
@@ -335,7 +335,7 @@ void studentu_generavimas(int &studentu_k,int  namu_d){
     }
     eilute << setw(15) << "Egz" <<endl;
     srand((unsigned )time(0));
-    for(int i=0;i<studentu_k;i++){
+    for(int i=0; i < s_kiekis; i++){
         eilute << "Vardas" << i+1 << setw(15) << "Pavarde" << i+1;
         for(int j=0; j<namu_d; j++){
             eilute << setw(15) << (rand() % 10) + 1;
@@ -347,7 +347,8 @@ void studentu_generavimas(int &studentu_k,int  namu_d){
     out <<eilute.str();
     eilute.clear();
     out.close();
-    cout << "baigtas failo generavimas";
+    failo_pav = failo_vardas;
+    cout << "baigtas failo generavimas"<<endl;
 
 }
 
@@ -357,18 +358,18 @@ void studentu_generavimas(int &studentu_k,int  namu_d){
 // 2. nuskaitomas failas
 // 3 . reikia kategorijos
 
-void Kategorija(int studentu_k){
+void Kategorija(int s_kiekis){
     int med_ar_vid;
     cout<< "Ar galutiniam balui naudosite vidurki ar mediana(1 - vidurkis, 2 - mediana)?"<<endl; cin>>med_ar_vid;
     do{
         if(med_ar_vid && (med_ar_vid == 1 || med_ar_vid == 2)){
             if (med_ar_vid == 1){
-                for(int i=0; i<studentu_k; i++){
+                for(int i=0; i < s_kiekis; i++){
                     stud[i].Islaike(stud[i].vid);
             }
             }
             else {
-                for(int i=0; i<studentu_k;i++){
+                for(int i=0; i < s_kiekis; i++){
                     stud[i].Islaike(stud[i].med);
                 }
             }

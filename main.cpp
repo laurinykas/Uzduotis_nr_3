@@ -2,9 +2,12 @@
 #include "funkcija.h"
 
 int main() {
+    s_kiekis = 3000;
+    studentu_generavimas(s_kiekis,16);
+    readfromFile(stud,failo_pav);
+    Kategorija(s_kiekis);
 
-
-    char ranka_failas;
+    /*char ranka_failas;
     do {
         cout << "Ar duomenis rasytite ranka ar nuskaitysite is failo(R/F)?" << endl;
         cin >> ranka_failas;
@@ -24,7 +27,7 @@ int main() {
                 isvestis(info);
             } else {
                 stud.push_back(duomenys);
-                readfromFile(stud);
+                readfromFile(stud, "kursiokai.txt");
                 info = 2;
                 sort(stud.begin(),stud.end(), palyginimas);
                 isvestis(info);
@@ -42,4 +45,7 @@ int main() {
 
 
 
+
+
+*/
 }
