@@ -320,28 +320,28 @@ bool palyginimas( Duomenys a, Duomenys b){
     return a.vardas < b.vardas;
 }
 
-//TODO SUKURTI FUNKCIJA GAMINTI KURSIOKU FAILUS 1 000, 10 000, 100 000, 1 000 000, 10 000 000
-void studentu_generavimas(int studentu_k,int  namu_d){
+
+void studentu_generavimas(int &studentu_k,int  namu_d){
     cout<< "1"<<endl;
     string failo_vardas = "student"+ to_string(studentu_k)+ ".txt";
     cout<< "2"<<endl;
     stringstream eilute;
     ofstream out (failo_vardas);
-    eilute << "Vardas" << setw(16) << "Pavarde";
+    eilute << "Vardas" << setw(15) << "Pavarde";
     for (int i=0;i < namu_d; i++){
-        eilute << setw(16) << "ND" << i+1;
+        eilute << setw(15) << "ND" << i+1;
 
 
     }
-    eilute << setw(16) << "Egz" <<endl;
+    eilute << setw(15) << "Egz" <<endl;
     srand((unsigned )time(0));
     for(int i=0;i<studentu_k;i++){
-        eilute << "Vardas" << i+1 << setw(16) << "Pavarde" << i+1;
+        eilute << "Vardas" << i+1 << setw(15) << "Pavarde" << i+1;
         for(int j=0; j<namu_d; j++){
-            eilute << setw(16) << (rand() % 10) + 1;
+            eilute << setw(15) << (rand() % 10) + 1;
 
         }
-        eilute << setw(16) << (rand() % 10) + 1 <<endl;
+        eilute << setw(15) << (rand() % 10) + 1 <<endl;
 
     }
     out <<eilute.str();
@@ -349,16 +349,43 @@ void studentu_generavimas(int studentu_k,int  namu_d){
     out.close();
     cout << "baigtas failo generavimas";
 
-
-
-
-
-
 }
 
-
-
 //TODO SUKURTI POZYMI (GREICIAUSIAI STRUKTUROJ) KUR DAUGIAU 5 AR MAZIAU 5 GALUTINIS
+
+// 1.pagamintas failas
+// 2. nuskaitomas failas
+// 3 . reikia kategorijos
+
+void Kategorija(int studentu_k){
+    int med_ar_vid;
+    cout<< "Ar galutiniam balui naudosite vidurki ar mediana(1 - vidurkis, 2 - mediana)?"<<endl; cin>>med_ar_vid;
+    do{
+        if(med_ar_vid && (med_ar_vid == 1 || med_ar_vid == 2)){
+            if (med_ar_vid == 1){
+                for(int i=0; i<studentu_k; i++){
+                    stud[i].Islaike(stud[i].vid);
+            }
+            }
+            else {
+                for(int i=0; i<studentu_k;i++){
+                    stud[i].Islaike(stud[i].med);
+                }
+            }
+
+        }
+        else{
+            cout<< "Kladinga ivestis, bandykite dar karta (Iveskite 1 arba 2 )"<<endl;
+            cin.clear();
+            cin.ignore(10000 , '\n');
+            cin >> med_ar_vid;
+        }
+
+
+    }
+    while(med_ar_vid != 1 && med_ar_vid != 2);
+}
+
 
 
 //TODO PADARYTI FUNKCIJA KURI KURTU FAILUS

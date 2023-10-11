@@ -15,6 +15,8 @@ struct Duomenys {
     double vid = 0;
     double med = 0;
     int studentu_kiekis = 0;
+    bool kietumas ;
+
 
     void Vidurkis() {
 
@@ -29,7 +31,7 @@ struct Duomenys {
 
     void Mediana() {
         if (nd.size() >= 1) {
-            std::sort(nd.begin(), nd.end());
+            sort(nd.begin(), nd.end());
             if (nd.size() % 2 == 0) {
                 med = nd[nd.size() / 2 - 1] + nd[nd.size() / 2] / 2;
             } else {
@@ -40,5 +42,16 @@ struct Duomenys {
         }
         med = 0.4 * med + 0.6 * egzaminas;
     }
-};
+    void Islaike(int balas){
+        if (balas >= 5){
+            kietumas = true;
+        }
+        else{
+            kietumas = false;
+        }
+    }
+
+
+    }
+;
 #endif
