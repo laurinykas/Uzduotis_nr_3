@@ -11,11 +11,11 @@ struct Duomenys {
     string vardas = "";
     string pavarde = "";
     vector<double> nd; //namu darbai
-    double egzaminas = 0;
-    double vid = 0;
-    double med = 0;
+    int egzaminas = 0;
+    float vid = 0;
+    float med = 0;
     int studentu_kiekis = 0;
-    double galutinis = 0;
+    float galutinis = 0;
 
     void Galutinis (int input ){
         if(input == 1){

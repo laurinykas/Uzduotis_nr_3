@@ -26,6 +26,8 @@ Duomenys duomenys;
 int studentu_kiekis = 0;
 int info;
 string failo_pav ;
+std::chrono::duration<double> laikas_kat;
+std::chrono::duration<double> laikas_failo;
 int Studentu_kiekis() {
 
     int studentu_sk ;
@@ -378,14 +380,21 @@ void studentu_generavimas(int studentu_kiekis, int  namu_d){
 
 
 void Kategorija(int studentu_k){
+    std::chrono::duration<double> laikas;
     int med_ar_vid;
     cout<< "Ar galutiniam balui naudosite vidurki ar mediana(1 - vidurkis, 2 - mediana)?"<<endl; cin>>med_ar_vid;
     do{
         if(med_ar_vid && (med_ar_vid == 1 || med_ar_vid == 2)){
+            auto start = hrClock ::now();
                 for(int i=0; i <= studentu_k; i++){
                     stud[i].Galutinis (med_ar_vid );
 
-        }}
+        }
+         auto end =hrClock :: now();
+         laikas = end - start;
+         laikas_kat = laikas;
+
+        }
         else{
             cout<< "Kladinga ivestis, bandykite dar karta (Iveskite 1 arba 2 )"<<endl;
             cin.clear();
@@ -402,11 +411,11 @@ void Studentu_skaldymas() {
     stud.erase(stud.begin());
     for (auto el : stud) {
         if (el.galutinis >= 5.00){
-            cout<<el.galutinis<<"kietas"<<endl;
+
             kieti.push_back(el);
         } else {
             vargsai.push_back(el);
-            cout<<el.galutinis<<"vargsas"<<endl;
+
         }
 
         // Store the student in the temporary vector
@@ -418,11 +427,11 @@ void Studentu_skaldymas() {
 }
 
 
-//TODO PADARYTI FUNKCIJA KURI KURTU FAILUS
+
 
 void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas) {
 
-
+    std::chrono::duration<double> laikas;
     ofstream out(failo_vardas);
     stringstream eilute;
     int pasirinkimas;
@@ -430,7 +439,7 @@ void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas) {
     cin >> pasirinkimas;
     do {
         if (pasirinkimas ) {
-
+            auto start = hrClock ::now();
             if (pasirinkimas == 1) {
                 eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << endl;
                 eilute << left << "______________________________________________________________________________" << endl;
@@ -467,6 +476,11 @@ void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas) {
                 }
 
             }
+
+            auto end = hrClock ::now();
+            laikas = end - start + laikas_failo;
+            laikas_failo = laikas;
+
         } else {
                 cout << "Iveskite nenulini skaiciu, nuo 1 iki 3!" << endl;
                 cin.clear();

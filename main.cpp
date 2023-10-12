@@ -24,16 +24,29 @@ int main() {
                 isvestis(info);
             }
             else if (ranka_failas == 'g' || ranka_failas == 'G'){
+                std::chrono::duration<double> laikas;
                 int studentu_mase = Studentu_kiekis();
                 int nd_kiekis = Nd_kiekis();
+                auto start = hrClock::now();
                 studentu_generavimas(studentu_mase, nd_kiekis);
+                auto end = hrClock::now();
+                laikas = end - start;
+                cout << studentu_mase << " studentu failo generavimas uztruko : " << laikas.count()<< "s" << endl;
                 stud.push_back(duomenys);
+                start = hrClock ::now();
                 readfromFile(failo_pav,stud);
+                end = hrClock ::now(); laikas = end - start;
+                cout << studentu_mase << " studentu failo nuskaitymas uztruko : " << laikas.count()<< "s"<< endl;
                 sort(stud.begin(),stud.end(), palyginimas);
                 Kategorija(studentu_kiekis);
+                start = hrClock::now();
                 Studentu_skaldymas();
+                end = hrClock::now();
+                laikas = end - start + laikas_kat;
+                cout << studentu_mase <<" studentu failo surusiavimas uztruko : " << laikas.count() << " s"<< endl;
                 Failu_kurimas (kieti,"kieti.txt");
                 Failu_kurimas(vargsai,"vargsai.txt");
+                cout << studentu_mase <<" isrusiuotu studentu failu sukurimas uztruko : "<< laikas_failo.count() <<" s"<< endl;
             }
 
             else {
