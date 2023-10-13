@@ -1,33 +1,9 @@
 //
-// Created by Laurynas on 10/10/2023.
+// Created by Laurynas on 10/13/2023.
 //
 
-#ifndef UZDUOTIS_NR_1_FUNKCIJA_H
-#define UZDUOTIS_NR_1_FUNKCIJA_H
+#include "funkcijos.h"
 
-#include "bibliotekos.h"
-#include "strukturos.h"
-
-void isvestis (int isvesties_tipas);
-int Studentu_kiekis();
-int Nd_kiekis();
-void ivedimas (int studentu_kiekis);
-void studentu_generavimas(int st_k, int  namu_d);
-void Studentu_skaldymas ();
-void readfromFile( string filename, vector<Duomenys> &stud);
-bool palyginimas(Duomenys a, Duomenys b);
-void Kategorija(int studentu_k);
-void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas);
-
-vector <Duomenys> stud;
-vector<Duomenys> kieti;
-vector<Duomenys> vargsai;
-Duomenys duomenys;
-int studentu_kiekis = 0;
-int info;
-string failo_pav ;
-std::chrono::duration<double> laikas_kat;
-std::chrono::duration<double> laikas_failo;
 int Studentu_kiekis() {
 
     int studentu_sk ;
@@ -386,13 +362,13 @@ void Kategorija(int studentu_k){
     do{
         if(med_ar_vid && (med_ar_vid == 1 || med_ar_vid == 2)){
             auto start = hrClock ::now();
-                for(int i=0; i <= studentu_k; i++){
-                    stud[i].Galutinis (med_ar_vid );
+            for(int i=0; i <= studentu_k; i++){
+                stud[i].Galutinis (med_ar_vid );
 
-        }
-         auto end =hrClock :: now();
-         laikas = end - start;
-         laikas_kat = laikas;
+            }
+            auto end =hrClock :: now();
+            laikas = end - start;
+            laikas_kat = laikas;
 
         }
         else{
@@ -482,14 +458,14 @@ void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas) {
             laikas_failo = laikas;
 
         } else {
-                cout << "Iveskite nenulini skaiciu, nuo 1 iki 3!" << endl;
-                cin.clear();
-                cin.ignore(10000, '\n');
-                cin >> pasirinkimas;
-            }
-            out << eilute.str();
-            eilute.clear();
-            out.close();
+            cout << "Iveskite nenulini skaiciu, nuo 1 iki 3!" << endl;
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cin >> pasirinkimas;
+        }
+        out << eilute.str();
+        eilute.clear();
+        out.close();
 
 
 
@@ -500,4 +476,4 @@ void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas) {
 }
 
 
-#endif //UZDUOTIS_NR_1_FUNKCIJA_H
+

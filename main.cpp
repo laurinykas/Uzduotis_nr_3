@@ -1,5 +1,14 @@
 
-#include "funkcija.h"
+#include "funkcijos.h"
+ vector <Duomenys> stud;
+ vector<Duomenys> kieti;
+ vector<Duomenys> vargsai;
+ Duomenys duomenys;
+ int studentu_kiekis = 0;
+ int info;
+ string failo_pav ;
+ std::chrono::duration<double> laikas_kat;
+ std::chrono::duration<double> laikas_failo;
 
 int main() {
 
@@ -37,7 +46,7 @@ int main() {
                 readfromFile(failo_pav,stud);
                 end = hrClock ::now(); laikas = end - start;
                 cout << studentu_mase << " studentu failo nuskaitymas uztruko : " << laikas.count()<< "s"<< endl;
-                sort(stud.begin(),stud.end(), palyginimas);
+                sort(stud.begin(),stud.end(), palyginimas);// iskirti sort laika
                 Kategorija(studentu_kiekis);
                 start = hrClock::now();
                 Studentu_skaldymas();
@@ -51,6 +60,7 @@ int main() {
 
             else {
                 stud.push_back(duomenys);
+                system("dir *.txt"); //
                 readfromFile("kursiokai.txt",stud );
                 info = 2;
                 sort(stud.begin(),stud.end(), palyginimas);
