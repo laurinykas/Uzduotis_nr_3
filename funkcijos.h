@@ -21,6 +21,7 @@ void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas, int pasirin
 int Konsole_ar_failas ();
 int Isvesties_pasirinkimas ();
 void Koks_failo_pav ();
+void Fake_main();
 
 extern vector <Duomenys> stud;
 extern vector<Duomenys> kieti;

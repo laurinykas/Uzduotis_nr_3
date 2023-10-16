@@ -10,7 +10,6 @@
 #pragma once
 #include <bits/stdc++.h>
 #include <iostream>
-
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -33,5 +32,6 @@ using std::stringstream;
 using std::ofstream;
 using std::left;
 using hrClock = std::chrono::high_resolution_clock;
+
 
 #endif UZDUOTIS_NR_1_BIBLIOTEKOS_H
