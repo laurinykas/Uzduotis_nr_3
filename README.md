@@ -1,17 +1,8 @@
 # Uzduotis-nr-1
 
-## v.pradine 
-### Programos galimybės
-* Programa paima studentų vardus ir pavardes, surenka namų  darbų pažymius, bei egzamino balą ir apskaičiuoją medianą su vidurkiu.
-* Šitoje galima duomenis suvesti ranka, bet kai kuriuos duomenis(namų darbų balus ir egzamino balą) sugeneruoti atsitiktinai.
-* Yra įdėti saugumo garantai, kad programa veiktų tvarkingai( pažymiai yra visada skaičiai nuo 1 iki 10 ir t.t).
-* Galima suvesti neribotą kiekį namų darbų ir studentų .
-
-## v0.1.1
-* Galimybė nuskaityti studentus iš failo.
-* Įdėta naudotojo apsauga, jei failas neegzistuotų.
-* Studentai dabar yra ir rūšiuojami.
-
+## v0.2.1
+* Galima generuoti daug kartu studentu failus
+* Galima pasirinkti, kokius failus nori naudotojas nuskaityti
 
 ## v0.2 
 * Galimybė sugeneruoti atsitiktinius studentus į failą.
@@ -33,4 +24,14 @@
 ![10mil_6_nd](https://github.com/laurinykas/Uzduotis-nr-1/assets/112711939/e4da4830-9bad-4926-afce-0569ca2a4e4f)
 
 
+## v0.1.1
+* Galimybė nuskaityti studentus iš failo.
+* Įdėta naudotojo apsauga, jei failas neegzistuotų.
+* Studentai dabar yra ir rūšiuojami.
 
+## v.pradine 
+### Programos galimybės
+* Programa paima studentų vardus ir pavardes, surenka namų  darbų pažymius, bei egzamino balą ir apskaičiuoją medianą su vidurkiu.
+* Šitoje galima duomenis suvesti ranka, bet kai kuriuos duomenis(namų darbų balus ir egzamino balą) sugeneruoti atsitiktinai.
+* Yra įdėti saugumo garantai, kad programa veiktų tvarkingai( pažymiai yra visada skaičiai nuo 1 iki 10 ir t.t).
+* Galima suvesti neribotą kiekį namų darbų ir studentų .
