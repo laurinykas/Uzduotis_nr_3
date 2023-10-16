@@ -1,8 +1,8 @@
 # Uzduotis-nr-1
 
 ## v0.2.1
-* Galima generuoti daug kartu studentu failus
-* Galima pasirinkti, kokius failus nori naudotojas nuskaityti
+* Galima generuoti daug kartų studentų failus.
+* Galima pasirinkti, kokius failus nori naudotojas nuskaityti.
 
 ## v0.2 
 * Galimybė sugeneruoti atsitiktinius studentus į failą.
