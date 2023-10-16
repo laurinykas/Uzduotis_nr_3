@@ -204,79 +204,49 @@ void ivedimas ( int studentu_kiekis) {
 
 
 }
-void isvestis (int isvesties_tipas ) {
+void isvestis (vector<Duomenys> vektorius, int pasirinkimas) {
 
-
-    int pasirinkimas;
-    cout << "Ar norite vidurkio - 1 , medianos - 2 ar abieju - 3 ? :" << endl;
-    cin >> pasirinkimas;
-    do {
-        if (pasirinkimas && (pasirinkimas == 1 || pasirinkimas == 2 || pasirinkimas == 3)) {
+    stringstream buffer;
 
             if (pasirinkimas == 1) {
-                cout << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << endl;
-                cout << "____________________________________________________________________" << endl;
-                if (isvesties_tipas == 1) {
-                    for (int i = 0; studentu_kiekis > i; i++) {
-                        cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
-                             << std::setprecision(2) << stud[i].vid << setw(17) << endl;
-                    }
-
-                } else {
-                    for (int i = 1; studentu_kiekis >= i; i++) {
-                        cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
-                             << std::setprecision(2) << stud[i].vid << setw(17) << endl;
+                buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << endl;
+                buffer << "____________________________________________________________________" << endl;
+                for (int i = 0; vektorius.size() > i; i++) {
+                    buffer << setw(20) << vektorius[i].vardas << setw(20) << vektorius[i].pavarde << setw(17) << std::fixed
+                    << std::setprecision(2) << vektorius[i].vid << setw(17) << endl;
                     }
 
                 }
-            } else if (pasirinkimas == 2) {
-                cout << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis(med)" << endl;
-                cout << "_____________________________________________________________________" << endl;
-                if (isvesties_tipas == 1) {
-                    for (int i = 0; studentu_kiekis > i; i++) {
-                        cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
-                             << std::setprecision(2) << stud[i].med << endl;
+
+             else if (pasirinkimas == 2) {
+                buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis(med)" << endl;
+                buffer << "_____________________________________________________________________" << endl;
+                for (int i = 0; vektorius.size() > i; i++) {
+                    buffer << setw(20) << vektorius[i].vardas << setw(20) << vektorius[i].pavarde << setw(17) << std::fixed
+                    << std::setprecision(2) << vektorius[i].med << endl;
                     }
-                } else {
-                    for (int i = 1; studentu_kiekis >= i; i++) {
-                        cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
-                             << std::setprecision(2) << stud[i].med << endl;
-                    }
+
                 }
-            } else {
-                cout << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << setw(20)
+             else {
+                buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << setw(20)
                      << "Galutinis(med)" << endl;
-                cout << "___________________________________________________________________________________________" << endl;
-                if (isvesties_tipas == 1) {
-                    for (int i = 0; studentu_kiekis > i; i++) {
-                        cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
-                             << std::setprecision(2) << stud[i].vid << setw(17) << stud[i].med << endl;
+                buffer << "___________________________________________________________________________________________" << endl;
+                for (int i = 0; vektorius.size() > i; i++) {
+                    buffer << setw(20) << vektorius[i].vardas << setw(20) << vektorius[i].pavarde << setw(17) << std::fixed
+                    << std::setprecision(2) << vektorius[i].vid << setw(17) << vektorius[i].med << endl;
                     }
-                } else {
-                    for (int i = 1; studentu_kiekis >= i; i++) {
-                        cout << setw(20) << stud[i].vardas << setw(20) << stud[i].pavarde << setw(17) << std::fixed
-                             << std::setprecision(2) << stud[i].vid << setw(17) << stud[i].med << endl;
+
                     }
-                }
-            }
+            cout<<buffer.str();
 
-        }else {
-            cout << "Iveskite nenulini skaiciu, nuo 1 iki 3!" << endl;
-            cin.clear();
-            cin.ignore(10000, '\n');
-            cin >> pasirinkimas;
-        }
-
-    }while (pasirinkimas != 1 and pasirinkimas != 2 and pasirinkimas != 3);
 
 
 
 }
 void readfromFile( string filename, vector<Duomenys> &stud){
 
-    try{
+
         ifstream fileread(filename);
-        if(!fileread.fail()){
             int sk;
             string line;
             string temp,pirmaEil;
@@ -304,16 +274,6 @@ void readfromFile( string filename, vector<Duomenys> &stud){
                 stud.push_back(s);
             }
 
-        }
-        else{
-            throw std::runtime_error(filename);
-        }
-
-    }
-    catch(std::exception &e){
-        cout << "Ivyko problema nuskaitant faila: " << e.what() << "\n";
-        std::exit(0);
-    }
 }
 bool palyginimas( Duomenys a, Duomenys b){
     if (a.vardas == b.vardas){
@@ -384,7 +344,6 @@ void Kategorija(int studentu_k){
 }
 void Studentu_skaldymas() {
     vector<Duomenys> temporaryStorage; // Create a temporary vector
-    stud.erase(stud.begin());
     for (auto el : stud) {
         if (el.galutinis >= 5.00){
 
@@ -405,16 +364,12 @@ void Studentu_skaldymas() {
 
 
 
-void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas) {
+void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas, int pasirinkimas) {
 
     std::chrono::duration<double> laikas;
     ofstream out(failo_vardas);
     stringstream eilute;
-    int pasirinkimas;
-    cout << "Ar norite vidurkio - 1 , medianos - 2 ar abieju - 3 ? :" << endl;
-    cin >> pasirinkimas;
-    do {
-        if (pasirinkimas ) {
+
             auto start = hrClock ::now();
             if (pasirinkimas == 1) {
                 eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << endl;
@@ -457,12 +412,7 @@ void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas) {
             laikas = end - start + laikas_failo;
             laikas_failo = laikas;
 
-        } else {
-            cout << "Iveskite nenulini skaiciu, nuo 1 iki 3!" << endl;
-            cin.clear();
-            cin.ignore(10000, '\n');
-            cin >> pasirinkimas;
-        }
+
         out << eilute.str();
         eilute.clear();
         out.close();
@@ -470,10 +420,98 @@ void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas) {
 
 
 
-    } while (pasirinkimas != 1 and pasirinkimas != 2 and pasirinkimas != 3);
+    }
+
+
+
+int Konsole_ar_failas (){
+    char kons_fail;
+    int konsol1_failas2;
+    cout<< "Ar noresite isvesti i konsole ar i faila ? (K/F)"<< endl; cin>>kons_fail;
+    do{
+        if (kons_fail){
+            if(kons_fail == 'K'|| kons_fail == 'k'){
+                konsol1_failas2 = 1;
+                return konsol1_failas2;
+
+            }
+            else {
+                konsol1_failas2 = 2;
+                return konsol1_failas2;
+            }
+
+        }else{
+
+            cout<< "Iveskite tinkama ivesti K arba F !"<<endl;cin.clear();cin.ignore(1000, '\n');
+            cin>> kons_fail;
+        }
+
+    }
+
+    while(kons_fail != 'K' && kons_fail != 'k' && kons_fail != 'f' && kons_fail != 'F');
 
 
 }
 
 
+int Isvesties_pasirinkimas (){
+    int pasirinkimas;
+    cout << "Ar norite vidurkio - 1 , medianos - 2 ar abieju - 3 ? :" << endl;
+    cin >> pasirinkimas;
+    do{
+        if(pasirinkimas &&( pasirinkimas == 1 || pasirinkimas == 2 || pasirinkimas == 3)){
+            if( pasirinkimas == 1){
+                return pasirinkimas;
+            }
+        else if (pasirinkimas == 2){
+            return pasirinkimas;
+        }
+        else{
+                return pasirinkimas;
+        }
 
+
+        }
+        else{
+            cout << "Iveskite nenulini skaiciu, nuo 1 iki 3!" << endl;
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cin >> pasirinkimas;
+
+
+        }
+    }while (pasirinkimas != 1 and pasirinkimas != 2 and pasirinkimas != 3);
+}
+void Koks_failo_pav (){
+    system("dir *.txt");
+    string failo_pavadinimas;
+    cout<<"Koki faila noretumete nuskenuoti?"<<endl; cin>> failo_pavadinimas;
+    int temp ;
+    do {
+        try {
+            ifstream fileread(failo_pavadinimas);
+            if (!fileread.fail()) {
+                temp = 0;
+                readfromFile(failo_pavadinimas,stud);
+            }
+            else{
+                throw std::runtime_error(failo_pavadinimas);
+
+        }
+
+    }
+        catch(std::exception &e) {
+            cout << "Failas neegzistuoja arba neteisingai irasete pavadinima, bandykite dar karta: " << e.what() << "\n";
+            temp = 1;
+
+        }
+    }
+    while (temp == 1);
+}
+//TODO sutvarkyti kad failus sukurtu ir butu galima pasirinkti kokius nuskaityti nr1
+
+//TODO skaiciuoti ir sortinga nr2
+
+//TODO padaryti kad visuos atvejuos skaiciuotu laika
+
+//TODO paupgradint isvedima kad tik karta klaustu kokio reikia

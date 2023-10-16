@@ -5,7 +5,7 @@
  vector<Duomenys> vargsai;
  Duomenys duomenys;
  int studentu_kiekis = 0;
- int info;
+
  string failo_pav ;
  std::chrono::duration<double> laikas_kat;
  std::chrono::duration<double> laikas_failo;
@@ -24,13 +24,55 @@ int main() {
                 for (int eiles_nr = 0; eiles_nr < studentu_kiekis; eiles_nr++) {
                     ivedimas(eiles_nr);
 
+                }
+                sort(stud.begin(),stud.end(), palyginimas);
+                char kieti_vargsai;
+                cout<< "Ar norite isrusiuoti studentus studentus i vargsus ir kietus ?(T/N)"<<endl; cin>> kieti_vargsai;
+                do{
+                    if (kieti_vargsai && (kieti_vargsai == 'T' || kieti_vargsai == 't' || kieti_vargsai == 'N' || kieti_vargsai == 'n')){
+                        if (kieti_vargsai == 'T'||kieti_vargsai == 't'){
+                            Kategorija(studentu_kiekis);
+                            Studentu_skaldymas();
+                            //sortinti reiktu pagal vidurki
+                            int konsole_ar_failas = Konsole_ar_failas ();
+                            if(konsole_ar_failas == 1){
+                                // matavimas
+                                int isvedimas = Isvesties_pasirinkimas();
+                                cout<< "Isvesti vargsai studentai"<<endl;
+                                isvestis(vargsai, isvedimas);
+                                cout<< "Isvesti kieti studentai"<< endl;
+                                isvestis(kieti,isvedimas);
+                            }
+                            else {
+                                int isvedimas = Isvesties_pasirinkimas();
+                                // matavimas
+                                Failu_kurimas(vargsai,"vargsai.txt",isvedimas);
+                                Failu_kurimas(kieti,"kieti.txt",isvedimas);
 
+                            }}
+                        else{
+                            int konsole_ar_failas = Konsole_ar_failas();
+                            int isvedimas = Isvesties_pasirinkimas();
+                            sort(stud.begin(),stud.end(), palyginimas);
+                            if (konsole_ar_failas == 1){
+
+                                cout<< "Isvesti visi studentai :"<<endl;
+                                isvestis(stud,isvedimas);
+                            }
+                            else{
+                                cout<<"Sukelti i faila studentai.txt. "<<endl;
+                                Failu_kurimas(stud, "studentai.txt",isvedimas);
+                            }
+                        }
+                    } else {
+                        cout<< " Neteisinga ivestis, iveskite T arba N !"<< endl;cin.clear();cin.ignore(10000, '\n');
+                        cin>>kieti_vargsai;
+                    }
 
                 }
-                info = 1;
+                while(kieti_vargsai != 'T' && kieti_vargsai != 't' && kieti_vargsai != 'N' && kieti_vargsai != 'n' );
 
-                sort(stud.begin(),stud.end(), palyginimas);
-                isvestis(info);
+
             }
             else if (ranka_failas == 'g' || ranka_failas == 'G'){
                 std::chrono::duration<double> laikas;
@@ -41,6 +83,7 @@ int main() {
                 auto end = hrClock::now();
                 laikas = end - start;
                 cout << studentu_mase << " studentu failo generavimas uztruko : " << laikas.count()<< "s" << endl;
+                /*
                 stud.push_back(duomenys);
                 start = hrClock ::now();
                 readfromFile(failo_pav,stud);
@@ -55,16 +98,17 @@ int main() {
                 cout << studentu_mase <<" studentu failo surusiavimas uztruko : " << laikas.count() << " s"<< endl;
                 Failu_kurimas (kieti,"kieti.txt");
                 Failu_kurimas(vargsai,"vargsai.txt");
-                cout << studentu_mase <<" isrusiuotu studentu failu sukurimas uztruko : "<< laikas_failo.count() <<" s"<< endl;
+                cout << studentu_mase <<" isrusiuotu studentu failu sukurimas uztruko : "<< laikas_failo.count() <<" s"<< endl;*/
+               main();
             }
 
             else {
-                stud.push_back(duomenys);
-                system("dir *.txt"); //
-                readfromFile("kursiokai.txt",stud );
-                info = 2;
+                int isvedimas = Isvesties_pasirinkimas();
+                stud.push_back(duomenys);//
+                Koks_failo_pav ();
+                stud.erase(stud.begin());
                 sort(stud.begin(),stud.end(), palyginimas);
-                isvestis(info);
+                isvestis(stud,isvedimas);
             }
 
 

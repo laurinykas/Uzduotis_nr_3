@@ -8,7 +8,7 @@
 
 #include "strukturos.h"
 
-void isvestis (int isvesties_tipas);
+void isvestis (vector<Duomenys> vektorius, int pasirinkimas);
 int Studentu_kiekis();
 int Nd_kiekis();
 void ivedimas (int studentu_kiekis);
@@ -17,14 +17,16 @@ void Studentu_skaldymas ();
 void readfromFile( string filename, vector<Duomenys> &stud);
 bool palyginimas(Duomenys a, Duomenys b);
 void Kategorija(int studentu_k);
-void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas);
+void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas, int pasirinkimas);
+int Konsole_ar_failas ();
+int Isvesties_pasirinkimas ();
+void Koks_failo_pav ();
 
 extern vector <Duomenys> stud;
 extern vector<Duomenys> kieti;
 extern vector<Duomenys> vargsai;
 extern Duomenys duomenys;
 extern int studentu_kiekis ;
-extern int info;
 extern string failo_pav ;
 extern std::chrono::duration<double> laikas_kat;
 extern std::chrono::duration<double> laikas_failo;
