@@ -787,36 +787,49 @@ void Fake_main(){
                 //testuoti visus 1000,10000,100000,1000000 ir t.t 5 failus
                 int test_fdydziai[5] = {1000, 10000, 100000, 1000000, 10000000};// testo str failo dydziai
                 // visus cout padaryt kad graziai butu
+                printf("%-40s %-20s %-0s \n", "Veiksmas","Vector laikas (s.)", "List laikas (s.)");
                 string filename;
                 for (int i = 0; i < 5; i++) {
-                    filename ="student" + to_string(test_fdydziai[i]) + ".txt";
+                    filename ="student" + to_string(test_fdydziai[i]) + ".txt";cout << string(70,'-') << "\n";
 
+                    auto start = hrClock::now();
                     readfromFile(filename,stud); // laiko skaiciavimas
+                    auto end = hrClock::now(); auto rez = end - start;
 
+                    start = hrClock::now();
                     readfromFileList(filename, stud_list); // laiko skaiciavimas
+                    end = hrClock::now(); auto rez2 = end - start;
 
-                    // rezultato printas
 
+                    printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu failo nuskaitymas").c_str(), rez.count(),rez2.count());// rezultato printas
+
+                    start = hrClock::now();
                     sort(stud.begin(),stud.end(), palyginimas);
                     Kategorija(i, med_ar_vid);
-                    Studentu_skaldymas(); // visas skaldymas vector
+                    Studentu_skaldymas(); end = hrClock::now(); rez = end- start; // visas skaldymas vector
                     // laiko skaiciavimas vector
 
+                    start = hrClock::now();
                     stud_list.sort(palyginimas);
                     Kategorija_list(med_ar_vid);
-                    Studentu_skaldymas_list(); // Visas skaldymas list
-
+                    Studentu_skaldymas_list();end = hrClock::now();rez2 = end- start; // Visas skaldymas list
                     // laiko skaiciavimas list
 
+                    printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu surusiavimas").c_str(), rez.count(),rez2.count());
                     // rezultato printas
 
+                    start = hrClock::now();
                     Failu_kurimas(kieti,"vektor_kieti" + to_string(test_fdydziai[i])  + ".txt", isvedimas );
                     Failu_kurimas(vargsai,"vektor_vargsai" + to_string(test_fdydziai[i])  + ".txt", isvedimas );
+                    end = hrClock::now(); rez = end- start;
+
                     // laiko skaciavimas vector
+                    start = hrClock::now();
                     Failu_kurimas_list(kieti_list,"list_kieti" + to_string(test_fdydziai[i])  + ".txt", isvedimas );
                     Failu_kurimas_list(vargsai_list,"list_vargsai" + to_string(test_fdydziai[i])  + ".txt", isvedimas );
+                    end = hrClock::now(); rez2 = end- start;
                     // laiko skaiciavimas list
-
+                    printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu sukelimas i failus").c_str(), rez.count(),rez2.count());
                     // rezultato printas
                 }
 
@@ -833,7 +846,7 @@ void Fake_main(){
 
 }
 
-//TODO SUKURTI FUNKCIJA TESTAVIMUI
+
 
 void Testavimas (){
 
