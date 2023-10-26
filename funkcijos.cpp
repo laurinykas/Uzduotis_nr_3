@@ -379,12 +379,11 @@ void studentu_generavimas(int studentu_kiekis, int  namu_d){
 
 
 
-void Kategorija(int studentu_k){
+void Kategorija(int studentu_k, int med_ar_vid){
     std::chrono::duration<double> laikas;
-    int med_ar_vid;
-    cout<< "Ar galutiniam balui naudosite vidurki ar mediana(1 - vidurkis, 2 - mediana)?"<<endl; cin>>med_ar_vid;
-    do{
-        if(med_ar_vid && (med_ar_vid == 1 || med_ar_vid == 2)){
+
+
+
             auto start = hrClock ::now();
             for(int i=0; i <= studentu_k; i++){
                 stud[i].Galutinis (med_ar_vid );
@@ -394,24 +393,10 @@ void Kategorija(int studentu_k){
             laikas = end - start;
             laikas_kat = laikas;
 
-        }
-        else{
-            cout<< "Kladinga ivestis, bandykite dar karta (Iveskite 1 arba 2 )"<<endl;
-            cin.clear();
-            cin.ignore(10000 , '\n');
-            cin >> med_ar_vid;
-        }
 
-
-    }
-    while(med_ar_vid != 1 && med_ar_vid != 2);
 }
-void Kategorija_list(){
+void Kategorija_list(int med_ar_vid){
     std::chrono::duration<double> laikas;
-    int med_ar_vid;
-    cout<< "Ar galutiniam balui naudosite vidurki ar mediana(1 - vidurkis, 2 - mediana)?"<<endl; cin>>med_ar_vid;
-    do{
-        if(med_ar_vid && (med_ar_vid == 1 || med_ar_vid == 2)){
             auto start = hrClock ::now();
             for(auto& student : stud_list){
                 student.Galutinis (med_ar_vid );
@@ -421,6 +406,14 @@ void Kategorija_list(){
             laikas = end - start;
             laikas_kat = laikas;
 
+
+}
+int Vid_ar_med(){
+    int med_ar_vid;
+    cout<< "Ar galutiniam balui naudosite vidurki ar mediana(1 - vidurkis, 2 - mediana)?"<<endl; cin>> med_ar_vid;
+    do{
+        if(med_ar_vid && (med_ar_vid == 1 || med_ar_vid == 2)){
+            return med_ar_vid;
         }
         else{
             cout<< "Kladinga ivestis, bandykite dar karta (Iveskite 1 arba 2 )"<<endl;
@@ -428,10 +421,10 @@ void Kategorija_list(){
             cin.ignore(10000 , '\n');
             cin >> med_ar_vid;
         }
-
-
     }
     while(med_ar_vid != 1 && med_ar_vid != 2);
+
+
 }
 void Studentu_skaldymas() {
     vector<Duomenys> temporaryStorage; // Create a temporary vector
@@ -689,7 +682,8 @@ void Fake_main(){
                 do{
                     if (kieti_vargsai && (kieti_vargsai == 'T' || kieti_vargsai == 't' || kieti_vargsai == 'N' || kieti_vargsai == 'n')){
                         if (kieti_vargsai == 'T'||kieti_vargsai == 't'){
-                            Kategorija(studentu_kiekis);
+                            int med_ar_int = Vid_ar_med();
+                            Kategorija(studentu_kiekis,med_ar_int);
                             Studentu_skaldymas();
                             int konsole_ar_failas = Konsole_ar_failas ();
                             if(konsole_ar_failas == 1){
@@ -748,6 +742,7 @@ void Fake_main(){
                 std::chrono::duration<double> laikas;
                 int kons_ar_failas = Konsole_ar_failas();
                 int isvedimas = Isvesties_pasirinkimas();
+                int med_ar_vid = Vid_ar_med();
 
                 Koks_failo_pav ();// laikas suskaiciuotas
                 studentu_kiekis = stud.size() -1 ;
@@ -756,7 +751,7 @@ void Fake_main(){
                 sort(stud.begin(),stud.end(), palyginimas);
                 auto end = hrClock::now(); laikas = end - start ;
                 cout << studentu_kiekis <<" studentu failo surusiavimas pagal varda uztruko : " << laikas.count() << " s"<< endl;
-                Kategorija(studentu_kiekis);
+                Kategorija(studentu_kiekis,med_ar_vid);
                 start = hrClock::now();
                 Studentu_skaldymas();
                 end = hrClock::now(); laikas= end - start;
@@ -787,6 +782,7 @@ void Fake_main(){
 
             }
             else {
+                int med_ar_vid = Vid_ar_med();
                 int isvedimas = Isvesties_pasirinkimas();
                 //testuoti visus 1000,10000,100000,1000000 ir t.t 5 failus
                 int test_fdydziai[5] = {1000, 10000, 100000, 1000000, 10000000};// testo str failo dydziai
@@ -802,12 +798,12 @@ void Fake_main(){
                     // rezultato printas
 
                     sort(stud.begin(),stud.end(), palyginimas);
-                    Kategorija(i);
+                    Kategorija(i, med_ar_vid);
                     Studentu_skaldymas(); // visas skaldymas vector
                     // laiko skaiciavimas vector
 
                     stud_list.sort(palyginimas);
-                    Kategorija_list();
+                    Kategorija_list(med_ar_vid);
                     Studentu_skaldymas_list(); // Visas skaldymas list
 
                     // laiko skaiciavimas list

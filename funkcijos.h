@@ -18,14 +18,15 @@ void Studentu_skaldymas_list();//list variantas
 void readfromFile( string filename, vector<Duomenys> &stud);
 void readfromFileList( string filename, list<Duomenys> &stud_list); //listu variantas
 bool palyginimas(Duomenys a, Duomenys b);
-void Kategorija(int studentu_k);
-void Kategorija_list();// listu variantas
+void Kategorija(int studentu_k,int med_ar_vid);
+void Kategorija_list(int med_ar_vid);// listu variantas
 void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas, int pasirinkimas);
 void Failu_kurimas_list (list<Duomenys> listas, string failo_vardas, int pasirinkimas);
 int Konsole_ar_failas ();
 int Isvesties_pasirinkimas ();
 void Koks_failo_pav ();
 void Fake_main();
+int Vid_ar_med();
 
 extern vector <Duomenys> stud;
 extern vector<Duomenys> kieti;
