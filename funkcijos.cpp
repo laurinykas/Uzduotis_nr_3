@@ -305,7 +305,7 @@ void readfromFileVector( string filename, list<Duomenys> &stud_list){
         studentu_kiekis++;
         stud_list.push_back(s);
     }
-    printf(stud_list)
+
 }
 bool palyginimas( Duomenys a, Duomenys b){
     if (a.vardas == b.vardas){
@@ -419,6 +419,24 @@ void Studentu_skaldymas() {
     // Restore the students in the stud vector
     stud = temporaryStorage;
 }
+void Studentu_skaldymas_list() {
+    vector<Duomenys> temporaryStorage; // Create a temporary vector
+    for (auto el : stud_list) {
+        if (el.galutinis >= 5.00){
+
+            kieti_list.push_back(el);
+        } else {
+            vargsai_list.push_back(el);
+
+        }
+
+        // Store the student in the temporary vector
+        temporaryStorage.push_back(el);
+    }
+
+    // Restore the students in the stud vector
+    stud = temporaryStorage;
+}
 
 
 
@@ -476,6 +494,59 @@ void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas, int pasirin
 
 
     }
+void Failu_kurimas_list (list<Duomenys> listas, string failo_vardas, int pasirinkimas) {
+
+
+    ofstream out(failo_vardas);
+    stringstream eilute;
+
+    if (pasirinkimas == 1) {
+        eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << endl;
+        eilute << left << "______________________________________________________________________________" << endl;
+        for(auto& student : listas) {
+            eilute << left << setw(20) << student.vardas << setw(20) << student.pavarde << setw(17)
+                   << std::fixed
+                   << std::setprecision(2) << student.vid << setw(17) << endl;
+
+
+        }
+
+
+    } else if (pasirinkimas == 2) {
+        eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(med)" << endl;
+        eilute << left << "________________________________________________________________________________" << endl;
+        for(auto& student : listas) {
+            eilute << left << setw(20) << student.vardas << setw(20) << student.pavarde << setw(17)
+                   << std::fixed
+                   << std::setprecision(2) << student.med << setw(17) << endl;
+
+
+        }
+
+
+    } else {
+        eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)"
+               << setw(20) << "Galutinis(med)" << endl;
+        eilute << left << "________________________________________________________________________" << endl;
+        for(auto& student : listas) {
+            eilute << left << setw(20) << student.vardas << setw(20) << student.pavarde << setw(17)
+                   << std::fixed
+                   << std::setprecision(2) << student.vid << setw(17) << student.med << endl;
+
+        }
+
+    }
+
+
+
+    out << eilute.str();
+    eilute.clear();
+    out.close();
+
+
+
+
+}
 
 
 
@@ -697,11 +768,13 @@ void Fake_main(){
 
 }
 
-//TODO REIKIA SUKURTI NAUJAS FUNKCIJAS KAD VEIKTU STD::LIST
+//TODO SUKURTI FUNKCIJA KAD TESTAVIMUI
+
+void Testavimas ()
 
 
 
-//TODO PADARYTI TAIP KAD LYGIAGRECIAI GALETU PARODYT REZULTATUS
+
 
 
 
