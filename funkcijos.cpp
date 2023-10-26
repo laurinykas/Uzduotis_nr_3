@@ -244,7 +244,9 @@ void isvestis (vector<Duomenys> vektorius, int pasirinkimas) {
 
 }
 void readfromFile( string filename, vector<Duomenys> &stud){
-
+    try {
+        ifstream fileread(filename);
+        if (!fileread.fail()) {
 
         ifstream fileread(filename);
             int sk;
@@ -273,11 +275,27 @@ void readfromFile( string filename, vector<Duomenys> &stud){
                 studentu_kiekis++;
                 stud.push_back(s);
             }
+        }else{
+
+            throw std::runtime_error(filename);
+
+        }
+
+
+    } catch(std::exception &e) {
+        cout << "Failas "  << e.what() << "neegzistuoja arba neteisingai irasete pavadinima, paleiskite dar karta programa" << endl;
+        std::exit(0);
+
+
+    }
+
 
 }
+
 void readfromFileList( string filename, list<Duomenys> &stud_list){
-
-
+    try {
+        ifstream fileread(filename);
+        if (!fileread.fail()) {
     ifstream fileread(filename);
     int sk;
     string line;
@@ -305,6 +323,20 @@ void readfromFileList( string filename, list<Duomenys> &stud_list){
         studentu_kiekis++;
         stud_list.push_back(s);
     }
+        }
+            else{
+                throw std::runtime_error(filename);
+
+            }
+
+
+    } catch(std::exception &e) {
+            cout << "Failas "  << e.what() << "neegzistuoja arba neteisingai irasete pavadinima, paleiskite dar karta programa" << endl;
+            std::exit(0);
+
+
+        }
+
 
 }
 bool palyginimas( Duomenys a, Duomenys b){
@@ -711,7 +743,7 @@ void Fake_main(){
                 Fake_main();
             }
 
-            else if (ranka_failas == 'R' || ranka_failas == 'r') {
+            else if (ranka_failas == 'f' || ranka_failas == 'F') {
                 stud.push_back(duomenys);
                 std::chrono::duration<double> laikas;
                 int kons_ar_failas = Konsole_ar_failas();
@@ -755,6 +787,7 @@ void Fake_main(){
 
             }
             else {
+                int isvedimas = Isvesties_pasirinkimas();
                 //testuoti visus 1000,10000,100000,1000000 ir t.t 5 failus
                 int test_fdydziai[5] = {1000, 10000, 100000, 1000000, 10000000};// testo str failo dydziai
                 // visus cout padaryt kad graziai butu
@@ -778,6 +811,17 @@ void Fake_main(){
                     Studentu_skaldymas_list(); // Visas skaldymas list
 
                     // laiko skaiciavimas list
+
+                    // rezultato printas
+
+                    Failu_kurimas(kieti,"vektor_kieti" + to_string(test_fdydziai[i])  + ".txt", isvedimas );
+                    Failu_kurimas(vargsai,"vektor_vargsai" + to_string(test_fdydziai[i])  + ".txt", isvedimas );
+                    // laiko skaciavimas vector
+                    Failu_kurimas_list(kieti_list,"list_kieti" + to_string(test_fdydziai[i])  + ".txt", isvedimas );
+                    Failu_kurimas_list(vargsai_list,"list_vargsai" + to_string(test_fdydziai[i])  + ".txt", isvedimas );
+                    // laiko skaiciavimas list
+
+                    // rezultato printas
                 }
 
             }
