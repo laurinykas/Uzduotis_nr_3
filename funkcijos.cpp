@@ -767,6 +767,17 @@ void Fake_main(){
                     readfromFileList(filename, stud_list); // laiko skaiciavimas
 
                     // rezultato printas
+
+                    sort(stud.begin(),stud.end(), palyginimas);
+                    Kategorija(i);
+                    Studentu_skaldymas(); // visas skaldymas vector
+                    // laiko skaiciavimas vector
+
+                    stud_list.sort(palyginimas);
+                    Kategorija_list();
+                    Studentu_skaldymas_list(); // Visas skaldymas list
+
+                    // laiko skaiciavimas list
                 }
 
             }
