@@ -275,7 +275,7 @@ void readfromFile( string filename, vector<Duomenys> &stud){
             }
 
 }
-void readfromFileVector( string filename, list<Duomenys> &stud_list){
+void readfromFileList( string filename, list<Duomenys> &stud_list){
 
 
     ifstream fileread(filename);
@@ -641,10 +641,10 @@ void Fake_main(){
 
     char ranka_failas;
     do {
-        cout << "Ar duomenis rasytite ranka , nuskaitysite is failo ar noresite sugeneruoti atsitiktini?(R - ranka, F- is failo, G - generuoti )?" << endl;
+        cout << "Ar duomenis rasytite ranka , nuskaitysite is failo ar noresite sugeneruoti atsitiktini ar testuoti?(R - ranka, F- is failo, G - generuoti, T - testuoti )?" << endl;
         cin >> ranka_failas;
         if (ranka_failas &&
-            (ranka_failas == 'R' || ranka_failas == 'r' || ranka_failas == 'F' || ranka_failas == 'f'|| ranka_failas == 'G'||ranka_failas == 'g')) {
+            (ranka_failas == 'R' || ranka_failas == 'r' || ranka_failas == 'F' || ranka_failas == 'f'|| ranka_failas == 'G'||ranka_failas == 'g' ||ranka_failas == 'T'||ranka_failas == 't')) {
             if (ranka_failas == 'R' || ranka_failas == 'r') {
                 studentu_kiekis = Studentu_kiekis();
                 for (int eiles_nr = 0; eiles_nr < studentu_kiekis; eiles_nr++) {
@@ -711,12 +711,12 @@ void Fake_main(){
                 Fake_main();
             }
 
-            else {
+            else if (ranka_failas == 'R' || ranka_failas == 'r') {
                 stud.push_back(duomenys);
                 std::chrono::duration<double> laikas;
                 int kons_ar_failas = Konsole_ar_failas();
                 int isvedimas = Isvesties_pasirinkimas();
-                //
+
                 Koks_failo_pav ();// laikas suskaiciuotas
                 studentu_kiekis = stud.size() -1 ;
                 auto start = hrClock::now();
@@ -754,23 +754,44 @@ void Fake_main(){
                 }
 
             }
+            else {
+                //testuoti visus 1000,10000,100000,1000000 ir t.t 5 failus
+                int test_fdydziai[5] = {1000, 10000, 100000, 1000000, 10000000};// testo str failo dydziai
+                // visus cout padaryt kad graziai butu
+                string filename;
+                for (int i = 0; i < 5; i++) {
+                    filename ="student" + to_string(test_fdydziai[i]) + ".txt";
 
+                    readfromFile(filename,stud); // laiko skaiciavimas
 
+                    readfromFileList(filename, stud_list); // laiko skaiciavimas
+
+                    // rezultato printas
+                }
+
+            }
         } else {
             cout << "Iveskite R arba f arba G" << endl;
             cin.clear();
             cin.ignore(10000, '\n');
         }
-    } while (ranka_failas != 'R' and ranka_failas != 'r' and ranka_failas != 'F' and ranka_failas != 'f' and ranka_failas != 'g' and ranka_failas != 'G');
+    } while (ranka_failas != 'R' and ranka_failas != 'r' and ranka_failas != 'F' and ranka_failas != 'f' and ranka_failas != 'g' and ranka_failas != 'G' and ranka_failas != 'T' and ranka_failas != 't');
 
     system("pause");
 
 
 }
 
-//TODO SUKURTI FUNKCIJA KAD TESTAVIMUI
+//TODO SUKURTI FUNKCIJA TESTAVIMUI
 
-void Testavimas ()
+void Testavimas (){
+
+
+
+
+
+
+}
 
 
 

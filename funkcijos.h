@@ -16,7 +16,7 @@ void studentu_generavimas(int st_k, int  namu_d);
 void Studentu_skaldymas ();
 void Studentu_skaldymas_list();//list variantas
 void readfromFile( string filename, vector<Duomenys> &stud);
-void readfromFileVector( string filename, list<Duomenys> &stud_list); //listu variantas
+void readfromFileList( string filename, list<Duomenys> &stud_list); //listu variantas
 bool palyginimas(Duomenys a, Duomenys b);
 void Kategorija(int studentu_k);
 void Kategorija_list();// listu variantas
