@@ -39,4 +39,5 @@ extern int studentu_kiekis ;
 extern string failo_pav ;
 extern std::chrono::duration<double> laikas_kat;
 extern std::chrono::duration<double> laikas_failo;
+
 #endif //UZDUOTIS_NR_1_FUNKCIJOS_H

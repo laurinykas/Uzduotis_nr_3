@@ -445,7 +445,7 @@ void Studentu_skaldymas() {
     stud = temporaryStorage;
 }
 void Studentu_skaldymas_list() {
-    vector<Duomenys> temporaryStorage; // Create a temporary vector
+    list<Duomenys> temporaryStorage; // Create a temporary vector
     for (auto el : stud_list) {
         if (el.galutinis >= 5.00){
 
@@ -460,7 +460,7 @@ void Studentu_skaldymas_list() {
     }
 
     // Restore the students in the stud vector
-    stud = temporaryStorage;
+    stud_list = temporaryStorage;
 }
 
 
@@ -782,6 +782,8 @@ void Fake_main(){
 
             }
             else {
+                std::chrono::duration<double> rez;
+                std::chrono::duration<double> rez2;
                 int med_ar_vid = Vid_ar_med();
                 int isvedimas = Isvesties_pasirinkimas();
                 //testuoti visus 1000,10000,100000,1000000 ir t.t 5 failus
@@ -794,18 +796,19 @@ void Fake_main(){
 
                     auto start = hrClock::now();
                     readfromFile(filename,stud); // laiko skaiciavimas
-                    auto end = hrClock::now(); auto rez = end - start;
+                    auto end = hrClock::now();  rez = end - start;
 
                     start = hrClock::now();
                     readfromFileList(filename, stud_list); // laiko skaiciavimas
-                    end = hrClock::now(); auto rez2 = end - start;
+                    end = hrClock::now();  rez2 = end - start;
 
-
-                    printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu failo nuskaitymas").c_str(), rez.count(),rez2.count());// rezultato printas
+                    auto info1 = rez.count();
+                    auto info2 = rez2.count();
+                    printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu failo nuskaitymas").c_str(), info1,info2);// rezultato printas
 
                     start = hrClock::now();
                     sort(stud.begin(),stud.end(), palyginimas);
-                    Kategorija(i, med_ar_vid);
+                    Kategorija(test_fdydziai[i], med_ar_vid);
                     Studentu_skaldymas(); end = hrClock::now(); rez = end- start; // visas skaldymas vector
                     // laiko skaiciavimas vector
 
@@ -814,8 +817,8 @@ void Fake_main(){
                     Kategorija_list(med_ar_vid);
                     Studentu_skaldymas_list();end = hrClock::now();rez2 = end- start; // Visas skaldymas list
                     // laiko skaiciavimas list
-
-                    printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu surusiavimas").c_str(), rez.count(),rez2.count());
+                    info1 = rez.count();info2 = rez2.count();
+                    printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu surusiavimas").c_str(), info1,info2);
                     // rezultato printas
 
                     start = hrClock::now();
@@ -829,7 +832,8 @@ void Fake_main(){
                     Failu_kurimas_list(vargsai_list,"list_vargsai" + to_string(test_fdydziai[i])  + ".txt", isvedimas );
                     end = hrClock::now(); rez2 = end- start;
                     // laiko skaiciavimas list
-                    printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu sukelimas i failus").c_str(), rez.count(),rez2.count());
+                    info1 = rez.count();info2 = rez2.count();
+                    printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu sukelimas i failus").c_str(), info1,info2);
                     // rezultato printas
                 }
 
@@ -841,7 +845,6 @@ void Fake_main(){
         }
     } while (ranka_failas != 'R' and ranka_failas != 'r' and ranka_failas != 'F' and ranka_failas != 'f' and ranka_failas != 'g' and ranka_failas != 'G' and ranka_failas != 'T' and ranka_failas != 't');
 
-    system("pause");
 
 
 }
