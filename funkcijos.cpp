@@ -275,6 +275,38 @@ void readfromFile( string filename, vector<Duomenys> &stud){
             }
 
 }
+void readfromFileVector( string filename, list<Duomenys> &stud_list){
+
+
+    ifstream fileread(filename);
+    int sk;
+    string line;
+    string temp,pirmaEil;
+    int kiekNd = -3;
+    getline(fileread >> std::ws, pirmaEil);
+    stringstream iss(pirmaEil);
+    while(iss >> temp)
+    {
+        kiekNd++;
+    }
+    while((std::getline(fileread >> std::ws, line))){
+        Duomenys s ;
+        stringstream iss(line);
+        iss>> s.vardas;
+        iss >> s.pavarde;
+        for(int i = 0; i < kiekNd; i++){
+            iss>> sk;
+            s.nd.push_back(sk);
+        }
+        iss >> sk;
+        s.egzaminas=sk;
+        s.Vidurkis();
+        s.Mediana();
+        studentu_kiekis++;
+        stud_list.push_back(s);
+    }
+    printf(stud_list)
+}
 bool palyginimas( Duomenys a, Duomenys b){
     if (a.vardas == b.vardas){
 
@@ -324,6 +356,33 @@ void Kategorija(int studentu_k){
             auto start = hrClock ::now();
             for(int i=0; i <= studentu_k; i++){
                 stud[i].Galutinis (med_ar_vid );
+
+            }
+            auto end =hrClock :: now();
+            laikas = end - start;
+            laikas_kat = laikas;
+
+        }
+        else{
+            cout<< "Kladinga ivestis, bandykite dar karta (Iveskite 1 arba 2 )"<<endl;
+            cin.clear();
+            cin.ignore(10000 , '\n');
+            cin >> med_ar_vid;
+        }
+
+
+    }
+    while(med_ar_vid != 1 && med_ar_vid != 2);
+}
+void Kategorija_list(){
+    std::chrono::duration<double> laikas;
+    int med_ar_vid;
+    cout<< "Ar galutiniam balui naudosite vidurki ar mediana(1 - vidurkis, 2 - mediana)?"<<endl; cin>>med_ar_vid;
+    do{
+        if(med_ar_vid && (med_ar_vid == 1 || med_ar_vid == 2)){
+            auto start = hrClock ::now();
+            for(auto& student : stud_list){
+                student.Galutinis (med_ar_vid );
 
             }
             auto end =hrClock :: now();
@@ -529,7 +588,6 @@ void Fake_main(){
                         if (kieti_vargsai == 'T'||kieti_vargsai == 't'){
                             Kategorija(studentu_kiekis);
                             Studentu_skaldymas();
-                            //sortinti reiktu pagal vidurki
                             int konsole_ar_failas = Konsole_ar_failas ();
                             if(konsole_ar_failas == 1){
                                 // matavimas
@@ -637,8 +695,13 @@ void Fake_main(){
     system("pause");
 
 
-
 }
+
+//TODO REIKIA SUKURTI NAUJAS FUNKCIJAS KAD VEIKTU STD::LIST
+
+
+
+//TODO PADARYTI TAIP KAD LYGIAGRECIAI GALETU PARODYT REZULTATUS
 
 
 

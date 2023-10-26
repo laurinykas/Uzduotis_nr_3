@@ -32,6 +32,6 @@ using std::stringstream;
 using std::ofstream;
 using std::left;
 using hrClock = std::chrono::high_resolution_clock;
-
+using std::list;
 
 #endif UZDUOTIS_NR_1_BIBLIOTEKOS_H

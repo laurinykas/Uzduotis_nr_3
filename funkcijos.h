@@ -15,8 +15,10 @@ void ivedimas (int studentu_kiekis);
 void studentu_generavimas(int st_k, int  namu_d);
 void Studentu_skaldymas ();
 void readfromFile( string filename, vector<Duomenys> &stud);
+void readfromFileVector( string filename, list<Duomenys> &stud_list); //listu variantas
 bool palyginimas(Duomenys a, Duomenys b);
 void Kategorija(int studentu_k);
+void Kategorija_list();// listu variantas
 void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas, int pasirinkimas);
 int Konsole_ar_failas ();
 int Isvesties_pasirinkimas ();
@@ -27,6 +29,9 @@ extern vector <Duomenys> stud;
 extern vector<Duomenys> kieti;
 extern vector<Duomenys> vargsai;
 extern Duomenys duomenys;
+extern list<Duomenys> stud_list;
+extern list<Duomenys> kieti_list;
+extern list<Duomenys> vargsai_list;
 extern int studentu_kiekis ;
 extern string failo_pav ;
 extern std::chrono::duration<double> laikas_kat;
