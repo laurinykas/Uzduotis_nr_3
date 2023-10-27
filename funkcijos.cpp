@@ -3,7 +3,28 @@
 //
 
 #include "funkcijos.h"
+int List_Vektor(){
+    int konteineris;
+    cout<< "Koki konteineri norite naudoti?: 1 - List, 2 - Vector"<<endl;cin>>konteineris;
+    do{
+        if(konteineris == 1 or konteineris == 2){
+            return konteineris;
 
+
+        }
+        else{
+            cout<< "Neteisingai pasirinkote konteineri, turite ivesti 1 arba 2 "<<endl;cin.clear();
+            cin.ignore(10000,'\n');
+            cin>> konteineris;
+        }
+
+    }
+    while (konteineris!=1 and konteineris != 2);
+
+
+
+
+}
 int Studentu_kiekis() {
 
     int studentu_sk ;
@@ -204,40 +225,245 @@ void ivedimas ( int studentu_kiekis) {
 
 
 }
+void ivedimas_list ( int studentu_kiekis) {
+    Duomenys s;
+    //stud_list.push_back(Duomenys());
+        char bent_vienas_nd_ranka;
+        cout << "Iveskite studento varda : " << endl;cin >> s.vardas;
+        cout << "Iveskite studento pavarde : " << endl;cin >> s.pavarde;
+
+
+        do {
+            cout << "Ar bus bent 1 namu darbas?(T/N)" << endl;cin >> bent_vienas_nd_ranka;
+            if (bent_vienas_nd_ranka && (bent_vienas_nd_ranka == 'T' || bent_vienas_nd_ranka == 't' || bent_vienas_nd_ranka == 'N' ||bent_vienas_nd_ranka == 'n')) {
+                if (bent_vienas_nd_ranka == 'N' || bent_vienas_nd_ranka == 'n') {
+                    continue;
+                } else {
+                    char ranka_auto;
+
+                    cout << "Kaip ivesite pazymius (jeigu ranka rasykite R, jei auto rasykite A :" << endl;
+                    cin >> ranka_auto;
+                    do {
+                        if (ranka_auto and
+                            (ranka_auto == 'R' or ranka_auto == 'r' or ranka_auto == 'A' or ranka_auto == 'a')) {
+                            continue;
+                        } else {
+                            cout << "Irasykite R arba A !" << endl;
+                            cin.clear();
+                            cin.ignore(10000, '\n');
+                            cin >> ranka_auto;
+                        }
+                    } while (!(ranka_auto and
+                               (ranka_auto == 'R' or ranka_auto == 'r' or ranka_auto == 'A' or ranka_auto == 'a')));
+                    char tp;
+                    int uzsibaigimas = 0;
+                    if (ranka_auto == 'R' or ranka_auto == 'r') {
+
+
+                        while (uzsibaigimas == 0) {
+                            int namu_d = 0;
+                            int namu_d_eile = s.nd.size();
+                            do {
+                                cout << "Iveskite nr. " << namu_d_eile + 1 << " pazymi: " << endl;
+                                cin >> namu_d;
+                                //if(namu_d != 0){
+                                if (namu_d > 0 and namu_d <= 10) {
+                                    s.nd.push_back(namu_d);
+                                    cout << "Ar bus dar pazymiu ? (T/N)" << endl;
+                                    cin >> tp;
+                                    do {
+                                        if (tp and (tp == 'T' or tp == 't' or tp == 'n' or tp == 'N')) {
+                                            if (tp == 'T' or tp == 't') {
+                                                continue;
+                                            }
+                                            if (tp == 'n' or tp == 'N') {
+                                                uzsibaigimas = 1;
+                                            }
+                                        } else {
+                                            cout << "Iveskite tinkama atsakyma T arba N !" << endl;
+                                            cin.clear();
+                                            cin.ignore(10000, '\n');
+                                        }
+                                    } while (tp != 'T' and tp != 't' and tp != 'n' and tp != 'N');
+                                } else {
+                                    cout << "Iveskite tinkama skaicius nuo 1 iki 10!" << endl;
+                                    cin.clear();
+                                    cin.ignore(10000, '\n');
+                                }
+
+
+                            } while (namu_d == 0);
+                        }
+                    }
+
+                    else{
+                        int nd_skaicius = 0;
+                        int sk = 0;
+                        // random gen
+
+                        do {
+                            cout << "Iveskite kiek namu darbu noresite sugeneruoti" << endl;
+                            cin >> nd_skaicius;
+                            srand((unsigned) time(0));
+                            if (nd_skaicius and nd_skaicius > 0) {
+                                for (int e = 0; e < nd_skaicius; e++) {
+                                    sk = (rand() % 10) + 1;
+                                    s.nd.push_back(sk);
+
+                                }
+
+                            } else {
+                                cout << "Iveskite skaiciu didesni nei 1! : " << endl;
+                                cin.clear();
+                                cin.ignore(10000, '\n');
+                            }
+                        } while (nd_skaicius < 0 or nd_skaicius == 0);
+                    }
+
+                }
+
+            }
+
+            else{
+                cout << "Iveskite T arba N !" << endl;
+                cin.clear();
+                cin.ignore(10000, '\n');
+            }
+        }while(bent_vienas_nd_ranka && (bent_vienas_nd_ranka != 'T' and bent_vienas_nd_ranka != 'N' and bent_vienas_nd_ranka != 'n' and bent_vienas_nd_ranka != 't'));
+        char bent_vienas_egz;
+
+        do{
+            cout<<" Ar turi studentas egzamino rezultata (T/N)?"<<endl; cin>>bent_vienas_egz;
+            if (bent_vienas_egz == 'T'|| bent_vienas_egz == 't'|| bent_vienas_egz == 'N' || bent_vienas_egz == 'n'){
+                if (bent_vienas_egz == 'T'|| bent_vienas_egz == 't'){
+
+                    char egz_ivedimas; int egz = 0 ;
+                    cout << "Ar norite ranka ivesti egzamina ar auto (R/A)"<<endl; cin>> egz_ivedimas;
+                    do{
+                        if(egz_ivedimas and( egz_ivedimas == 'R'|| egz_ivedimas == 'r'|| egz_ivedimas == 'A' || egz_ivedimas == 'a')){
+                            if (egz_ivedimas=='R' or egz_ivedimas == 'r' )
+                            {
+
+                                do{
+                                    cout << "Iveskite egzamino rezultata:"<< endl ; cin>> egz;
+                                    if(egz and egz > 0 and egz <=10){
+                                        s.egzaminas = egz;
+
+                                    }
+                                    else{
+                                        cout<< "Iveskite nenulini skaiciu, nuo 1 iki 10!"<<endl ;cin.clear();
+                                        cin.ignore(10000, '\n'); }}
+                                while(!egz or egz > 10 or egz <0 );
+
+                            }
+                            else{
+                                srand((unsigned )time(0));
+                                egz = (rand() % 10) + 1;
+                                s.egzaminas = egz;
+                            }
+                        }
+                        else{
+                            cout<<"Iveskite tinkama pasirinkima (R/A)!"<<endl;
+                            cin.clear();
+                            cin.ignore(10000, '\n');
+                            cin >> egz;
+
+                        }
+
+
+                    }while(egz_ivedimas != 'A' && egz_ivedimas != 'a' && egz_ivedimas != 'R' && egz_ivedimas != 'r');
+                }
+                else {
+                    s.egzaminas = 0;
+                }
+            }
+            else{
+                cout<< "Iveskite T arba N! "<<endl; cin.clear();cin.ignore(10000,'\n');
+            }
+        }
+        while(bent_vienas_egz != 'T' and bent_vienas_egz != 't' and bent_vienas_egz != 'N' and  bent_vienas_egz != 'n');
+
+        s.Vidurkis();
+        s.Mediana();
+        stud_list.push_back(s);
+
+
+
+
+}
 void isvestis (vector<Duomenys> vektorius, int pasirinkimas) {
 
     stringstream buffer;
 
             if (pasirinkimas == 1) {
-                buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << endl;
+                buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)"<<setw(20)<< "Objekto adresas" << endl;
                 buffer << "____________________________________________________________________" << endl;
                 for (int i = 0; vektorius.size() > i; i++) {
                     buffer << setw(20) << vektorius[i].vardas << setw(20) << vektorius[i].pavarde << setw(17) << std::fixed
-                    << std::setprecision(2) << vektorius[i].vid << setw(17) << endl;
+                    << std::setprecision(2) << vektorius[i].vid << setw(23) <<std::addressof(vektorius[i])<< endl;
                     }
 
                 }
 
              else if (pasirinkimas == 2) {
-                buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis(med)" << endl;
+                buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis(med)"<<setw(20)<< "Objekto adresas" << endl;
                 buffer << "_____________________________________________________________________" << endl;
                 for (int i = 0; vektorius.size() > i; i++) {
                     buffer << setw(20) << vektorius[i].vardas << setw(20) << vektorius[i].pavarde << setw(17) << std::fixed
-                    << std::setprecision(2) << vektorius[i].med << endl;
+                    << std::setprecision(2) << vektorius[i].med<< setw(23) <<std::addressof(vektorius[i]) << endl;
                     }
 
                 }
              else {
-                buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << setw(20)
-                     << "Galutinis(med)" << endl;
+                buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)"<<setw(20)<< "Galutinis(med)" << setw(20)
+                     <<  "Objekto adresas"<< endl;
                 buffer << "___________________________________________________________________________________________" << endl;
                 for (int i = 0; vektorius.size() > i; i++) {
                     buffer << setw(20) << vektorius[i].vardas << setw(20) << vektorius[i].pavarde << setw(17) << std::fixed
-                    << std::setprecision(2) << vektorius[i].vid << setw(17) << vektorius[i].med << endl;
+                    << std::setprecision(2) << vektorius[i].vid << setw(17) << vektorius[i].med << setw(23) <<std::addressof(vektorius[i]) << endl;
                     }
 
                     }
             cout<<buffer.str();
+
+
+
+
+}
+void isvestis_list (list<Duomenys> listas, int pasirinkimas) {
+
+    stringstream buffer;
+
+    if (pasirinkimas == 1) {
+        buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" <<setw(20)<< "Objekto adresas"<< endl;
+        buffer << "____________________________________________________________________________________________" << endl;
+        for(auto& student : listas)  {
+            buffer << setw(20) << student.vardas << setw(20) << student.pavarde << setw(17) << std::fixed
+                   << std::setprecision(2) << student.vid << setw(23) << std::addressof(student)<< endl;
+        }
+
+    }
+
+    else if (pasirinkimas == 2) {
+        buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis(med)"<<setw(20)<< "Objekto adresas" << endl;
+        buffer << "___________________________________________________________________________________________" << endl;
+        for(auto& student : listas)  {
+            buffer << setw(20) << student.vardas << setw(20) << student.pavarde << setw(17) << std::fixed
+                   << std::setprecision(2) << student.med << setw(23) << std::addressof(student) << endl;
+        }
+
+    }
+    else {
+        buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << setw(20)
+               << "Galutinis(med)"<<setw(20)<< "Objekto adresas" << endl;
+        buffer << "________________________________________________________________________________________________________________________" << endl;
+        for(auto& student : listas)  {
+            buffer << setw(20) << student.vardas << setw(20) << student.pavarde << setw(17) << std::fixed
+                   << std::setprecision(2) << student.vid << setw(17) << student.med<< setw(23) << std::addressof(student) << endl;
+        }
+
+    }
+    cout<<buffer.str();
 
 
 
@@ -672,58 +898,119 @@ void Fake_main(){
             (ranka_failas == 'R' || ranka_failas == 'r' || ranka_failas == 'F' || ranka_failas == 'f'|| ranka_failas == 'G'||ranka_failas == 'g' ||ranka_failas == 'T'||ranka_failas == 't')) {
             if (ranka_failas == 'R' || ranka_failas == 'r') {
                 studentu_kiekis = Studentu_kiekis();
+                int konteineris = List_Vektor();
+                if (konteineris == 2) {
                 for (int eiles_nr = 0; eiles_nr < studentu_kiekis; eiles_nr++) {
                     ivedimas(eiles_nr);
 
                 }
-                sort(stud.begin(),stud.end(), palyginimas);
+                sort(stud.begin(), stud.end(), palyginimas);
                 char kieti_vargsai;
-                cout<< "Ar norite isrusiuoti studentus studentus i vargsus ir kietus ?(T/N)"<<endl; cin>> kieti_vargsai;
-                do{
-                    if (kieti_vargsai && (kieti_vargsai == 'T' || kieti_vargsai == 't' || kieti_vargsai == 'N' || kieti_vargsai == 'n')){
-                        if (kieti_vargsai == 'T'||kieti_vargsai == 't'){
+                cout << "Ar norite isrusiuoti studentus studentus i vargsus ir kietus ?(T/N)" << endl;
+                cin >> kieti_vargsai;
+                do {
+                    if (kieti_vargsai && (kieti_vargsai == 'T' || kieti_vargsai == 't' || kieti_vargsai == 'N' ||
+                                          kieti_vargsai == 'n')) {
+                        if (kieti_vargsai == 'T' || kieti_vargsai == 't') {
                             int med_ar_int = Vid_ar_med();
-                            Kategorija(studentu_kiekis,med_ar_int);
+                            Kategorija(studentu_kiekis, med_ar_int);
                             Studentu_skaldymas();
-                            int konsole_ar_failas = Konsole_ar_failas ();
-                            if(konsole_ar_failas == 1){
-                                // matavimas
+                            int konsole_ar_failas = Konsole_ar_failas();
+                            if (konsole_ar_failas == 1) {
                                 int isvedimas = Isvesties_pasirinkimas();
-                                cout<< "Isvesti vargsai studentai"<<endl;
+                                cout << "Isvesti vargsai studentai" << endl;
                                 isvestis(vargsai, isvedimas);
-                                cout<< "Isvesti kieti studentai"<< endl;
-                                isvestis(kieti,isvedimas);
-                            }
-                            else {
+                                cout << "Isvesti kieti studentai" << endl;
+                                isvestis(kieti, isvedimas);
+                            } else {
                                 int isvedimas = Isvesties_pasirinkimas();
-                                // matavimas
-                                Failu_kurimas(vargsai,"vargsai.txt",isvedimas);
-                                Failu_kurimas(kieti,"kieti.txt",isvedimas);
 
-                            }}
-                        else{
+                                Failu_kurimas(vargsai, "vargsai.txt", isvedimas);
+                                Failu_kurimas(kieti, "kieti.txt", isvedimas);
+
+                            }
+                        } else {
                             int konsole_ar_failas = Konsole_ar_failas();
                             int isvedimas = Isvesties_pasirinkimas();
-                            sort(stud.begin(),stud.end(), palyginimas);
-                            if (konsole_ar_failas == 1){
+                            sort(stud.begin(), stud.end(), palyginimas);
+                            if (konsole_ar_failas == 1) {
 
-                                cout<< "Isvesti visi studentai :"<<endl;
-                                isvestis(stud,isvedimas);
-                            }
-                            else{
-                                cout<<"Sukelti i faila studentai.txt. "<<endl;
-                                Failu_kurimas(stud, "studentai.txt",isvedimas);
+                                cout << "Isvesti visi studentai :" << endl;
+                                isvestis(stud, isvedimas);
+                            } else {
+                                cout << "Sukelti i faila studentai.txt. " << endl;
+                                Failu_kurimas(stud, "studentai.txt", isvedimas);
                             }
                         }
                     } else {
-                        cout<< " Neteisinga ivestis, iveskite T arba N !"<< endl;cin.clear();cin.ignore(10000, '\n');
-                        cin>>kieti_vargsai;
+                        cout << " Neteisinga ivestis, iveskite T arba N !" << endl;
+                        cin.clear();
+                        cin.ignore(10000, '\n');
+                        cin >> kieti_vargsai;
                     }
 
+                } while (kieti_vargsai != 'T' && kieti_vargsai != 't' && kieti_vargsai != 'N' && kieti_vargsai != 'n');
+
+            }
+                else {
+                    for (int eiles_nr = 0; eiles_nr < studentu_kiekis; eiles_nr++) {
+                        ivedimas_list(eiles_nr);
+                    }
+                   // sort(stud.begin(), stud.end(), palyginimas);
+                   stud_list.sort(palyginimas);
+                    char kieti_vargsai;
+                    cout << "Ar norite isrusiuoti studentus studentus i vargsus ir kietus ?(T/N)" << endl;
+                    cin >> kieti_vargsai;
+                    do {
+                        if (kieti_vargsai && (kieti_vargsai == 'T' || kieti_vargsai == 't' || kieti_vargsai == 'N' ||
+                                              kieti_vargsai == 'n')) {
+                            if (kieti_vargsai == 'T' || kieti_vargsai == 't') {
+                                int med_ar_int = Vid_ar_med();
+                                Kategorija_list( med_ar_int);
+                                Studentu_skaldymas();
+                                int konsole_ar_failas = Konsole_ar_failas();
+                                if (konsole_ar_failas == 1) {
+                                    int isvedimas = Isvesties_pasirinkimas();
+                                    cout << "Isvesti vargsai studentai" << endl;
+                                    isvestis_list(vargsai_list, isvedimas);
+                                    cout << "Isvesti kieti studentai" << endl;
+                                    isvestis_list(kieti_list, isvedimas);
+                                } else {
+                                    int isvedimas = Isvesties_pasirinkimas();
+
+                                    Failu_kurimas_list(vargsai_list, "vargsai.txt", isvedimas);
+                                    Failu_kurimas_list(kieti_list, "kieti.txt", isvedimas);
+
+                                }
+                            } else {
+                                int konsole_ar_failas = Konsole_ar_failas();
+                                int isvedimas = Isvesties_pasirinkimas();
+                                stud_list.sort(palyginimas);
+                                if (konsole_ar_failas == 1) {
+
+                                    cout << "Isvesti visi studentai :" << endl;
+                                    isvestis_list(stud_list, isvedimas);
+                                } else {
+                                    cout << "Sukelti i faila studentai.txt. " << endl;
+                                    Failu_kurimas_list(stud_list, "studentai.txt", isvedimas);
+                                }
+                            }
+                        } else {
+                            cout << " Neteisinga ivestis, iveskite T arba N !" << endl;
+                            cin.clear();
+                            cin.ignore(10000, '\n');
+                            cin >> kieti_vargsai;
+                        }
+
+                    } while (kieti_vargsai != 'T' && kieti_vargsai != 't' && kieti_vargsai != 'N' && kieti_vargsai != 'n');
+
+
+
+
+
+
+
                 }
-                while(kieti_vargsai != 'T' && kieti_vargsai != 't' && kieti_vargsai != 'N' && kieti_vargsai != 'n' );
-
-
             }
             else if (ranka_failas == 'g' || ranka_failas == 'G'){
                 std::chrono::duration<double> laikas;
@@ -851,14 +1138,6 @@ void Fake_main(){
 
 
 
-void Testavimas (){
-
-
-
-
-
-
-}
 
 
 

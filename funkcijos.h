@@ -7,11 +7,12 @@
 
 
 #include "strukturos.h"
-//TODO PATVARKYTI SITA ---->>>>
 void isvestis (vector<Duomenys> vektorius, int pasirinkimas);
+void isvestis_list (list<Duomenys> listas, int pasirinkimas);
 int Studentu_kiekis();
 int Nd_kiekis();
 void ivedimas (int studentu_kiekis);
+void ivedimas_list ( int studentu_kiekis);
 void studentu_generavimas(int st_k, int  namu_d);
 void Studentu_skaldymas ();
 void Studentu_skaldymas_list();//list variantas
@@ -27,6 +28,7 @@ int Isvesties_pasirinkimas ();
 void Koks_failo_pav ();
 void Fake_main();
 int Vid_ar_med();
+int List_Vektor();
 
 extern vector <Duomenys> stud;
 extern vector<Duomenys> kieti;
