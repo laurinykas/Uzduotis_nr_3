@@ -1,4 +1,26 @@
 # Uzduotis-nr-1
+## v0.3 
+### nauji dalykai
+* Implementuotas std::list konteineris.
+* Pasirinkus studento rašymo ranka funckiją galima taip pat gaunamas objekto adresas.
+* Įdėta galimybė testuoti konteinerių greitį.
+* Galima pasirinkti į kokį konteinerį įrašysite duomenis.
+* 
+### std::vector ir std::list konteinerių palyginimo rezultatai
+
+![Screenshot_1](https://github.com/laurinykas/Uzduotis-nr-1/assets/112711939/d1e92756-5aa9-4eb6-b7c0-dcac1237d786)
+![image](https://github.com/laurinykas/Uzduotis-nr-1/assets/112711939/d26ef658-e736-4783-aee6-975f88f91c5d)
+
+* Vidutinis laikas 1k studentų : 0.0110898 s.
+* Vidutinis laikas 10k studentų : 0.12564285 s.
+* Vidutinis laikas 100k studentų : 1.57843795 s.
+* Vidutinis laikas 1mil. studentų : 18.1561645 s.
+* Vidutinis laikas 10mil. studentų : 202.8593495 s. 
+### Testavimui buvo naudoti:
+*  CPU : AMD Ryzen 7 5800H
+* RAM : 16.0 GB 3200 MHz
+* SSD: 475 GB
+  
 
 ## v0.2.1
 * Galima generuoti daug kartų studentų failus.
