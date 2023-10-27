@@ -888,6 +888,35 @@ void Koks_failo_pav (){
 
         }
     }
+void Koks_failo_pav_list (){
+    system("dir *.txt");
+    string failo_pavadinimas;
+    std::chrono::duration<double> laikas;
+    cout<<"Koki faila noretumete nuskenuoti?"<<endl; cin>> failo_pavadinimas;
+
+
+    try {
+        ifstream fileread(failo_pavadinimas);
+        if (!fileread.fail()) {
+            auto start  = hrClock::now();
+            readfromFileList(failo_pavadinimas,stud_list);
+            auto end  = hrClock::now();
+            laikas = end- start;
+            cout << failo_pavadinimas << " studentu failo nuskaitymas uztruko : " << laikas.count()<< "s" << endl;
+        }
+        else{
+            throw std::runtime_error(failo_pavadinimas);
+
+        }
+
+    }
+    catch(std::exception &e) {
+        cout << "Failas "  << e.what() << "neegzistuoja arba neteisingai irasete pavadinima, paleiskite dar karta programa" << endl;
+        std::exit(0);
+
+
+    }
+}
 void Fake_main(){
 
     char ranka_failas;
@@ -956,7 +985,7 @@ void Fake_main(){
                     for (int eiles_nr = 0; eiles_nr < studentu_kiekis; eiles_nr++) {
                         ivedimas_list(eiles_nr);
                     }
-                   // sort(stud.begin(), stud.end(), palyginimas);
+
                    stud_list.sort(palyginimas);
                     char kieti_vargsai;
                     cout << "Ar norite isrusiuoti studentus studentus i vargsus ir kietus ?(T/N)" << endl;
@@ -1025,11 +1054,14 @@ void Fake_main(){
             }
 
             else if (ranka_failas == 'f' || ranka_failas == 'F') {
+
                 stud.push_back(duomenys);
                 std::chrono::duration<double> laikas;
                 int kons_ar_failas = Konsole_ar_failas();
                 int isvedimas = Isvesties_pasirinkimas();
                 int med_ar_vid = Vid_ar_med();
+                int list_vector = List_Vektor();
+                if(list_vector == 2){
 
                 Koks_failo_pav ();// laikas suskaiciuotas
                 studentu_kiekis = stud.size() -1 ;
@@ -1066,7 +1098,48 @@ void Fake_main(){
                     cout << "kietu isvedimas truko :" << laikas.count()<<" s"<<endl;
 
                 }
+            }else {
+                    Koks_failo_pav_list();// laikas suskaiciuotas
+                    studentu_kiekis = stud_list.size() -1 ;
+                    auto start = hrClock::now();
+                    stud_list.erase(stud_list.begin());
+                    stud_list.sort(palyginimas);
+                    auto end = hrClock::now(); laikas = end - start ;
+                    cout << studentu_kiekis <<" studentu failo surusiavimas pagal varda uztruko : " << laikas.count() << " s"<< endl;
+                    Kategorija_list(med_ar_vid);
+                    start = hrClock::now();
+                    Studentu_skaldymas_list();
+                    end = hrClock::now(); laikas= end - start;
+                    cout << studentu_kiekis <<" studentu failo surusiavimas i atskirus sarasus uztruko : " << laikas.count() << " s"<< endl;
 
+                    if(kons_ar_failas == 1){
+                        start = hrClock ::now();
+                        isvestis_list(vargsai_list,isvedimas);
+                        end = hrClock ::now();
+                        laikas = end - start; cout << "vargsu isvedimas truko :" << laikas.count()<<" s"<<endl;
+                        start = hrClock ::now();
+                        isvestis_list(kieti_list,isvedimas);
+                        end = hrClock ::now();laikas = end - start;
+                        cout << "kietu isvedimas truko :" << laikas.count()<<" s"<<endl;
+
+                    }
+                    else{
+                        start = hrClock ::now();
+                        Failu_kurimas_list(vargsai_list,"vargsai.txt",isvedimas);
+                        end = hrClock ::now();laikas = end - start;
+                        cout << "vargsu isvedimas truko :" << laikas.count()<<" s"<<endl;
+                        start = hrClock ::now();
+                        Failu_kurimas_list(kieti_list,"kieti.txt",isvedimas);
+                        end = hrClock ::now();laikas = end - start;
+                        cout << "kietu isvedimas truko :" << laikas.count()<<" s"<<endl;
+
+                    }
+
+
+
+
+
+              }
             }
             else {
                 std::chrono::duration<double> rez;

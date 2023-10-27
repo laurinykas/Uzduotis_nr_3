@@ -26,6 +26,7 @@ void Failu_kurimas_list (list<Duomenys> listas, string failo_vardas, int pasirin
 int Konsole_ar_failas ();
 int Isvesties_pasirinkimas ();
 void Koks_failo_pav ();
+void Koks_failo_pav_list ();
 void Fake_main();
 int Vid_ar_med();
 int List_Vektor();
