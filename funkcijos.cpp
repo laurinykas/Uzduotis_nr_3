@@ -219,7 +219,6 @@ void ivedimas ( int studentu_kiekis) {
 }
 void ivedimas_list ( int studentu_kiekis) {
     Duomenys s;
-    //stud_list.push_back(Duomenys());
         char bent_vienas_nd_ranka;
         cout << "Iveskite studento varda : " << endl;cin >> s.vardas;
         cout << "Iveskite studento pavarde : " << endl;cin >> s.pavarde;
@@ -988,7 +987,7 @@ void Fake_main(){
                             if (kieti_vargsai == 'T' || kieti_vargsai == 't') {
                                 int med_ar_int = Vid_ar_med();
                                 Kategorija_list( med_ar_int);
-                                Studentu_skaldymas();
+                                Studentu_skaldymas_list();
                                 int konsole_ar_failas = Konsole_ar_failas();
                                 if (konsole_ar_failas == 1) {
                                     int isvedimas = Isvesties_pasirinkimas();
