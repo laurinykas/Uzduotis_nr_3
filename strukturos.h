@@ -25,10 +25,7 @@ struct Duomenys {
             galutinis = med;
         }
 
-
-
     }
-
 
     void Vidurkis() {
 

@@ -26,40 +26,32 @@ int List_Vektor(){
 
 }
 int Studentu_kiekis() {
+    int studentu_sk;
 
-    int studentu_sk ;
-    cout << "Iveskite studentu kieki: " << endl;cin >> studentu_sk;
-    do {
-
-        if (studentu_sk && studentu_sk > 0) {
-            return studentu_sk;}
-        else {
-            cout << "Neteisingai ivestas studentu skaicius, bandykite dar karta\n"
-                    "Iveskite studentu kieki: ";
+    while (true) {
+        cout << "Iveskite studentu kieki: ";
+        if (cin >> studentu_sk && studentu_sk > 0) {
+            return studentu_sk;
+        } else {
+            cout << "Neteisingai ivestas studentu skaicius, bandykite dar karta" << std::endl;
             cin.clear();
             cin.ignore(10000, '\n');
-            cin >> studentu_sk;}
-
+        }
     }
-    while (!(studentu_sk || studentu_sk < 0));
 }
-int Nd_kiekis() {
+int Nd_kiekis()  {
+    int nd_sk;
 
-    int nd_sk ;
-    cout << "Iveskite namu darbu  kieki: " << endl;cin >> nd_sk;
-    do {
-
-        if (nd_sk && nd_sk > 0) {
-            return nd_sk;}
-        else {
-            cout << "Neteisingai ivestas namu darbu skaicius, bandykite dar karta\n"
-                    "Iveskite namu darbu kieki: ";
+    while (true) {
+        cout << "Iveskite namu darbu kieki: ";
+        if (std::cin >> nd_sk && nd_sk > 0) {
+            return nd_sk;
+        } else {
+            cout << "Neteisingai ivestas namu darbu skaicius, bandykite dar karta" << std::endl;
             cin.clear();
             cin.ignore(10000, '\n');
-            cin >> nd_sk;}
-
+        }
     }
-    while (!(nd_sk || nd_sk < 0));
 }
 
 
@@ -1061,6 +1053,8 @@ void Fake_main(){
                 int isvedimas = Isvesties_pasirinkimas();
                 int med_ar_vid = Vid_ar_med();
                 int list_vector = List_Vektor();
+
+
                 if(list_vector == 2){
 
                 Koks_failo_pav ();// laikas suskaiciuotas
@@ -1100,9 +1094,8 @@ void Fake_main(){
                 }
             }else {
                     Koks_failo_pav_list();// laikas suskaiciuotas
-                    studentu_kiekis = stud_list.size() -1 ;
+                    studentu_kiekis = stud_list.size()  ;
                     auto start = hrClock::now();
-                    stud_list.erase(stud_list.begin());
                     stud_list.sort(palyginimas);
                     auto end = hrClock::now(); laikas = end - start ;
                     cout << studentu_kiekis <<" studentu failo surusiavimas pagal varda uztruko : " << laikas.count() << " s"<< endl;
