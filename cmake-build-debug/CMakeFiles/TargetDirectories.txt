@@ -1,3 +1,0 @@
-C:/Users/Laurynas/Documents/GitHub/Uzduotis-nr-1/cmake-build-debug/CMakeFiles/Uzduotis_nr_1.dir
-C:/Users/Laurynas/Documents/GitHub/Uzduotis-nr-1/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Laurynas/Documents/GitHub/Uzduotis-nr-1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
