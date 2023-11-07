@@ -34,6 +34,11 @@ int Vid_ar_med();
 int List_Vektor();
 void Sortingas (int vek_ar_list, int sortingo_tipas);
 int Rusiavimo_tipas();
+void Skaldymas2_Vector();
+void Skaldymas2_List();
+
+
+
 
 extern vector <Duomenys> stud;
 extern vector<Duomenys> kieti;

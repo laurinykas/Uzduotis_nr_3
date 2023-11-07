@@ -927,6 +927,35 @@ int Rusiavimo_tipas() {
 
 
 
+void Skaldymas2_Vector() {
+    for (auto it = stud.begin(); it != stud.end(); ) {
+        if (it->galutinis < 5.00) {
+            vargsai.push_back(*it);
+            it = stud.erase(it); // Remove the element and get the next iterator
+        } else {
+            ++it; // Move to the next element
+        }
+    }
+}
+
+void Skaldymas2_List() {
+    for (auto it = stud_list.begin(); it != stud_list.end(); ) {
+        if (it->galutinis < 5.00) {
+            vargsai_list.push_back(*it);
+            it = stud_list.erase(it); // Remove the element and get the next iterator
+        } else {
+            ++it; // Move to the next element
+        }
+    }
+}
+
+
+//TODO PATESTINT ABI
+// TODO SUKURT 3 STRAT
+//TODO PROFIT
+
+
+
 
 
 
@@ -1121,7 +1150,8 @@ void Fake_main(){
                 auto end = hrClock::now();laikas = end - start ;
                 cout << studentu_kiekis <<" studentu failo surusiavimas  uztruko : " << laikas.count() << " s"<< endl;
                 start = hrClock::now();
-                Studentu_skaldymas();
+                //Studentu_skaldymas();
+                Skaldymas2_Vector();
                 end = hrClock::now(); laikas= end - start;
                 cout << studentu_kiekis <<" studentu failo surusiavimas i atskirus vektorius uztriko : " << laikas.count() << " s"<< endl;
 
@@ -1131,7 +1161,8 @@ void Fake_main(){
                     end = hrClock ::now();
                     laikas = end - start; cout << "vargsu isvedimas truko :" << laikas.count()<<" s"<<endl;
                     start = hrClock ::now();
-                    isvestis(kieti,isvedimas);
+                   // isvestis(kieti,isvedimas);
+                    isvestis(stud,isvedimas);
                     end = hrClock ::now();laikas = end - start;
                     cout << "kietu isvedimas truko :" << laikas.count()<<" s"<<endl;
 
@@ -1142,7 +1173,8 @@ void Fake_main(){
                     end = hrClock ::now();laikas = end - start;
                     cout << "vargsu isvedimas truko :" << laikas.count()<<" s"<<endl;
                     start = hrClock ::now();
-                    Failu_kurimas(kieti,"kieti.txt",isvedimas);
+                   // Failu_kurimas(kieti,"kieti.txt",isvedimas);
+                   Failu_kurimas(stud,"stud_kieti.txt",isvedimas);
                     end = hrClock ::now();laikas = end - start;
                     cout << "kietu isvedimas truko :" << laikas.count()<<" s"<<endl;
 
@@ -1156,7 +1188,8 @@ void Fake_main(){
                     auto end = hrClock::now(); laikas = end - start;
                     cout << studentu_kiekis <<" studentu failo surusiavimas pagal varda uztruko : " << laikas.count() << " s"<< endl;
                     start = hrClock::now();
-                    Studentu_skaldymas_list();
+                    //Studentu_skaldymas_list();
+                    Skaldymas2_List();
                     end = hrClock::now(); laikas= end - start;
                     cout << studentu_kiekis <<" studentu failo surusiavimas i atskirus sarasus uztruko : " << laikas.count() << " s"<< endl;
 
@@ -1177,7 +1210,8 @@ void Fake_main(){
                         end = hrClock ::now();laikas = end - start;
                         cout << "vargsu isvedimas truko :" << laikas.count()<<" s"<<endl;
                         start = hrClock ::now();
-                        Failu_kurimas_list(kieti_list,"kieti.txt",isvedimas);
+                       // Failu_kurimas_list(kieti_list,"kieti.txt",isvedimas);
+                       // Failu_kurimas_list(kieti_list,"kieti.txt",isvedimas);
                         end = hrClock ::now();laikas = end - start;
                         cout << "kietu isvedimas truko :" << laikas.count()<<" s"<<endl;
 
