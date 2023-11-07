@@ -645,7 +645,7 @@ int Vid_ar_med(){
 
 }
 void Studentu_skaldymas() {
-    vector<Duomenys> temporaryStorage; // Create a temporary vector
+
     for (auto el : stud) {
         if (el.galutinis >= 5.00){
 
@@ -654,16 +654,10 @@ void Studentu_skaldymas() {
             vargsai.push_back(el);
 
         }
-
-        // Store the student in the temporary vector
-        temporaryStorage.push_back(el);
     }
 
-    // Restore the students in the stud vector
-    stud = temporaryStorage;
 }
 void Studentu_skaldymas_list() {
-    list<Duomenys> temporaryStorage; // Create a temporary vector
     for (auto el : stud_list) {
         if (el.galutinis >= 5.00){
 
@@ -672,15 +666,22 @@ void Studentu_skaldymas_list() {
             vargsai_list.push_back(el);
 
         }
-
-        // Store the student in the temporary vector
-        temporaryStorage.push_back(el);
     }
 
-    // Restore the students in the stud vector
-    stud_list = temporaryStorage;
 }
+void Skaldymas3() {
+    auto partitionPredicate = [](const Duomenys& el) {
+        return el.galutinis >= 5.00;
+    };
 
+    auto partitionPoint = std::partition(stud.begin(), stud.end(), partitionPredicate);
+
+    // Now, stud is partitioned into "kieti" (passed) before partitionPoint
+    // and "vargsai" (struggling) after partitionPoint.
+
+    kieti.assign(stud.begin(), partitionPoint);
+    vargsai.assign(partitionPoint, stud.end());
+}
 
 
 
@@ -950,8 +951,8 @@ void Skaldymas2_List() {
 }
 
 
-//TODO PATESTINT ABI
-// TODO SUKURT 3 STRAT
+
+
 //TODO PROFIT
 
 
@@ -1151,7 +1152,7 @@ void Fake_main(){
                 cout << studentu_kiekis <<" studentu failo surusiavimas  uztruko : " << laikas.count() << " s"<< endl;
                 start = hrClock::now();
                 //Studentu_skaldymas();
-                Skaldymas2_Vector();
+                Skaldymas3();
                 end = hrClock::now(); laikas= end - start;
                 cout << studentu_kiekis <<" studentu failo surusiavimas i atskirus vektorius uztriko : " << laikas.count() << " s"<< endl;
 
@@ -1174,7 +1175,7 @@ void Fake_main(){
                     cout << "vargsu isvedimas truko :" << laikas.count()<<" s"<<endl;
                     start = hrClock ::now();
                    // Failu_kurimas(kieti,"kieti.txt",isvedimas);
-                   Failu_kurimas(stud,"stud_kieti.txt",isvedimas);
+                   Failu_kurimas(kieti,"stud_kieti.txt",isvedimas);
                     end = hrClock ::now();laikas = end - start;
                     cout << "kietu isvedimas truko :" << laikas.count()<<" s"<<endl;
 
