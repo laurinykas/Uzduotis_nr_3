@@ -1157,7 +1157,6 @@ void Fake_main(){
                     cout << studentu_kiekis <<" studentu failo surusiavimas pagal varda uztruko : " << laikas.count() << " s"<< endl;
                     start = hrClock::now();
                     Studentu_skaldymas_list();
-
                     end = hrClock::now(); laikas= end - start;
                     cout << studentu_kiekis <<" studentu failo surusiavimas i atskirus sarasus uztruko : " << laikas.count() << " s"<< endl;
 
