@@ -1080,7 +1080,6 @@ void Fake_main(){
                         if (kieti_vargsai == 'T' || kieti_vargsai == 't') {
                             int med_ar_int = Vid_ar_med();
                             Kategorija(studentu_kiekis, med_ar_int);
-                            //Studentu_skaldymas();
                             MegaSkirstymas(konteineris,skirstymo_strat);
                             int konsole_ar_failas = Konsole_ar_failas();
                             if (konsole_ar_failas == 1) {
@@ -1133,7 +1132,6 @@ void Fake_main(){
                             if (kieti_vargsai == 'T' || kieti_vargsai == 't') {
                                 int med_ar_int = Vid_ar_med();
                                 Kategorija_list( med_ar_int);
-                                //Studentu_skaldymas_list();
                                 MegaSkirstymas(konteineris,skirstymo_strat);
                                 int konsole_ar_failas = Konsole_ar_failas();
                                 if (konsole_ar_failas == 1) {
@@ -1200,6 +1198,7 @@ void Fake_main(){
                 int med_ar_vid = Vid_ar_med();
                 int list_vector = List_Vektor();
                 int rusiavimo_tipas = Rusiavimo_tipas();
+                int skirstymo_strat = SkirstymoStrategijosPas();
 
 
                 if(list_vector == 2){
@@ -1217,7 +1216,7 @@ void Fake_main(){
                 cout << studentu_kiekis <<" studentu failo surusiavimas  uztruko : " << laikas.count() << " s"<< endl;
                 start = hrClock::now();
                 //Studentu_skaldymas();
-                Skaldymas3();
+                MegaSkirstymas(list_vector,skirstymo_strat);
                 end = hrClock::now(); laikas= end - start;
                 cout << studentu_kiekis <<" studentu failo surusiavimas i atskirus vektorius uztriko : " << laikas.count() << " s"<< endl;
 
@@ -1227,8 +1226,7 @@ void Fake_main(){
                     end = hrClock ::now();
                     laikas = end - start; cout << "vargsu isvedimas truko :" << laikas.count()<<" s"<<endl;
                     start = hrClock ::now();
-                   // isvestis(kieti,isvedimas);
-                    isvestis(stud,isvedimas);
+                    isvestis(kieti,isvedimas);
                     end = hrClock ::now();laikas = end - start;
                     cout << "kietu isvedimas truko :" << laikas.count()<<" s"<<endl;
 
@@ -1239,8 +1237,7 @@ void Fake_main(){
                     end = hrClock ::now();laikas = end - start;
                     cout << "vargsu isvedimas truko :" << laikas.count()<<" s"<<endl;
                     start = hrClock ::now();
-                   // Failu_kurimas(kieti,"kieti.txt",isvedimas);
-                   Failu_kurimas(kieti,"stud_kieti.txt",isvedimas);
+                   Failu_kurimas(kieti,"kieti.txt",isvedimas);
                     end = hrClock ::now();laikas = end - start;
                     cout << "kietu isvedimas truko :" << laikas.count()<<" s"<<endl;
 
@@ -1254,8 +1251,7 @@ void Fake_main(){
                     auto end = hrClock::now(); laikas = end - start;
                     cout << studentu_kiekis <<" studentu failo surusiavimas pagal varda uztruko : " << laikas.count() << " s"<< endl;
                     start = hrClock::now();
-                    //Studentu_skaldymas_list();
-                    Skaldymas2_List();
+                    MegaSkirstymas(list_vector,skirstymo_strat);
                     end = hrClock::now(); laikas= end - start;
                     cout << studentu_kiekis <<" studentu failo surusiavimas i atskirus sarasus uztruko : " << laikas.count() << " s"<< endl;
 
@@ -1276,8 +1272,7 @@ void Fake_main(){
                         end = hrClock ::now();laikas = end - start;
                         cout << "vargsu isvedimas truko :" << laikas.count()<<" s"<<endl;
                         start = hrClock ::now();
-                       // Failu_kurimas_list(kieti_list,"kieti.txt",isvedimas);
-                       // Failu_kurimas_list(kieti_list,"kieti.txt",isvedimas);
+                        Failu_kurimas_list(kieti_list,"kieti.txt",isvedimas);
                         end = hrClock ::now();laikas = end - start;
                         cout << "kietu isvedimas truko :" << laikas.count()<<" s"<<endl;
 
