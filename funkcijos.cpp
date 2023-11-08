@@ -1344,7 +1344,6 @@ void Fake_main(){
             else{
                 std::chrono::duration<double> rez;
                 std::chrono::duration<double> rez2;
-                std::chrono::duration<double> rez3;
                 int med_ar_vid = Vid_ar_med();
                 int isvedimas = Isvesties_pasirinkimas();
                 int rusiavimo_tipas = Rusiavimo_tipas();
@@ -1357,15 +1356,11 @@ void Fake_main(){
 
                     readfromFile(filename,stud); // failo nuskaitymas vector
 
-
-
                     readfromFileList(filename, stud_list); // failo nuskaitymas list
-
 
                     //auto info1 = rez.count();
                     //auto info2 = rez2.count();
                     //printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu failo nuskaitymas").c_str(), info1,info2);// rezultato printas
-
 
                     Kategorija(test_fdydziai[i], med_ar_vid);
                     Sortingas(2,rusiavimo_tipas);
