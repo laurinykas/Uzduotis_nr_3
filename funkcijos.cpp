@@ -953,9 +953,7 @@ void Skaldymas2_List() {
 
 
 
-//TODO SUKURTI FUNKCIJA KAD BUTU GALIMA PASIRINKTI STRATEGIJA -> R IR F ATVEJAMS
-// TODO R ATVEJIS
-// TODO F ATVEJIS
+
 
 int SkirstymoStrategijosPas(){
     int pasirinkimas;
@@ -1014,6 +1012,7 @@ else {// listai
 }
 //TODO TESTAVIME SUIMPLEMENTUOTI ALL THAT JAZZ
 
+
 //TODO ATCUAL TESTAVIMA DARYT IR REZULTATUS I EXCELI
 
 //TODO INSTALIACIJOS BS
@@ -1056,10 +1055,10 @@ void Fake_main(){
 
     char ranka_failas;
     do {
-        cout << "Ar duomenis rasytite ranka , nuskaitysite is failo ar noresite sugeneruoti atsitiktini ar testuoti?(R - ranka, F- is failo, G - generuoti, T - testuoti )?" << endl;
+        cout << "Ar duomenis rasytite ranka , nuskaitysite is failo ar noresite sugeneruoti atsitiktini ar testuoti?(R - ranka, F- is failo, G - generuoti, T - testuoti konteinerius, S - testuoti strategijas )?" << endl;
         cin >> ranka_failas;
         if (ranka_failas &&
-            (ranka_failas == 'R' || ranka_failas == 'r' || ranka_failas == 'F' || ranka_failas == 'f'|| ranka_failas == 'G'||ranka_failas == 'g' ||ranka_failas == 'T'||ranka_failas == 't')) {
+            (ranka_failas == 'R' || ranka_failas == 'r' || ranka_failas == 'F' || ranka_failas == 'f'|| ranka_failas == 'G'||ranka_failas == 'g' ||ranka_failas == 'T'||ranka_failas == 't'||ranka_failas == 'S'||ranka_failas =='s')) {
             if (ranka_failas == 'R' || ranka_failas == 'r') {
                 studentu_kiekis = Studentu_kiekis();
                 int konteineris = List_Vektor();
@@ -1284,12 +1283,13 @@ void Fake_main(){
 
               }
             }
-            else {
+            else if(ranka_failas == 't' || ranka_failas == 'T'){
                 std::chrono::duration<double> rez;
                 std::chrono::duration<double> rez2;
                 int med_ar_vid = Vid_ar_med();
                 int isvedimas = Isvesties_pasirinkimas();
                 int rusiavimo_tipas = Rusiavimo_tipas();
+                int strat = SkirstymoStrategijosPas();
                 //testuoti visus 1000,10000,100000,1000000 ir t.t 5 failus
                 int test_fdydziai[5] = {1000, 10000, 100000, 1000000, 10000000};// testo str failo dydziai
                 // visus cout padaryt kad graziai butu
@@ -1312,13 +1312,13 @@ void Fake_main(){
 
                     start = hrClock::now();
                     Kategorija(test_fdydziai[i], med_ar_vid);Sortingas(2,rusiavimo_tipas);
-                    Studentu_skaldymas(); end = hrClock::now(); rez = end- start; // visas skaldymas vector
+                    MegaSkirstymas(2,strat); end = hrClock::now(); rez = end- start; // visas skaldymas vector
                     // laiko skaiciavimas vector
 
                     start = hrClock::now();
                     Kategorija_list(med_ar_vid);
                     Sortingas(1,rusiavimo_tipas);
-                    Studentu_skaldymas_list();end = hrClock::now();rez2 = end- start; // Visas skaldymas list
+                    MegaSkirstymas(1,strat);end = hrClock::now();rez2 = end- start; // Visas skaldymas list
                     // laiko skaiciavimas list
                     info1 = rez.count();info2 = rez2.count();
                     printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu surusiavimas").c_str(), info1,info2);
@@ -1341,12 +1341,95 @@ void Fake_main(){
                 }
 
             }
+            else{
+                std::chrono::duration<double> rez;
+                std::chrono::duration<double> rez2;
+                std::chrono::duration<double> rez3;
+                int med_ar_vid = Vid_ar_med();
+                int isvedimas = Isvesties_pasirinkimas();
+                int rusiavimo_tipas = Rusiavimo_tipas();
+                int test_fdydziai[5] = {1000, 10000, 100000, 1000000, 10000000};
+                printf("%-40s %-20s %-0s \n", "Veiksmas","Vector laikas (s.)", "List laikas (s.)");
+                string filename;
+                for (int i = 0; i < 5; i++) {
+                    filename ="student" + to_string(test_fdydziai[i]) + ".txt";cout << string(70,'-') << "\n";
+
+
+                    readfromFile(filename,stud); // failo nuskaitymas vector
+
+
+
+                    readfromFileList(filename, stud_list); // failo nuskaitymas list
+
+
+                    //auto info1 = rez.count();
+                    //auto info2 = rez2.count();
+                    //printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu failo nuskaitymas").c_str(), info1,info2);// rezultato printas
+
+
+                    Kategorija(test_fdydziai[i], med_ar_vid);
+                    Sortingas(2,rusiavimo_tipas);
+                    auto  tempstud = stud;
+
+                    Kategorija_list(med_ar_vid);
+                    Sortingas(1,rusiavimo_tipas);
+                    auto tempstud_list = stud_list;
+
+                    auto start = hrClock::now();
+                    MegaSkirstymas(2,1);
+                    auto end = hrClock::now();
+                    stud = tempstud;
+                    rez = end- start;
+                    // laiko skaiciavimas vector 1 strategija
+
+                    start = hrClock::now();
+                    MegaSkirstymas(1,1);
+                    end = hrClock::now();
+                    rez2 = end- start;
+                    stud_list = tempstud_list;
+                    // laiko skaiciavimas list 1 strategija
+
+                   auto info1 = rez.count(); auto info2 = rez2.count();
+                    printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu dalijimas i grupes (1 strategija)").c_str(), info1,info2);
+
+                    start = hrClock::now();
+                    MegaSkirstymas(2,2);
+                    end = hrClock::now();
+                    stud = tempstud;
+                    rez = end- start;
+                    // laiko skaiciavimas vector 2 strategija
+
+                    start = hrClock::now();
+                    MegaSkirstymas(1,2);
+                    end = hrClock::now();
+                    rez2 = end- start;
+                    stud_list = tempstud_list;
+                    // laiko skaiciavimas list 2 strategija
+
+                    info1 = rez.count();  info2 = rez2.count();
+                    printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu dalijimas i grupes (2 strategija)").c_str(), info1,info2);
+
+                    start = hrClock::now();
+                    MegaSkirstymas(2,3);
+                    end = hrClock::now();
+                    stud = tempstud;
+                    rez = end- start;
+                    // laiko skaiciavimas vector 2 strategija
+                    info1 = rez.count();
+                    printf("%-40s %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu dalijimas i grupes (3 strategija)").c_str(), info1);
+
+                }
+
+
+
+
+            }
         } else {
             cout << "Iveskite R arba f arba G" << endl;
             cin.clear();
             cin.ignore(10000, '\n');
         }
-    } while (ranka_failas != 'R' and ranka_failas != 'r' and ranka_failas != 'F' and ranka_failas != 'f' and ranka_failas != 'g' and ranka_failas != 'G' and ranka_failas != 'T' and ranka_failas != 't');
+    } while (ranka_failas != 'R' and ranka_failas != 'r' and ranka_failas != 'F' and ranka_failas != 'f' and ranka_failas != 'g' and ranka_failas != 'G' and ranka_failas != 'T' and ranka_failas != 't' and ranka_failas != 's' and ranka_failas != 'S');
 
 
 
