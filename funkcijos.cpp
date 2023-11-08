@@ -953,7 +953,69 @@ void Skaldymas2_List() {
 
 
 
-//TODO PROFIT
+//TODO SUKURTI FUNKCIJA KAD BUTU GALIMA PASIRINKTI STRATEGIJA -> R IR F ATVEJAMS
+
+
+int SkirstymoStrategijosPas(){
+    int pasirinkimas;
+    cout << "Pagal kokia strategija noresite rusiuoti failus? 1 - 1 strategija, 2 - 2strategija, 3 - 3 strategija(galioja tik vector konteineriams) " << endl;
+    cin >> pasirinkimas;
+    do{
+        if(pasirinkimas &&( pasirinkimas == 1 || pasirinkimas == 2 || pasirinkimas == 3)){
+            return pasirinkimas;
+
+
+        }
+        else{
+            cout << "Iveskite  1 , 2 arba  3!" << endl;
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cin >> pasirinkimas;
+
+
+        }
+    }while (pasirinkimas != 1 and pasirinkimas != 2 and pasirinkimas != 3);
+
+
+
+}
+
+void MegaSkirstymas(int konteineris , int strategija ){
+
+if(konteineris == 2){//vektoriai
+  if(strategija == 1){ // 1 strategija vektor
+    Studentu_skaldymas();
+  }
+  else if(strategija == 2){ // 2 strategija vektor
+      Skaldymas2_Vector();
+  }
+  else{ // 3 strategija vektor
+      Skaldymas3();
+  }
+}
+else {// listai
+    if(strategija == 1){ // 1 strategija list
+        Studentu_skaldymas_list();
+    }
+    else if (strategija == 2) { // 2 strategija list
+        Skaldymas2_List();
+    }
+    else {
+        cout << "strategija 3 list tipo konteineriui  neegzistuoja, paleiskite is naujo programa ir pasirinkite tinkama strategija ar konteineri "<<endl;
+        system("pause");
+        exit(1);
+    }
+
+}
+
+
+
+}
+//TODO TESTAVIME SUIMPLEMENTUOTI ALL THAT JAZZ
+
+//TODO ATCUAL TESTAVIMA DARYT IR REZULTATUS I EXCELI
+
+//TODO INSTALIACIJOS BS
 
 
 

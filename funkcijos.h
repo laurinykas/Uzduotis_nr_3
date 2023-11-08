@@ -37,6 +37,7 @@ int Rusiavimo_tipas();
 void Skaldymas2_Vector();
 void Skaldymas2_List();
 void Skaldymas3();
+int SkirstymoStrategijosPas();
 
 
 
