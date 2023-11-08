@@ -936,7 +936,7 @@ void Skaldymas2_Vector() {
         } else {
             ++it; // Move to the next element
         }
-    }
+    }   kieti = stud;
 }
 
 void Skaldymas2_List() {
@@ -947,14 +947,15 @@ void Skaldymas2_List() {
         } else {
             ++it; // Move to the next element
         }
-    }
+    }   kieti_list = stud_list;
 }
 
 
 
 
 //TODO SUKURTI FUNKCIJA KAD BUTU GALIMA PASIRINKTI STRATEGIJA -> R IR F ATVEJAMS
-
+// TODO R ATVEJIS
+// TODO F ATVEJIS
 
 int SkirstymoStrategijosPas(){
     int pasirinkimas;
@@ -1063,12 +1064,13 @@ void Fake_main(){
                 studentu_kiekis = Studentu_kiekis();
                 int konteineris = List_Vektor();
                 int rusiavimo_tipas =  Rusiavimo_tipas();
+                int skirstymo_strat = SkirstymoStrategijosPas();
                 if (konteineris == 2) {
                 for (int eiles_nr = 0; eiles_nr < studentu_kiekis; eiles_nr++) {
                     ivedimas(eiles_nr);
 
                 }
-                Sortingas(2,rusiavimo_tipas);
+                Sortingas(konteineris,rusiavimo_tipas);
                 char kieti_vargsai;
                 cout << "Ar norite isrusiuoti studentus studentus i vargsus ir kietus ?(T/N)" << endl;
                 cin >> kieti_vargsai;
@@ -1078,7 +1080,8 @@ void Fake_main(){
                         if (kieti_vargsai == 'T' || kieti_vargsai == 't') {
                             int med_ar_int = Vid_ar_med();
                             Kategorija(studentu_kiekis, med_ar_int);
-                            Studentu_skaldymas();
+                            //Studentu_skaldymas();
+                            MegaSkirstymas(konteineris,skirstymo_strat);
                             int konsole_ar_failas = Konsole_ar_failas();
                             if (konsole_ar_failas == 1) {
                                 int isvedimas = Isvesties_pasirinkimas();
@@ -1096,7 +1099,6 @@ void Fake_main(){
                         } else {
                             int konsole_ar_failas = Konsole_ar_failas();
                             int isvedimas = Isvesties_pasirinkimas();
-                            //sort(stud.begin(), stud.end(), palyginimas);
                             if (konsole_ar_failas == 1) {
 
                                 cout << "Isvesti visi studentai :" << endl;
@@ -1121,7 +1123,7 @@ void Fake_main(){
                         ivedimas_list(eiles_nr);
                     }
 
-                    Sortingas(1,rusiavimo_tipas);
+                    Sortingas(konteineris,rusiavimo_tipas);
                     char kieti_vargsai;
                     cout << "Ar norite isrusiuoti studentus studentus i vargsus ir kietus ?(T/N)" << endl;
                     cin >> kieti_vargsai;
@@ -1131,7 +1133,8 @@ void Fake_main(){
                             if (kieti_vargsai == 'T' || kieti_vargsai == 't') {
                                 int med_ar_int = Vid_ar_med();
                                 Kategorija_list( med_ar_int);
-                                Studentu_skaldymas_list();
+                                //Studentu_skaldymas_list();
+                                MegaSkirstymas(konteineris,skirstymo_strat);
                                 int konsole_ar_failas = Konsole_ar_failas();
                                 if (konsole_ar_failas == 1) {
                                     int isvedimas = Isvesties_pasirinkimas();
@@ -1149,7 +1152,7 @@ void Fake_main(){
                             } else {
                                 int konsole_ar_failas = Konsole_ar_failas();
                                 int isvedimas = Isvesties_pasirinkimas();
-                                //stud_list.sort(palyginimas);
+
                                 if (konsole_ar_failas == 1) {
 
                                     cout << "Isvesti visi studentai :" << endl;

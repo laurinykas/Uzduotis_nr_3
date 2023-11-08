@@ -38,6 +38,7 @@ void Skaldymas2_Vector();
 void Skaldymas2_List();
 void Skaldymas3();
 int SkirstymoStrategijosPas();
+void MegaSkirstymas(int konteineris , int strategija );
 
 
 
