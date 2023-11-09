@@ -929,16 +929,17 @@ int Rusiavimo_tipas() {
 
 
 void Skaldymas2_Vector() {
-    for (auto it = stud.begin(); it != stud.end(); ) {
-        if (it->galutinis < 5.00) {
-            vargsai.push_back(*it);
-            it = stud.erase(it); // Remove the element and get the next iterator
-        } else {
-            ++it; // Move to the next element
-        }
-    }   kieti = stud;
-}
+    auto isVargsas = [](const Duomenys &student) {
+        return student.galutinis < 5.00;
+    };
 
+    auto partitionIter = std::partition(stud.begin(), stud.end(), isVargsas);
+
+    vargsai.assign(stud.begin(), partitionIter);
+    kieti.assign(partitionIter, stud.end());
+
+    stud.clear();
+}
 void Skaldymas2_List() {
     for (auto it = stud_list.begin(); it != stud_list.end(); ) {
         if (it->galutinis < 5.00) {
@@ -1345,10 +1346,10 @@ void Fake_main(){
                 std::chrono::duration<double> rez;
                 std::chrono::duration<double> rez2;
                 int med_ar_vid = Vid_ar_med();
-                int isvedimas = Isvesties_pasirinkimas();
+                //int isvedimas = Isvesties_pasirinkimas();
                 int rusiavimo_tipas = Rusiavimo_tipas();
                 int test_fdydziai[5] = {1000, 10000, 100000, 1000000, 10000000};
-                printf("%-40s %-20s %-0s \n", "Veiksmas","Vector laikas (s.)", "List laikas (s.)");
+                printf("%-40s %-20s %+5s \n", "Veiksmas","Vector laikas (s.)", "List laikas (s.)");
                 string filename;
                 for (int i = 0; i < 5; i++) {
                     filename ="student" + to_string(test_fdydziai[i]) + ".txt";cout << string(70,'-') << "\n";
@@ -1420,7 +1421,7 @@ void Fake_main(){
 
             }
         } else {
-            cout << "Iveskite R arba f arba G" << endl;
+            cout << "Iveskite R arba f arba G arba T arba S" << endl;
             cin.clear();
             cin.ignore(10000, '\n');
         }
