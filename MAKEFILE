@@ -1,0 +1,30 @@
+# Compiler and compiler flags
+CXX = g++
+CXXFLAGS = -Wall -std=c++11
+
+# Directories
+SRC_DIR = src
+INCLUDE_DIR = Include
+BUILD_DIR = build
+BIN_DIR = bin
+
+# Source files
+SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
+OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SOURCES))
+EXECUTABLE = $(BIN_DIR)/my_program
+
+# Targets
+all: $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJECTS)
+	@mkdir -p $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
+
+clean:
+	rm -rf $(BUILD_DIR) $(BIN_DIR)
+
+.PHONY: all clean
