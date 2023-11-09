@@ -4,8 +4,8 @@ project(Uzduotis_nr_1)
 set(CMAKE_CXX_STANDARD 11)
 
 add_executable(Uzduotis_nr_1
-        main.cpp
-        bibliotekos.h
-        strukturos.h
-        funkcijos.cpp
-        funkcijos.h)
+        src/main.cpp
+        Include/bibliotekos.h
+        Include/strukturos.h
+        src/funkcijos.cpp
+        Include/funkcijos.h)

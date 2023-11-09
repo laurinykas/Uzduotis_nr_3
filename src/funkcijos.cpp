@@ -2,7 +2,7 @@
 // Created by Laurynas on 10/13/2023.
 //
 
-#include "funkcijos.h"
+#include "../Include/funkcijos.h"
 int List_Vektor(){
     int konteineris;
     cout<< "Koki konteineri norite naudoti?: 1 - List, 2 - Vector"<<endl;cin>>konteineris;

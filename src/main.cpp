@@ -1,5 +1,5 @@
 
-#include "funkcijos.h"
+#include "../Include/funkcijos.h"
  vector <Duomenys> stud;
  vector<Duomenys> kieti;
  vector<Duomenys> vargsai;
