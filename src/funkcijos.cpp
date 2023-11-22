@@ -898,10 +898,6 @@ void Sortingas (int vek_ar_list, int sortingo_tipas){
 
     }
 
-
-
-
-
 }
 int Rusiavimo_tipas() {
     int pasirinkimas;
@@ -1011,14 +1007,6 @@ else {// listai
 
 
 }
-//TODO TESTAVIME SUIMPLEMENTUOTI ALL THAT JAZZ
-
-
-//TODO ATCUAL TESTAVIMA DARYT IR REZULTATUS I EXCELI
-
-//TODO INSTALIACIJOS BS
-
-
 
 
 
