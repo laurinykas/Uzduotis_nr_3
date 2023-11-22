@@ -603,7 +603,6 @@ void studentu_generavimas(int studentu_kiekis, int  namu_d){
     out <<eilute.str();
     eilute.clear();
     out.close();
-    failo_pav = failo_vardas;
     cout << "baigtas failo generavimas"<<endl;
 
 }
