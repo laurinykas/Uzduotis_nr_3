@@ -1,12 +1,12 @@
 
 #include "../Include/funkcijos.h"
- vector <Duomenys> stud;
- vector<Duomenys> kieti;
- vector<Duomenys> vargsai;
- list<Duomenys> stud_list;
- list<Duomenys> kieti_list;
- list<Duomenys> vargsai_list;
- Duomenys duomenys;
+ vector <Studentai> stud;
+ vector<Studentai> kieti;
+ vector<Studentai> vargsai;
+ list<Studentai> stud_list;
+ list<Studentai> kieti_list;
+ list<Studentai> vargsai_list;
+Studentai duomenys;
  int studentu_kiekis = 0;
 
 

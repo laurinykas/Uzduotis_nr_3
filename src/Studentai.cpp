@@ -284,3 +284,103 @@ void Studentai::readfromFile( string filename, vector<Studentai> &stud){
     }
 
 }
+bool Studentai::palyginimas_vardas( Studentai a, Studentai b){
+    if (a.getVardas() == b.getPavarde()){
+
+        return a.getPavarde() < b.getPavarde();}
+
+    return a.getVardas() < b.getVardas();
+}
+bool Studentai::palyginimas_pavarde( Studentai a, Studentai b){
+    if (a.getPavarde() == b.getPavarde()){
+
+        return a.getVardas() < b.getVardas();}
+
+    return a.getPavarde() < b.getPavarde();
+}
+bool Studentai::palyginimas_galutinis( Studentai a, Studentai b){
+    if (a.getGalutinis() == b.getGalutinis()){
+
+        return a.getVardas() < b.getVardas();}
+
+    return a.getGalutinis() < b.getGalutinis();
+}
+
+void Studentai::Failu_kurimas (vector<Studentai> vektorius, string failo_vardas, int pasirinkimas) {
+
+
+    ofstream out(failo_vardas);
+    stringstream eilute;
+
+    if (pasirinkimas == 1) {
+        eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << endl;
+        eilute << left << "______________________________________________________________________________" << endl;
+        for (int i = 0; i < vektorius.size(); i++) {
+            eilute << left << setw(20) << vektorius[i].getVardas() << setw(20) << vektorius[i].getPavarde() << setw(17)
+                   << std::fixed
+                   << std::setprecision(2) << vektorius[i].getVid() << setw(17) << endl;
+
+
+        }
+
+
+    } else if (pasirinkimas == 2) {
+        eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(med)" << endl;
+        eilute << left << "________________________________________________________________________________" << endl;
+        for (int i = 0; i < vektorius.size(); i++) {
+            eilute << left << setw(20) << vektorius[i].getVardas() << setw(20) << vektorius[i].getPavarde() << setw(17)
+                   << std::fixed
+                   << std::setprecision(2) << vektorius[i].getMed() << setw(17) << endl;
+
+
+        }
+
+
+    } else {
+        eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)"
+               << setw(20) << "Galutinis(med)" << endl;
+        eilute << left << "________________________________________________________________________" << endl;
+        for (int i = 0; i < vektorius.size(); i++) {
+            eilute << left << setw(20) << vektorius[i].getVardas() << setw(20) << vektorius[i].getPavarde() << setw(17)
+                   << std::fixed
+                   << std::setprecision(2) << vektorius[i].getVid() << setw(17) << vektorius[i].getMed() << endl;
+
+        }
+
+    }
+
+
+
+    out << eilute.str();
+    eilute.clear();
+    out.close();
+
+
+
+
+}
+void Studentai::Studentu_skaldymas() {
+
+    for (auto el : stud) {
+        if (el.getGalutinis() >= 5.00){
+
+            kieti.push_back(el);
+        } else {
+            vargsai.push_back(el);
+
+        }
+    }
+
+}
+void Studentai::Skaldymas2_Vector() {
+    auto isVargsas = [](const Studentai &student) {
+        return student.getGalutinis() < 5.00;
+    };
+
+    auto partitionIter = std::partition(stud.begin(), stud.end(), isVargsas);
+
+    vargsai.assign(stud.begin(), partitionIter);
+    kieti.assign(partitionIter, stud.end());
+
+    stud.clear();
+}

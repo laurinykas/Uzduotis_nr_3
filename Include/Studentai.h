@@ -58,20 +58,16 @@ public:
     void ivedimas ( int studentu_kiekis);
     void isvestis (vector<Studentai> vektorius, int pasirinkimas);
     void readfromFile( string filename, vector<Studentai> &stud);
+    bool palyginimas_vardas( Studentai a, Studentai b);
+    bool palyginimas_pavarde( Studentai a, Studentai b);
+    bool palyginimas_galutinis( Studentai a, Studentai b);
+    void Failu_kurimas (vector<Studentai> vektorius, string failo_vardas, int pasirinkimas);
+    void Studentu_skaldymas();
+    void Skaldymas2_Vector();
+
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
 ;
 #endif

@@ -55,7 +55,7 @@ int Nd_kiekis()  {
 }
 
 
-
+/*
 void ivedimas_list ( int studentu_kiekis) {
     Duomenys s;
         char bent_vienas_nd_ranka;
@@ -221,7 +221,8 @@ void ivedimas_list ( int studentu_kiekis) {
 
 
 }
-
+*/
+/*
 void isvestis_list (list<Duomenys> listas, int pasirinkimas) {
 
     stringstream buffer;
@@ -261,8 +262,8 @@ void isvestis_list (list<Duomenys> listas, int pasirinkimas) {
 
 
 }
-
-
+*/
+/*
 void readfromFileList( string filename, list<Duomenys> &stud_list){
     try {
         ifstream fileread(filename);
@@ -310,27 +311,7 @@ void readfromFileList( string filename, list<Duomenys> &stud_list){
 
 
 }
-bool palyginimas_vardas( Duomenys a, Duomenys b){
-    if (a.vardas == b.vardas){
-
-        return a.pavarde < b.pavarde;}
-
-    return a.vardas < b.vardas;
-}
-bool palyginimas_pavarde( Duomenys a, Duomenys b){
-    if (a.pavarde == b.pavarde){
-
-        return a.vardas < b.vardas;}
-
-    return a.pavarde < b.pavarde;
-}
-bool palyginimas_galutinis( Duomenys a, Duomenys b){
-    if (a.galutinis == b.galutinis){
-
-        return a.vardas < b.vardas;}
-
-    return a.galutinis < b.galutinis;
-}
+*/
 
 
 void studentu_generavimas(int studentu_kiekis, int  namu_d){
@@ -371,6 +352,7 @@ void Kategorija(int studentu_k, int med_ar_vid){
             }
 
 }
+/*
 void Kategorija_list(int med_ar_vid){
             for(auto& student : stud_list){
                 student.Galutinis (med_ar_vid );
@@ -379,6 +361,7 @@ void Kategorija_list(int med_ar_vid){
 
 
 }
+ */
 int Vid_ar_med(){
     int med_ar_vid;
     cout<< "Ar galutiniam balui naudosite vidurki ar mediana(1 - vidurkis, 2 - mediana)?"<<endl; cin>> med_ar_vid;
@@ -397,19 +380,8 @@ int Vid_ar_med(){
 
 
 }
-void Studentu_skaldymas() {
 
-    for (auto el : stud) {
-        if (el.galutinis >= 5.00){
-
-            kieti.push_back(el);
-        } else {
-            vargsai.push_back(el);
-
-        }
-    }
-
-}
+/*
 void Studentu_skaldymas_list() {
     for (auto el : stud_list) {
         if (el.galutinis >= 5.00){
@@ -422,6 +394,7 @@ void Studentu_skaldymas_list() {
     }
 
 }
+ */
 void Skaldymas3() {
     auto partitionPredicate = [](const Duomenys& el) {
         return el.galutinis >= 5.00;
@@ -438,59 +411,7 @@ void Skaldymas3() {
 
 
 
-void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas, int pasirinkimas) {
-
-
-    ofstream out(failo_vardas);
-    stringstream eilute;
-
-            if (pasirinkimas == 1) {
-                eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << endl;
-                eilute << left << "______________________________________________________________________________" << endl;
-                for (int i = 0; i < vektorius.size(); i++) {
-                    eilute << left << setw(20) << vektorius[i].vardas << setw(20) << vektorius[i].pavarde << setw(17)
-                           << std::fixed
-                           << std::setprecision(2) << vektorius[i].vid << setw(17) << endl;
-
-
-                }
-
-
-            } else if (pasirinkimas == 2) {
-                eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(med)" << endl;
-                eilute << left << "________________________________________________________________________________" << endl;
-                for (int i = 0; i < vektorius.size(); i++) {
-                    eilute << left << setw(20) << vektorius[i].vardas << setw(20) << vektorius[i].pavarde << setw(17)
-                           << std::fixed
-                           << std::setprecision(2) << vektorius[i].med << setw(17) << endl;
-
-
-                }
-
-
-            } else {
-                eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)"
-                       << setw(20) << "Galutinis(med)" << endl;
-                eilute << left << "________________________________________________________________________" << endl;
-                for (int i = 0; i < vektorius.size(); i++) {
-                    eilute << left << setw(20) << vektorius[i].vardas << setw(20) << vektorius[i].pavarde << setw(17)
-                           << std::fixed
-                           << std::setprecision(2) << vektorius[i].vid << setw(17) << vektorius[i].med << endl;
-
-                }
-
-            }
-
-
-
-        out << eilute.str();
-        eilute.clear();
-        out.close();
-
-
-
-
-    }
+/*
 void Failu_kurimas_list (list<Duomenys> listas, string failo_vardas, int pasirinkimas) {
 
 
@@ -544,7 +465,7 @@ void Failu_kurimas_list (list<Duomenys> listas, string failo_vardas, int pasirin
 
 
 }
-
+*/
 
 
 int Konsole_ar_failas (){
@@ -677,18 +598,7 @@ int Rusiavimo_tipas() {
 
 
 
-void Skaldymas2_Vector() {
-    auto isVargsas = [](const Duomenys &student) {
-        return student.galutinis < 5.00;
-    };
 
-    auto partitionIter = std::partition(stud.begin(), stud.end(), isVargsas);
-
-    vargsai.assign(stud.begin(), partitionIter);
-    kieti.assign(partitionIter, stud.end());
-
-    stud.clear();
-}
 void Skaldymas2_List() {
     for (auto it = stud_list.begin(); it != stud_list.end(); ) {
         if (it->galutinis < 5.00) {
