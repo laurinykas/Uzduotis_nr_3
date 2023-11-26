@@ -201,3 +201,42 @@ void Studentai::ivedimas ( int studentu_kiekis) {
     Vidurkis();
     Mediana();
 }
+void Studentai::isvestis (vector<Studentai> vektorius, int pasirinkimas) {
+
+    stringstream buffer;
+
+    if (pasirinkimas == 1) {
+        buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)"<<setw(20)<< "Objekto adresas" << endl;
+        buffer << "____________________________________________________________________" << endl;
+        for (int i = 0; vektorius.size() > i; i++) {
+            buffer << setw(20) << vektorius[i].getVardas() << setw(20) << vektorius[i].getPavarde() << setw(17) << std::fixed
+                   << std::setprecision(2) << vektorius[i].getVid() << setw(23) <<std::addressof(vektorius[i])<< endl;
+        }
+
+    }
+
+    else if (pasirinkimas == 2) {
+        buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis(med)"<<setw(20)<< "Objekto adresas" << endl;
+        buffer << "_____________________________________________________________________" << endl;
+        for (int i = 0; vektorius.size() > i; i++) {
+            buffer << setw(20) << vektorius[i].getVardas() << setw(20) << vektorius[i].getPavarde() << setw(17) << std::fixed
+                   << std::setprecision(2) << vektorius[i].getMed()<< setw(23) <<std::addressof(vektorius[i]) << endl;
+        }
+
+    }
+    else {
+        buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)"<<setw(20)<< "Galutinis(med)" << setw(20)
+               <<  "Objekto adresas"<< endl;
+        buffer << "___________________________________________________________________________________________" << endl;
+        for (int i = 0; vektorius.size() > i; i++) {
+            buffer << setw(20) << vektorius[i].getVardas() << setw(20) << vektorius[i].getPavarde() << setw(17) << std::fixed
+                   << std::setprecision(2) << vektorius[i].getVid() << setw(17) << vektorius[i].getMed() << setw(23) <<std::addressof(vektorius[i]) << endl;
+        }
+
+    }
+    cout<<buffer.str();
+
+
+
+
+}

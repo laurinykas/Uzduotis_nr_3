@@ -56,6 +56,7 @@ public:
     void Vidurkis();
     void Mediana();
     void ivedimas ( int studentu_kiekis);
+    void isvestis (vector<Studentai> vektorius, int pasirinkimas);
 }
 
 

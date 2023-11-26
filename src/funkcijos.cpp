@@ -221,45 +221,7 @@ void ivedimas_list ( int studentu_kiekis) {
 
 
 }
-void isvestis (vector<Duomenys> vektorius, int pasirinkimas) {
 
-    stringstream buffer;
-
-            if (pasirinkimas == 1) {
-                buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)"<<setw(20)<< "Objekto adresas" << endl;
-                buffer << "____________________________________________________________________" << endl;
-                for (int i = 0; vektorius.size() > i; i++) {
-                    buffer << setw(20) << vektorius[i].vardas << setw(20) << vektorius[i].pavarde << setw(17) << std::fixed
-                    << std::setprecision(2) << vektorius[i].vid << setw(23) <<std::addressof(vektorius[i])<< endl;
-                    }
-
-                }
-
-             else if (pasirinkimas == 2) {
-                buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis(med)"<<setw(20)<< "Objekto adresas" << endl;
-                buffer << "_____________________________________________________________________" << endl;
-                for (int i = 0; vektorius.size() > i; i++) {
-                    buffer << setw(20) << vektorius[i].vardas << setw(20) << vektorius[i].pavarde << setw(17) << std::fixed
-                    << std::setprecision(2) << vektorius[i].med<< setw(23) <<std::addressof(vektorius[i]) << endl;
-                    }
-
-                }
-             else {
-                buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)"<<setw(20)<< "Galutinis(med)" << setw(20)
-                     <<  "Objekto adresas"<< endl;
-                buffer << "___________________________________________________________________________________________" << endl;
-                for (int i = 0; vektorius.size() > i; i++) {
-                    buffer << setw(20) << vektorius[i].vardas << setw(20) << vektorius[i].pavarde << setw(17) << std::fixed
-                    << std::setprecision(2) << vektorius[i].vid << setw(17) << vektorius[i].med << setw(23) <<std::addressof(vektorius[i]) << endl;
-                    }
-
-                    }
-            cout<<buffer.str();
-
-
-
-
-}
 void isvestis_list (list<Duomenys> listas, int pasirinkimas) {
 
     stringstream buffer;
