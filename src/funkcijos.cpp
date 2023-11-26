@@ -58,7 +58,7 @@ int Nd_kiekis()  {
 void ivedimas ( int studentu_kiekis) {
     stud.push_back(Duomenys());
     char bent_vienas_nd_ranka;
-    cout << "Iveskite studento varda : " << endl;cin >> stud[studentu_kiekis].vardas;
+    cout << "Iveskite studento varda : " << endl; cin >> stud[studentu_kiekis];
     cout << "Iveskite studento pavarde : " << endl;cin >> stud[studentu_kiekis].pavarde;
 
 
@@ -1048,7 +1048,7 @@ void Fake_main(){
         if (ranka_failas &&
             (ranka_failas == 'R' || ranka_failas == 'r' || ranka_failas == 'F' || ranka_failas == 'f'|| ranka_failas == 'G'||ranka_failas == 'g' ||ranka_failas == 'T'||ranka_failas == 't'||ranka_failas == 'S'||ranka_failas =='s')) {
             if (ranka_failas == 'R' || ranka_failas == 'r') {
-                studentu_kiekis = Studentu_kiekis();
+                int studentu_kiekis = Studentu_kiekis();
                 int konteineris = List_Vektor();
                 int rusiavimo_tipas =  Rusiavimo_tipas();
                 int skirstymo_strat = SkirstymoStrategijosPas();
