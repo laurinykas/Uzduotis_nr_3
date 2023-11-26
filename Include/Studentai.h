@@ -55,6 +55,7 @@ public:
     void Galutinis (int input );
     void Vidurkis();
     void Mediana();
+    void ivedimas ( int studentu_kiekis);
 }
 
 
