@@ -6,7 +6,8 @@
 #define UZDUOTIS_NR_1_FUNKCIJOS_H
 
 
-#include "strukturos.h"
+#include "Studentai.h"
+
 void isvestis (vector<Duomenys> vektorius, int pasirinkimas);
 void isvestis_list (list<Duomenys> listas, int pasirinkimas);
 int Studentu_kiekis();

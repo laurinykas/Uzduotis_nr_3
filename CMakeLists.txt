@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(Uzduotis_nr_1
         src/main.cpp
         Include/bibliotekos.h
-        Include/strukturos.h
+        Include/Studentai.h
         src/funkcijos.cpp
-        Include/funkcijos.h)
+        Include/funkcijos.h
+        src/Studentai.cpp)

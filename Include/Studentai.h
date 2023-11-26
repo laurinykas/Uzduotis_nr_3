@@ -27,7 +27,7 @@ public:
 
         inline string getVardas() const
         { return Cvardas; }
-        void setVardas(string vardas) { vardas = Cvardas; }    // get'eriai, inline
+        void setVardas(string vardas) { Cvardas = vardas; }    // get'eriai, inline
         inline string getPavarde() const { return Cpavarde; }// get'eriai, inline
         void setPavarde(string pavarde) { Cpavarde= pavarde; }
 
@@ -40,59 +40,32 @@ public:
         inline int getNdSize() { return Cnd.size(); }
         void sortNd() { sort(Cnd.begin(), Cnd.end()); }
 
-        inline int getEgz() const { return Cegzaminas; }
-        void setEgz(int egz) { Cegzaminas = egz; }
+        inline int getEgzaminas() const { return Cegzaminas; }
+        void setEgzaminas(int egzaminas) { Cegzaminas = egzaminas; }
 
         inline float getVid() const { return Cvid; }
-    void setRez(float vid) { Cvid = vid; }
+    void setVid(float vid) { Cvid = vid; }
 
         inline float getMed() const { return Cmed; }
-    void setCmed(float med ) { Cvid = med; }
+    void setMed(float med ) { Cmed = med; }
 
         inline double getGalutinis() const { return Cgalutinis; }
-    void setMedVid(double galutnis) { Cgalutinis = galutnis; }
+    void setGalutinis(double galutinis) { Cgalutinis = galutinis; }
 
-
+    void Galutinis (int input );
+    void Vidurkis();
+    void Mediana();
 }
 
 
 
 
 
-    void Galutinis (int input ){
-        if(input == 1){
-            setGalutinis(getVid()) ;
-        }
-        else {
-            setGalutinis(getMed());
-        }
 
-    }
 
-    void Vidurkis() {
 
-        double sum_vid = 0;
-        if (getNd().size() == 0) {
-            setVid(0.6 * getEgzaminas())  ;
-        } else {
-            for (int i = 0; i < getNd().size(); i++) sum_vid += getNd()[i];
-            setVid(((sum_vid / getNd().size()) * 0.4) + (0.6 * getEgzaminas()));
-        }
-    }
 
-    void Mediana() {
-        if (getNd().size() >= 1) {
-            sort(getNd().begin(), getNd().end());
-            if (getNd().size() % 2 == 0) {
-                setMed(getNd()[getNd().size() / 2 - 1] + getNd()[getNd().size() / 2] / 2)  ;
-            } else {
-                setMed(getNd()[(getNd().size() / 2)]) ;
-            }
-        } else {
-            setMed(0)  ;
-        }
-        setMed(0.4 * getMed() + 0.6 * getEgzaminas())  ;
-    }
+
 
 
 
