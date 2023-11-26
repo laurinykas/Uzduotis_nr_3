@@ -261,54 +261,7 @@ void isvestis_list (list<Duomenys> listas, int pasirinkimas) {
 
 
 }
-void readfromFile( string filename, vector<Duomenys> &stud){
-    try {
-        ifstream fileread(filename);
-        if (!fileread.fail()) {
 
-        ifstream fileread(filename);
-            int sk;
-            string line;
-            string temp,pirmaEil;
-            int kiekNd = -3;
-            getline(fileread >> std::ws, pirmaEil);
-            stringstream iss(pirmaEil);
-            while(iss >> temp)
-            {
-                kiekNd++;
-            }
-            while((std::getline(fileread >> std::ws, line))){
-                Duomenys s ;
-                stringstream iss(line);
-                iss>> s.vardas;
-                iss >> s.pavarde;
-                for(int i = 0; i < kiekNd; i++){
-                    iss>> sk;
-                    s.nd.push_back(sk);
-                }
-                iss >> sk;
-                s.egzaminas=sk;
-                s.Vidurkis();
-                s.Mediana();
-                studentu_kiekis++;
-                stud.push_back(s);
-            }
-        }else{
-
-            throw std::runtime_error(filename);
-
-        }
-
-
-    } catch(std::exception &e) {
-        cout << "Failas "  << e.what() << "neegzistuoja arba neteisingai irasete pavadinima, paleiskite dar karta programa" << endl;
-        std::exit(0);
-
-
-    }
-
-
-}
 
 void readfromFileList( string filename, list<Duomenys> &stud_list){
     try {

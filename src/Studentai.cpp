@@ -235,8 +235,52 @@ void Studentai::isvestis (vector<Studentai> vektorius, int pasirinkimas) {
 
     }
     cout<<buffer.str();
+}
+void Studentai::readfromFile( string filename, vector<Studentai> &stud){
+    try {
+        ifstream fileread(filename);
+        if (!fileread.fail()) {
+
+            ifstream fileread(filename);
+            int sk;
+            string line;
+            string temp,pirmaEil;
+            int kiekNd = -3;
+            getline(fileread >> std::ws, pirmaEil);
+            stringstream iss(pirmaEil);
+            while(iss >> temp)
+            {
+                kiekNd++;
+            }
+            while((std::getline(fileread >> std::ws, line))){
+                Studentai s ;
+                stringstream iss(line);
+                iss >> temp;
+                s.setVardas(temp);
+                iss >> temp;
+                s.setPavarde(temp);
+                for(int i = 0; i < kiekNd; i++){
+                    iss>> sk;
+                    s.addNd(sk);
+                }
+                iss >> sk;
+                s.setEgzaminas(sk);
+                s.Vidurkis();
+                s.Mediana();
+                studentu_kiekis++;
+                stud.push_back(s);
+            }
+        }else{
+
+            throw std::runtime_error(filename);
+
+        }
 
 
+    } catch(std::exception &e) {
+        cout << "Failas "  << e.what() << "neegzistuoja arba neteisingai irasete pavadinima, paleiskite dar karta programa" << endl;
+        std::exit(0);
 
+    }
 
 }

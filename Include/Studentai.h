@@ -57,6 +57,7 @@ public:
     void Mediana();
     void ivedimas ( int studentu_kiekis);
     void isvestis (vector<Studentai> vektorius, int pasirinkimas);
+    void readfromFile( string filename, vector<Studentai> &stud);
 }
 
 

@@ -16,7 +16,7 @@ void ivedimas_list ( int studentu_kiekis);
 void studentu_generavimas(int st_k, int  namu_d);
 void Studentu_skaldymas ();
 void Studentu_skaldymas_list();//list variantas
-void readfromFile( string filename, vector<Duomenys> &stud);
+//void readfromFile( string filename, vector<Duomenys> &stud);
 void readfromFileList( string filename, list<Duomenys> &stud_list); //listu variantas
 bool palyginimas_vardas(Duomenys a, Duomenys b);
 bool palyginimas_pavarde( Duomenys a, Duomenys b);
