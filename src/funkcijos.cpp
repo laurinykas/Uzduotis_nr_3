@@ -1395,7 +1395,7 @@ void Fake_main(){
     } while (ranka_failas != 'R' and ranka_failas != 'r' and ranka_failas != 'F' and ranka_failas != 'f' and ranka_failas != 'g' and ranka_failas != 'G' and ranka_failas != 'T' and ranka_failas != 't' and ranka_failas != 's' and ranka_failas != 'S');
 
 
-
+//
 }
 
 /*
