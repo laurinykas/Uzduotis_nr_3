@@ -12,27 +12,28 @@
 //void isvestis_list (list<Duomenys> listas, int pasirinkimas);
 int Studentu_kiekis();
 int Nd_kiekis();
+//int ivedimas(int studentu_kiekis);
 //void ivedimas_list ( int studentu_kiekis);
 void studentu_generavimas(int st_k, int  namu_d);
-//void Studentu_skaldymas ();
+void Studentu_skaldymas ();
 //void Studentu_skaldymas_list();//list variantas
-//void readfromFile( string filename, vector<Duomenys> &stud);
+void readfromFile( string filename, vector<Studentai> &stud);
 //void readfromFileList( string filename, list<Duomenys> &stud_list); //listu variantas
 void Kategorija(int studentu_k,int med_ar_vid);
-void Kategorija_list(int med_ar_vid);// listu variantas
+//void Kategorija_list(int med_ar_vid);// listu variantas
 //void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas, int pasirinkimas);
 //void Failu_kurimas_list (list<Duomenys> listas, string failo_vardas, int pasirinkimas);
 int Konsole_ar_failas ();
 int Isvesties_pasirinkimas ();
 void Koks_failo_pav ();
-void Koks_failo_pav_list ();
+//void Koks_failo_pav_list ();
 void Fake_main();
 int Vid_ar_med();
 int List_Vektor();
 void Sortingas (int vek_ar_list, int sortingo_tipas);
 int Rusiavimo_tipas();
-//void Skaldymas2_Vector();
-void Skaldymas2_List();
+void Skaldymas2_Vector();
+//void Skaldymas2_List();
 void Skaldymas3();
 int SkirstymoStrategijosPas();
 void MegaSkirstymas(int konteineris , int strategija );

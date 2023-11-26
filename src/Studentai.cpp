@@ -236,7 +236,7 @@ void Studentai::isvestis (vector<Studentai> vektorius, int pasirinkimas) {
     }
     cout<<buffer.str();
 }
-void Studentai::readfromFile( string filename, vector<Studentai> &stud){
+void readfromFile( string filename, vector<Studentai> &stud){
     try {
         ifstream fileread(filename);
         if (!fileread.fail()) {
@@ -284,21 +284,21 @@ void Studentai::readfromFile( string filename, vector<Studentai> &stud){
     }
 
 }
-bool Studentai::palyginimas_vardas( Studentai a, Studentai b){
+bool palyginimas_vardas( Studentai a, Studentai b){
     if (a.getVardas() == b.getPavarde()){
 
         return a.getPavarde() < b.getPavarde();}
 
     return a.getVardas() < b.getVardas();
 }
-bool Studentai::palyginimas_pavarde( Studentai a, Studentai b){
+bool palyginimas_pavarde( Studentai a, Studentai b){
     if (a.getPavarde() == b.getPavarde()){
 
         return a.getVardas() < b.getVardas();}
 
     return a.getPavarde() < b.getPavarde();
 }
-bool Studentai::palyginimas_galutinis( Studentai a, Studentai b){
+bool palyginimas_galutinis( Studentai a, Studentai b){
     if (a.getGalutinis() == b.getGalutinis()){
 
         return a.getVardas() < b.getVardas();}
@@ -358,29 +358,4 @@ void Studentai::Failu_kurimas (vector<Studentai> vektorius, string failo_vardas,
 
 
 
-}
-void Studentai::Studentu_skaldymas() {
-
-    for (auto el : stud) {
-        if (el.getGalutinis() >= 5.00){
-
-            kieti.push_back(el);
-        } else {
-            vargsai.push_back(el);
-
-        }
-    }
-
-}
-void Studentai::Skaldymas2_Vector() {
-    auto isVargsas = [](const Studentai &student) {
-        return student.getGalutinis() < 5.00;
-    };
-
-    auto partitionIter = std::partition(stud.begin(), stud.end(), isVargsas);
-
-    vargsai.assign(stud.begin(), partitionIter);
-    kieti.assign(partitionIter, stud.end());
-
-    stud.clear();
 }
