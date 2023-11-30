@@ -12,23 +12,31 @@ class Studentai {
 
 
 private:
-    string Cvardas = "";
+    string Cvardas ;
     string Cpavarde = "";
     vector<int> Cnd; //namu darbai
-    int Cegzaminas = 0;
-    float Cvid = 0;
-    float Cmed = 0;
+    int Cegzaminas;
+    float Cvid ;
+    float Cmed ;
     //int studentu_kiekis = 0;
-    float Cgalutinis = 0;
+    float Cgalutinis;
 
 
 public:
+    Studentai(){
+        Cvardas = "";
+        Cpavarde = "";
+        Cegzaminas = 0;
+        Cvid = 0;
+        Cmed = 0;
+        Cgalutinis = 0;
+    }
 
 
         inline string getVardas() const
         { return Cvardas; }
-        void setVardas(string vardas) { Cvardas = vardas; }    // get'eriai, inline
-        inline string getPavarde() const { return Cpavarde; }// get'eriai, inline
+        void setVardas(string vardas) { Cvardas = vardas; }
+        inline string getPavarde() const { return Cpavarde; }
         void setPavarde(string pavarde) { Cpavarde= pavarde; }
 
         double getNd(int i) const { return Cnd.at(i); }
@@ -56,13 +64,13 @@ public:
     void Vidurkis();
     void Mediana();
     void ivedimas ( int studentu_kiekis);
-    void isvestis (vector<Studentai> vektorius, int pasirinkimas);
-    void readfromFile( string filename, vector<Studentai> &stud);
+    static void isvestis (vector<Studentai> vektorius,list<Studentai> listas, int pasirinkimas, int konteineris );
+    void readfromFile( string filename, vector<Studentai> &stud, list<Studentai> &stud_list, int konteineris);
 
-    void Failu_kurimas (vector<Studentai> vektorius, string failo_vardas, int pasirinkimas);
+    void Failu_kurimas (vector<Studentai> vektorius,list<Studentai>listas ,string failo_vardas, int pasirinkimas, int konteineris);
 
-}
-;
+};
+
 
 bool palyginimas_vardas( Studentai a, Studentai b);
 bool palyginimas_pavarde( Studentai a, Studentai b);

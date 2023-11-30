@@ -15,4 +15,10 @@ int main() {
     Fake_main();
     system("pause");
 }
-// pasibandymui
+
+
+//TODO LISTAI
+//TODO DESTRUKTORIUS
+
+//TODO OPTIMIZAVIMO TESTAI
+//TODO README

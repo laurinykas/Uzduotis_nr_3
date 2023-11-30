@@ -1,6 +1,4 @@
 #include "../Include/funkcijos.h"
-#include "../Include/Studentai.h"
-
 
 void Studentai::Galutinis (int input ){
     if(input == 1){
@@ -201,10 +199,11 @@ void Studentai::ivedimas ( int studentu_kiekis) {
     Vidurkis();
     Mediana();
 }
-void Studentai::isvestis (vector<Studentai> vektorius, int pasirinkimas) {
+
+void Studentai::isvestis (vector<Studentai> vektorius,list<Studentai> listas, int pasirinkimas, int konteineris ) {
 
     stringstream buffer;
-
+    if (konteineris == 2){
     if (pasirinkimas == 1) {
         buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)"<<setw(20)<< "Objekto adresas" << endl;
         buffer << "____________________________________________________________________" << endl;
@@ -234,9 +233,41 @@ void Studentai::isvestis (vector<Studentai> vektorius, int pasirinkimas) {
         }
 
     }
+    }else{
+        if (pasirinkimas == 1) {
+            buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" <<setw(20)<< "Objekto adresas"<< endl;
+            buffer << "____________________________________________________________________________________________" << endl;
+            for(auto& student : listas)  {
+                buffer << setw(20) << student.getVardas() << setw(20) << student.getPavarde() << setw(17) << std::fixed
+                       << std::setprecision(2) << student.getVid() << setw(23) << std::addressof(student)<< endl;
+            }
+
+        }
+
+        else if (pasirinkimas == 2) {
+            buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis(med)"<<setw(20)<< "Objekto adresas" << endl;
+            buffer << "___________________________________________________________________________________________" << endl;
+            for(auto& student : listas)  {
+                buffer << setw(20) << student.getVardas() << setw(20) << student.getPavarde() << setw(17) << std::fixed
+                       << std::setprecision(2) << student.getMed() << setw(23) << std::addressof(student) << endl;
+            }
+
+        }
+        else {
+            buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << setw(20)
+                   << "Galutinis(med)"<<setw(20)<< "Objekto adresas" << endl;
+            buffer << "________________________________________________________________________________________________________________________" << endl;
+            for(auto& student : listas)  {
+                buffer << setw(20) << student.getVardas() << setw(20) << student.getPavarde() << setw(17) << std::fixed
+                       << std::setprecision(2) << student.getVid() << setw(17) << student.getMed()<< setw(23) << std::addressof(student) << endl;
+            }
+
+        }
+
+    }
     cout<<buffer.str();
 }
-void readfromFile( string filename, vector<Studentai> &stud){
+void readfromFile( string filename, vector<Studentai> &stud, list<Studentai> &stud_list, int konteineris){
     try {
         ifstream fileread(filename);
         if (!fileread.fail()) {
@@ -268,7 +299,11 @@ void readfromFile( string filename, vector<Studentai> &stud){
                 s.Vidurkis();
                 s.Mediana();
                 studentu_kiekis++;
-                stud.push_back(s);
+                if(konteineris == 2 ){
+                    stud.push_back(s);}
+                else {
+                    stud_list.push_back(s);
+                }
             }
         }else{
 
@@ -306,12 +341,12 @@ bool palyginimas_galutinis( Studentai a, Studentai b){
     return a.getGalutinis() < b.getGalutinis();
 }
 
-void Studentai::Failu_kurimas (vector<Studentai> vektorius, string failo_vardas, int pasirinkimas) {
+void Studentai::Failu_kurimas (vector<Studentai> vektorius,list<Studentai> listas ,string failo_vardas, int pasirinkimas, int konteineris) {
 
 
     ofstream out(failo_vardas);
     stringstream eilute;
-
+    if (konteineris == 2 ){
     if (pasirinkimas == 1) {
         eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << endl;
         eilute << left << "______________________________________________________________________________" << endl;
@@ -348,7 +383,47 @@ void Studentai::Failu_kurimas (vector<Studentai> vektorius, string failo_vardas,
         }
 
     }
+}
+    else{
+        if (pasirinkimas == 1) {
+            eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << endl;
+            eilute << left << "______________________________________________________________________________" << endl;
+            for(auto& student : listas) {
+                eilute << left << setw(20) << student.getVardas() << setw(20) << student.getPavarde() << setw(17)
+                       << std::fixed
+                       << std::setprecision(2) << student.getVid() << setw(17) << endl;
 
+
+            }
+
+
+        } else if (pasirinkimas == 2) {
+            eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(med)" << endl;
+            eilute << left << "________________________________________________________________________________" << endl;
+            for(auto& student : listas) {
+                eilute << left << setw(20) << student.getVardas() << setw(20) << student.getPavarde() << setw(17)
+                       << std::fixed
+                       << std::setprecision(2) << student.getMed() << setw(17) << endl;
+
+
+            }
+
+
+        } else {
+            eilute << left << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)"
+                   << setw(20) << "Galutinis(med)" << endl;
+            eilute << left << "________________________________________________________________________" << endl;
+            for(auto& student : listas) {
+                eilute << left << setw(20) << student.getVardas() << setw(20) << student.getPavarde() << setw(17)
+                       << std::fixed
+                       << std::setprecision(2) << student.getVid() << setw(17) << student.getMed() << endl;
+
+            }
+
+        }
+
+
+    }
 
 
     out << eilute.str();
