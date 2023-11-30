@@ -198,7 +198,7 @@ int Isvesties_pasirinkimas (){
     }while (pasirinkimas != 1 and pasirinkimas != 2 and pasirinkimas != 3);
 }
 
-void Koks_failo_pav (){
+void Koks_failo_pav (int konteineris){
     system("dir *.txt");
     string failo_pavadinimas;
     std::chrono::duration<double> laikas;
@@ -209,7 +209,7 @@ void Koks_failo_pav (){
             ifstream fileread(failo_pavadinimas);
             if (!fileread.fail()) {
                 auto start  = hrClock::now();
-                readfromFile(failo_pavadinimas,stud,stud_list,2);
+                readfromFile(failo_pavadinimas,stud,stud_list,konteineris);
                 auto end  = hrClock::now();
                 laikas = end- start;
                 cout << failo_pavadinimas << " studentu failo nuskaitymas uztruko : " << laikas.count()<< "s" << endl;
@@ -429,8 +429,8 @@ void Fake_main(){
                                 } else {
                                     int isvedimas = Isvesties_pasirinkimas();
 
-                                    st.Failu_kurimas(vargsai, "vargsai.txt", isvedimas);
-                                    st.Failu_kurimas(kieti, "kieti.txt", isvedimas);
+                                    st.Failu_kurimas(vargsai,stud_list, "vargsai.txt", isvedimas,konteineris);
+                                    st.Failu_kurimas(kieti,stud_list, "kieti.txt", isvedimas,konteineris);
 
                                 }
                             } else {
@@ -542,13 +542,13 @@ void Fake_main(){
 
                 if(list_vector == 2){
 
-                    Koks_failo_pav ();// laikas suskaiciuotas
+                    Koks_failo_pav (list_vector);// laikas suskaiciuotas
                     studentu_kiekis = stud.size() -1 ;
                     stud.erase(stud.begin());
 
 
 
-                    Kategorija(studentu_kiekis,med_ar_vid);
+                    Kategorija(studentu_kiekis,med_ar_vid,list_vector);
                     auto start = hrClock::now();
                     Sortingas(list_vector,rusiavimo_tipas);
                     auto end = hrClock::now();laikas = end - start ;
@@ -561,31 +561,31 @@ void Fake_main(){
 
                     if(kons_ar_failas == 1){
                         start = hrClock ::now();
-                        st.isvestis(vargsai,isvedimas);
+                        st.isvestis(vargsai, vargsai_list,isvedimas,list_vector);
                         end = hrClock ::now();
                         laikas = end - start; cout << "vargsu isvedimas truko :" << laikas.count()<<" s"<<endl;
                         start = hrClock ::now();
-                        st.isvestis(kieti,isvedimas);
+                        st.isvestis(kieti,kieti_list,isvedimas,list_vector);
                         end = hrClock ::now();laikas = end - start;
                         cout << "kietu isvedimas truko :" << laikas.count()<<" s"<<endl;
 
                     }
                     else{
                         start = hrClock ::now();
-                        st.Failu_kurimas(vargsai,"vargsai.txt",isvedimas);
+                        st.Failu_kurimas(vargsai,vargsai_list,"vargsai.txt",isvedimas,list_vector);
                         end = hrClock ::now();laikas = end - start;
                         cout << "vargsu isvedimas truko :" << laikas.count()<<" s"<<endl;
                         start = hrClock ::now();
-                        st.Failu_kurimas(kieti,"kieti.txt",isvedimas);
+                        st.Failu_kurimas(kieti,kieti_list,"kieti.txt",isvedimas,list_vector);
                         end = hrClock ::now();laikas = end - start;
                         cout << "kietu isvedimas truko :" << laikas.count()<<" s"<<endl;
 
                     }
                 }else {
-                    Koks_failo_pav_list();// laikas suskaiciuotas
+                    Koks_failo_pav(list_vector);// laikas suskaiciuotas
                     studentu_kiekis = stud_list.size()  ;
                     auto start = hrClock::now();
-                   Kategorija_list(med_ar_vid);
+                    Kategorija(studentu_kiekis,med_ar_vid,list_vector);
                     Sortingas(list_vector,rusiavimo_tipas);
                     auto end = hrClock::now(); laikas = end - start;
                     cout << studentu_kiekis <<" studentu failo surusiavimas pagal varda uztruko : " << laikas.count() << " s"<< endl;
@@ -596,22 +596,22 @@ void Fake_main(){
 
                     if(kons_ar_failas == 1){
                         start = hrClock ::now();
- //                       isvestis_list(vargsai_list,isvedimas);
+                       st.isvestis(vargsai,vargsai_list,isvedimas,list_vector);
                         end = hrClock ::now();
                         laikas = end - start; cout << "vargsu isvedimas truko :" << laikas.count()<<" s"<<endl;
                         start = hrClock ::now();
-//                        isvestis_list(kieti_list,isvedimas);
+                       st.isvestis(kieti,kieti_list,isvedimas,list_vector);
                         end = hrClock ::now();laikas = end - start;
                         cout << "kietu isvedimas truko :" << laikas.count()<<" s"<<endl;
 
                     }
                     else{
                         start = hrClock ::now();
-//                        Failu_kurimas_list(vargsai_list,"vargsai.txt",isvedimas);
+                        st.Failu_kurimas(vargsai,vargsai_list,"vargsai.txt",isvedimas,list_vector);
                         end = hrClock ::now();laikas = end - start;
                         cout << "vargsu isvedimas truko :" << laikas.count()<<" s"<<endl;
                         start = hrClock ::now();
-//                        Failu_kurimas_list(kieti_list,"kieti.txt",isvedimas);
+                       st.Failu_kurimas(kieti,kieti_list,"kieti.txt",isvedimas,list_vector);
                         end = hrClock ::now();laikas = end - start;
                         cout << "kietu isvedimas truko :" << laikas.count()<<" s"<<endl;
 
@@ -639,11 +639,11 @@ void Fake_main(){
                     filename ="student" + to_string(test_fdydziai[i]) + ".txt";cout << string(70,'-') << "\n";
 
                     auto start = hrClock::now();
-                    readfromFile(filename,stud); // laiko skaiciavimas
+                    readfromFile(filename,stud,stud_list,2); // laiko skaiciavimas (vec)
                     auto end = hrClock::now();  rez = end - start;
 
                     start = hrClock::now();
-//                    readfromFileList(filename, stud_list); // laiko skaiciavimas
+                    readfromFile(filename,stud, stud_list,1); // laiko skaiciavimas (list)
                     end = hrClock::now();  rez2 = end - start;
 
                     auto info1 = rez.count();
@@ -651,12 +651,12 @@ void Fake_main(){
                     printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu failo nuskaitymas").c_str(), info1,info2);// rezultato printas
 
                     start = hrClock::now();
-                    Kategorija(test_fdydziai[i], med_ar_vid);Sortingas(2,rusiavimo_tipas);
+                    Kategorija(test_fdydziai[i], med_ar_vid,2);Sortingas(2,rusiavimo_tipas);
                     MegaSkirstymas(2,strat); end = hrClock::now(); rez = end- start; // visas skaldymas vector
                     // laiko skaiciavimas vector
 
                     start = hrClock::now();
-                    Kategorija_list(med_ar_vid);
+                    Kategorija(test_fdydziai[i],med_ar_vid, 1);
                     Sortingas(1,rusiavimo_tipas);
                     MegaSkirstymas(1,strat);end = hrClock::now();rez2 = end- start; // Visas skaldymas list
                     // laiko skaiciavimas list
@@ -665,14 +665,14 @@ void Fake_main(){
                     // rezultato printas
 
                     start = hrClock::now();
-                    st.Failu_kurimas(kieti,"vektor_kieti" + to_string(test_fdydziai[i])  + ".txt", isvedimas );
-                    st.Failu_kurimas(vargsai,"vektor_vargsai" + to_string(test_fdydziai[i])  + ".txt", isvedimas );
+                    st.Failu_kurimas(kieti,kieti_list,"vektor_kieti" + to_string(test_fdydziai[i])  + ".txt", isvedimas,2 );
+                    st.Failu_kurimas(vargsai,vargsai_list,"vektor_vargsai" + to_string(test_fdydziai[i])  + ".txt", isvedimas,2 );
                     end = hrClock::now(); rez = end- start;
 
                     // laiko skaciavimas vector
                     start = hrClock::now();
-//                    Failu_kurimas_list(kieti_list,"list_kieti" + to_string(test_fdydziai[i])  + ".txt", isvedimas );
-//                    Failu_kurimas_list(vargsai_list,"list_vargsai" + to_string(test_fdydziai[i])  + ".txt", isvedimas );
+                    st.Failu_kurimas(kieti, kieti_list,"list_kieti" + to_string(test_fdydziai[i])  + ".txt", isvedimas, 1 );
+                    st.Failu_kurimas(vargsai, vargsai_list,"list_vargsai" + to_string(test_fdydziai[i])  + ".txt", isvedimas, 1 );
                     end = hrClock::now(); rez2 = end- start;
                     // laiko skaiciavimas list
                     info1 = rez.count();info2 = rez2.count();
@@ -694,19 +694,19 @@ void Fake_main(){
                     filename ="student" + to_string(test_fdydziai[i]) + ".txt";cout << string(70,'-') << "\n";
 
 
-                    readfromFile(filename,stud); // failo nuskaitymas vector
+                    readfromFile(filename,stud,stud_list, 2); // failo nuskaitymas vector
 
- //                   readfromFileList(filename, stud_list); // failo nuskaitymas list
+                    readfromFile(filename,stud, stud_list,1); // failo nuskaitymas list
 
                     //auto info1 = rez.count();
                     //auto info2 = rez2.count();
                     //printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu failo nuskaitymas").c_str(), info1,info2);// rezultato printas
 
-                    Kategorija(test_fdydziai[i], med_ar_vid);
+                    Kategorija(test_fdydziai[i], med_ar_vid,2);
                     Sortingas(2,rusiavimo_tipas);
                     auto  tempstud = stud;
 
-                    Kategorija_list(med_ar_vid);
+                    Kategorija(test_fdydziai[i],med_ar_vid,1);
                     Sortingas(1,rusiavimo_tipas);
                     auto tempstud_list = stud_list;
 
@@ -770,35 +770,7 @@ void Fake_main(){
 }
 
 
-void Koks_failo_pav_list (){
-    system("dir *.txt");
-    string failo_pavadinimas;
-    std::chrono::duration<double> laikas;
-    cout<<"Koki faila noretumete nuskenuoti?"<<endl; cin>> failo_pavadinimas;
 
-
-    try {
-        ifstream fileread(failo_pavadinimas);
-        if (!fileread.fail()) {
-            auto start  = hrClock::now();
-            readfromFileList(failo_pavadinimas,stud_list);
-            auto end  = hrClock::now();
-            laikas = end- start;
-            cout << failo_pavadinimas << " studentu failo nuskaitymas uztruko : " << laikas.count()<< "s" << endl;
-        }
-        else{
-            throw std::runtime_error(failo_pavadinimas);
-
-        }
-
-    }
-    catch(std::exception &e) {
-        cout << "Failas "  << e.what() << "neegzistuoja arba neteisingai irasete pavadinima, paleiskite dar karta programa" << endl;
-        std::exit(0);
-
-
-    }
-}
 
 
 
