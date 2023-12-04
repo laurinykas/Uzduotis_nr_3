@@ -31,7 +31,7 @@ public:
         Cmed = 0;
         Cgalutinis = 0;
     }
-
+    ~Studentai(){ clearNd(); }
 
         inline string getVardas() const
         { return Cvardas; }

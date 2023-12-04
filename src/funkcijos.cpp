@@ -199,6 +199,7 @@ int Isvesties_pasirinkimas (){
 }
 
 void Koks_failo_pav (int konteineris){
+    Studentai st;
     system("dir *.txt");
     string failo_pavadinimas;
     std::chrono::duration<double> laikas;
@@ -209,7 +210,7 @@ void Koks_failo_pav (int konteineris){
             ifstream fileread(failo_pavadinimas);
             if (!fileread.fail()) {
                 auto start  = hrClock::now();
-                readfromFile(failo_pavadinimas,stud,stud_list,konteineris);
+                st.readfromFile(failo_pavadinimas,stud,stud_list,konteineris);
                 auto end  = hrClock::now();
                 laikas = end- start;
                 cout << failo_pavadinimas << " studentu failo nuskaitymas uztruko : " << laikas.count()<< "s" << endl;
@@ -362,7 +363,7 @@ void MegaSkirstymas(int konteineris , int strategija ){
 
 int SkirstymoStrategijosPas(){
     int pasirinkimas;
-    cout << "Pagal kokia strategija noresite rusiuoti failus? 1 - 1 strategija, 2 - 2strategija, 3 - 3 strategija(galioja tik vector konteineriams) " << endl;
+    cout << "Pagal kokia strategija noresite rusiuoti failus? 1 - 1 strategija, 2 - 2strategija, 3 - 3 strategija " << endl;
     cin >> pasirinkimas;
     do{
         if(pasirinkimas &&( pasirinkimas == 1 || pasirinkimas == 2 || pasirinkimas == 3)){
@@ -626,42 +627,42 @@ void Fake_main(){
             else if(ranka_failas == 't' || ranka_failas == 'T'){
                 std::chrono::duration<double> rez;
                 std::chrono::duration<double> rez2;
-                int med_ar_vid = Vid_ar_med();
-                int isvedimas = Isvesties_pasirinkimas();
-                int rusiavimo_tipas = Rusiavimo_tipas();
-                int strat = SkirstymoStrategijosPas();
+                int med_ar_vid = 1;// Vid_ar_med();
+                int isvedimas = 3; //Isvesties_pasirinkimas();
+                int rusiavimo_tipas = 3; //Rusiavimo_tipas();
+                int strat = 3;//SkirstymoStrategijosPas();
                 //testuoti visus 1000,10000,100000,1000000 ir t.t 5 failus
-                int test_fdydziai[5] = {1000, 10000, 100000, 1000000, 10000000};// testo str failo dydziai
+                int test_fdydziai[2] = { 1000000, 10000000};// testo str failo dydziai
                 // visus cout padaryt kad graziai butu
                 printf("%-40s %-20s %-0s \n", "Veiksmas","Vector laikas (s.)", "List laikas (s.)");
                 string filename;
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 2; i++) {
                     filename ="student" + to_string(test_fdydziai[i]) + ".txt";cout << string(70,'-') << "\n";
 
                     auto start = hrClock::now();
-                    readfromFile(filename,stud,stud_list,2); // laiko skaiciavimas (vec)
+                    st.readfromFile(filename,stud,stud_list,2); // laiko skaiciavimas (vec)
                     auto end = hrClock::now();  rez = end - start;
 
-                    start = hrClock::now();
-                    readfromFile(filename,stud, stud_list,1); // laiko skaiciavimas (list)
-                    end = hrClock::now();  rez2 = end - start;
+                   // start = hrClock::now();
+                   // st.readfromFile(filename,stud, stud_list,1); // laiko skaiciavimas (list)
+                   // end = hrClock::now();  rez2 = end - start;
 
                     auto info1 = rez.count();
-                    auto info2 = rez2.count();
-                    printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu failo nuskaitymas").c_str(), info1,info2);// rezultato printas
+                    //auto info2 = rez2.count();
+                    printf("%-40s %-20.8lf \n", (to_string(test_fdydziai[i]) +" studentu failo nuskaitymas").c_str(), info1);// rezultato printas
 
                     start = hrClock::now();
                     Kategorija(test_fdydziai[i], med_ar_vid,2);Sortingas(2,rusiavimo_tipas);
                     MegaSkirstymas(2,strat); end = hrClock::now(); rez = end- start; // visas skaldymas vector
                     // laiko skaiciavimas vector
 
-                    start = hrClock::now();
-                    Kategorija(test_fdydziai[i],med_ar_vid, 1);
-                    Sortingas(1,rusiavimo_tipas);
-                    MegaSkirstymas(1,strat);end = hrClock::now();rez2 = end- start; // Visas skaldymas list
+                   // start = hrClock::now();
+                   // Kategorija(test_fdydziai[i],med_ar_vid, 1);
+                   // Sortingas(1,rusiavimo_tipas);
+                   // MegaSkirstymas(1,strat);end = hrClock::now();rez2 = end- start; // Visas skaldymas list
                     // laiko skaiciavimas list
-                    info1 = rez.count();info2 = rez2.count();
-                    printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu surusiavimas").c_str(), info1,info2);
+                    info1 = rez.count();//info2 = rez2.count();
+                    printf("%-40s %-20.8lf \n", (to_string(test_fdydziai[i]) +" studentu surusiavimas").c_str(), info1);
                     // rezultato printas
 
                     start = hrClock::now();
@@ -670,13 +671,13 @@ void Fake_main(){
                     end = hrClock::now(); rez = end- start;
 
                     // laiko skaciavimas vector
-                    start = hrClock::now();
-                    st.Failu_kurimas(kieti, kieti_list,"list_kieti" + to_string(test_fdydziai[i])  + ".txt", isvedimas, 1 );
-                    st.Failu_kurimas(vargsai, vargsai_list,"list_vargsai" + to_string(test_fdydziai[i])  + ".txt", isvedimas, 1 );
-                    end = hrClock::now(); rez2 = end- start;
+                   // start = hrClock::now();
+                   // st.Failu_kurimas(kieti, kieti_list,"list_kieti" + to_string(test_fdydziai[i])  + ".txt", isvedimas, 1 );
+                   // st.Failu_kurimas(vargsai, vargsai_list,"list_vargsai" + to_string(test_fdydziai[i])  + ".txt", isvedimas, 1 );
+                   // end = hrClock::now(); rez2 = end- start;
                     // laiko skaiciavimas list
-                    info1 = rez.count();info2 = rez2.count();
-                    printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu sukelimas i failus").c_str(), info1,info2);
+                    info1 = rez.count();//info2 = rez2.count();
+                    printf("%-40s %-20.8lf \n", (to_string(test_fdydziai[i]) +" studentu sukelimas i failus").c_str(), info1);
                     // rezultato printas
                 }
 
@@ -694,9 +695,9 @@ void Fake_main(){
                     filename ="student" + to_string(test_fdydziai[i]) + ".txt";cout << string(70,'-') << "\n";
 
 
-                    readfromFile(filename,stud,stud_list, 2); // failo nuskaitymas vector
+                    st.readfromFile(filename,stud,stud_list, 2); // failo nuskaitymas vector
 
-                    readfromFile(filename,stud, stud_list,1); // failo nuskaitymas list
+                    st.readfromFile(filename,stud, stud_list,1); // failo nuskaitymas list
 
                     //auto info1 = rez.count();
                     //auto info2 = rez2.count();

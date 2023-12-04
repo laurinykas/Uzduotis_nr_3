@@ -267,7 +267,7 @@ void Studentai::isvestis (vector<Studentai> vektorius,list<Studentai> listas, in
     }
     cout<<buffer.str();
 }
-void readfromFile( string filename, vector<Studentai> &stud, list<Studentai> &stud_list, int konteineris){
+void Studentai::readfromFile( string filename, vector<Studentai> &stud, list<Studentai> &stud_list, int konteineris){
     try {
         ifstream fileread(filename);
         if (!fileread.fail()) {
@@ -434,3 +434,4 @@ void Studentai::Failu_kurimas (vector<Studentai> vektorius,list<Studentai> lista
 
 
 }
+

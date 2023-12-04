@@ -15,7 +15,7 @@ int Nd_kiekis();
 //void ivedimas_list ( int studentu_kiekis);
 void studentu_generavimas(int st_k, int  namu_d);
 void Studentu_skaldymas(int konteineris);
-void readfromFile( string filename, vector<Studentai> &stud, list<Studentai> &stud_list, int konteineris);
+//void readfromFile( string filename, vector<Studentai> &stud, list<Studentai> &stud_list, int konteineris);
 //void readfromFileList( string filename, list<Studentai> &stud_list); //listu variantas
 void Kategorija(int studentu_k,int med_ar_vid, int konteineris);
 
