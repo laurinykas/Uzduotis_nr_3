@@ -1,11 +1,77 @@
+# Instaliacija 
+```
+- Instaliuokite "make", jei naudojate MAC ar Linux susiraskite tutorial, jei naudojate Windows galite naudoti šitą nuorodą :
+https://earthly.dev/blog/makefiles-on-windows/
+
+- Parsisiųskite ir "išextractinkite" šitą github release
+
+- Aplanke kur yra "extractinti" failai atsidarykite cmd
+
+- cmd suveskite "make" komandą (be kabučių)
+
+- Jūsų aplanke bus sugeneruotas failas "main", kuris jau yra tinkamas naudoti
+
+```
+# Naudojimosi instrukcija 
+```
+- Pirmos programos paleidimo metu rekomenduojama pasirinkti generuoti studentų failą, kad būtų galima sužinoti, kur bus saugomi
+sukurti failai (ten bus ir nuskaitomi failai).
+
+- Galima rinktis iš 5 pasirinkimu R- studentų įrašymas ranka, F - nuskaitymas iš failo, G- studentų failo generavimas, T - konteinerių testavimas,
+S - rūšiavimo strategijų testavimas.(KAD VEIKTŲ T IR S REIKIA SUGENERUOTI 1k,10k,100k,1mil,10mil STUDENTŲ FAILUS).
+
+- Įvedimo metu gali reikti įvesti: studentų skaičių, namų darbų kiekį, norėsite skaičiuoti mediana ar vidurkį, kokią strategiją norėsite naudoti
+rūšiuoti vargšus ir kietus, kokį failą norėsite nuskaityti... Tai reiškia jūsų programa prašys ką reikia įvesti.
+
+```
+# Uzduotis-nr-2
+## v1.1
+### nauji dalykai 
+* Pereita iš struktūros į klasę
+* Sukurtas naujas Studentai.cpp failas
+* Sumažintas metodų ir funkcijų skaičius vector ir list konteinerių atvejų (subendrinta)
+
+### sruct ir class greičio analizė (naudojant compiler optimisation flags(O1, O2, O3))
+ EXE Failų dydžiai :
+
+ 
+![Screenshot_3](https://github.com/laurinykas/Uzduotis-nr-2/assets/112711939/0e9b151c-6bfc-4938-94e0-66df9b7312e8)
+
+Struktūrų ir klasių programos veikimo trukmė naudojant 1M ir 10M dydžio failus taip pat naudojant flagus:
+![Screenshot_1](https://github.com/laurinykas/Uzduotis-nr-2/assets/112711939/be58dfcd-4baf-474f-a088-4b1c754bfe66)
+
+
 # Uzduotis-nr-1
+## v1.0 
+### nauji dalykai
+* Galima rūšiuoti pagal vardą, pavardę ir galutinį balą.
+* Galima pasirinkti 3 studentų rūšiavimo į vargšus ir kietus studentus. 
+* Galima testuoti failus pagal rūšiavimo strategiją.
+* Galima įdiegti failą naudojant Makefile.
+
+### Strategiju testavimo rezultatai sekundėmis
+* Apdorota Excel lentelė
+
+
+![Screenshot_2](https://github.com/laurinykas/Uzduotis-nr-1/assets/112711939/c1684dd1-0538-4a1d-83ae-7ef2aeb150de)
+* Raw kodo išvedimas
+![Screenshot_1](https://github.com/laurinykas/Uzduotis-nr-1/assets/112711939/5d3602ba-938d-4483-98ca-e528e362dc54)
+* Konteinerių vidurkiai atskiriant strategijas
+
+![image](https://github.com/laurinykas/Uzduotis-nr-1/assets/112711939/e34e6e45-8d56-4801-934b-e19126dbf0c5)
+
+
+
+
+
+
 ## v0.3 
 ### nauji dalykai
 * Implementuotas std::list konteineris.
 * Pasirinkus studento rašymo ranka funckiją galima taip pat gaunamas objekto adresas.
 * Įdėta galimybė testuoti konteinerių greitį.
 * Galima pasirinkti į kokį konteinerį įrašysite duomenis.
-* 
+  
 ### std::vector ir std::list konteinerių palyginimo rezultatai
 
 ![Screenshot_1](https://github.com/laurinykas/Uzduotis-nr-1/assets/112711939/d1e92756-5aa9-4eb6-b7c0-dcac1237d786)
