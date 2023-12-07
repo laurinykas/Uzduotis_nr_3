@@ -281,6 +281,7 @@ void Studentai::readfromFile( string filename, vector<Studentai> &stud, list<Stu
             stringstream iss(pirmaEil);
             while(iss >> temp)
             {
+
                 kiekNd++;
             }
             while((std::getline(fileread >> std::ws, line))){

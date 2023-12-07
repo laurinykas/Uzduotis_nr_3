@@ -4,7 +4,6 @@
 #ifndef STRUKTUROS_H_INCLUDED
 #define STRUKTUROS_H_INCLUDED
 
-
 #include "bibliotekos.h"
 
 class Studentai {
@@ -13,7 +12,7 @@ class Studentai {
 
 private:
     string Cvardas ;
-    string Cpavarde = "";
+    string Cpavarde ;
     vector<int> Cnd; //namu darbai
     int Cegzaminas;
     float Cvid ;
@@ -30,14 +29,39 @@ public:
         Cvid = 0;
         Cmed = 0;
         Cgalutinis = 0;
+
     }
-    ~Studentai(){ clearNd(); }
+
+    Studentai(const Studentai& s) {
+        Cvardas = s.Cvardas;
+        Cpavarde = s.Cpavarde;
+        Cnd = s.Cnd;
+        Cegzaminas = s.Cegzaminas;
+        Cvid = s.Cvid;
+        Cmed = s.Cmed;
+        Cgalutinis = s.Cgalutinis;
+    }
+    // Copy assignment operator
+
+    Studentai& operator=(const Studentai& s) {
+        if (this != &s) {
+            Cvardas = s.Cvardas;
+            Cpavarde = s.Cpavarde;
+            Cnd = s.Cnd;
+            Cegzaminas = s.Cegzaminas;
+            Cvid = s.Cvid;
+            Cmed = s.Cmed;
+            Cgalutinis = s.Cgalutinis;
+        }
+        return *this;
+    }
+    ~Studentai(){ clearNd(); }// destructor
 
         inline string getVardas() const
         { return Cvardas; }
-        void setVardas(string vardas) { Cvardas = vardas; }
+        void setVardas(string vardas) { Cvardas = std::move(vardas); }
         inline string getPavarde() const { return Cpavarde; }
-        void setPavarde(string pavarde) { Cpavarde= pavarde; }
+        void setPavarde(string pavarde) { Cpavarde= std::move(pavarde); }
 
         double getNd(int i) const { return Cnd.at(i); }
         void setNd(int nd,int index) { Cnd[index]=nd; }
@@ -58,7 +82,7 @@ public:
     void setMed(float med ) { Cmed = med; }
 
         inline double getGalutinis() const { return Cgalutinis; }
-    void setGalutinis(double galutinis) { Cgalutinis = galutinis; }
+    void setGalutinis(float galutinis) { Cgalutinis = galutinis; }
 
     void Galutinis (int input );
     void Vidurkis();

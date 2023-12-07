@@ -391,7 +391,7 @@ void Fake_main(){
 
     char ranka_failas;
     do {
-        cout << "Ar duomenis rasytite ranka , nuskaitysite is failo ar noresite sugeneruoti atsitiktini ar testuoti?(R - ranka, F- is failo, G - generuoti, T - testuoti konteinerius, S - testuoti strategijas )?" << endl;
+        cout << "Ar duomenis rasytite ranka , nuskaitysite is failo ar noresite sugeneruoti atsitiktini ar testuoti?(R - ranka, F- is failo, G - generuoti, T - testuoti , S - testuoti strategijas )?" << endl;
         cin >> ranka_failas;
         Studentai st ;
         if (ranka_failas &&
