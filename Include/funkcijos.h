@@ -20,7 +20,7 @@ void Studentu_skaldymas(int konteineris);
 void Kategorija(int studentu_k,int med_ar_vid, int konteineris);
 
 //void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas, int pasirinkimas);
-//void Failu_kurimas_list (list<Duomenys> listas, string failo_vardas, int pasirinkimas);
+
 int Konsole_ar_failas ();
 int Isvesties_pasirinkimas ();
 void Koks_failo_pav (int konteineris);
