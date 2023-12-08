@@ -19,7 +19,7 @@ void Studentu_skaldymas(int konteineris);
 //void readfromFileList( string filename, list<Studentai> &stud_list); //listu variantas
 void Kategorija(int studentu_k,int med_ar_vid, int konteineris);
 
-//void Failu_kurimas (vector<Duomenys> vektorius, string failo_vardas, int pasirinkimas);
+
 
 int Konsole_ar_failas ();
 int Isvesties_pasirinkimas ();
