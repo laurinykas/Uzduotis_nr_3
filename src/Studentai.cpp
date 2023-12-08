@@ -200,7 +200,7 @@ void Studentai::ivedimas ( int studentu_kiekis) {
     Mediana();
 }
 
-void Studentai::isvestis (vector<Studentai> vektorius,list<Studentai> listas, int pasirinkimas, int konteineris ) {
+void isvestis (vector<Studentai> vektorius,list<Studentai> listas, int pasirinkimas, int konteineris ) {
 
     stringstream buffer;
     if (konteineris == 2){
@@ -267,7 +267,7 @@ void Studentai::isvestis (vector<Studentai> vektorius,list<Studentai> listas, in
     }
     cout<<buffer.str();
 }
-void Studentai::readfromFile( string filename, vector<Studentai> &stud, list<Studentai> &stud_list, int konteineris){
+ void readfromFile( string filename, vector<Studentai> &stud, list<Studentai> &stud_list, int konteineris){
     try {
         ifstream fileread(filename);
         if (!fileread.fail()) {

@@ -23,6 +23,8 @@
 #include "fstream"
 #include "sstream"
 #include <utility>
+#include "istream"
+#include "ostream"
 using std::vector;
 using std::cout;
 using std::cin;
@@ -37,5 +39,7 @@ using std::ofstream;
 using std::left;
 using hrClock = std::chrono::high_resolution_clock;
 using std::list;
+using std::ostream;
+using std::istream;
 
 #endif UZDUOTIS_NR_1_BIBLIOTEKOS_H

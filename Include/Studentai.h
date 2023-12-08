@@ -35,7 +35,7 @@ public:
     Studentai(const Studentai& s) {
         Cvardas = s.Cvardas;
         Cpavarde = s.Cpavarde;
-        Cnd = s.Cnd;
+        copy(s.Cnd.begin(), s.Cnd.end(), back_inserter(Cnd));
         Cegzaminas = s.Cegzaminas;
         Cvid = s.Cvid;
         Cmed = s.Cmed;
@@ -47,7 +47,7 @@ public:
         if (this != &s) {
             Cvardas = s.Cvardas;
             Cpavarde = s.Cpavarde;
-            Cnd = s.Cnd;
+            copy(s.Cnd.begin(), s.Cnd.end(), back_inserter(Cnd));
             Cegzaminas = s.Cegzaminas;
             Cvid = s.Cvid;
             Cmed = s.Cmed;
@@ -87,11 +87,40 @@ public:
     void Galutinis (int input );
     void Vidurkis();
     void Mediana();
-    void ivedimas ( int studentu_kiekis);
-    static void isvestis (vector<Studentai> vektorius,list<Studentai> listas, int pasirinkimas, int konteineris );
-    void readfromFile( string filename, vector<Studentai> &stud, list<Studentai> &stud_list, int konteineris);
+   friend void ivedimas ( int studentu_kiekis);
+   friend void isvestis (vector<Studentai> vektorius,list<Studentai> listas, int pasirinkimas, int konteineris );
+   friend void readfromFile( string filename, vector<Studentai> &stud, list<Studentai> &stud_list, int konteineris);
 
     void Failu_kurimas (vector<Studentai> vektorius,list<Studentai>listas ,string failo_vardas, int pasirinkimas, int konteineris);
+
+    friend std::istream& operator>>(std::istream& in, Studentai& s) {
+        in >> s.Cvardas >> s.Cpavarde;
+        s.clearNd();
+        int laikNd;
+        while (in >> laikNd) {
+            s.Cnd.push_back(laikNd);
+        }
+
+
+        in.clear();
+        in.ignore(5000, '\n');
+        in >> s.Cegzaminas;
+        s.Mediana();s.Vidurkis();
+        s.Cgalutinis = s.Cvid;
+        return in;
+    }
+    friend std::ostream& operator<<(std::ostream& out, const Studentai& student) {
+        out << std::left << std::setw(15) << student.Cvardas
+            << std::setw(15) << student.Cpavarde;
+ //           << "Homeworks: ";
+ //            out << hw << " ";
+ //       }
+ //       out << "Exam: " << student.exam << " "
+           out << "Avg.: " << student.Cvid << " "
+            << "Med.: " << student.Cmed;
+        return out;
+    }
+
 
 };
 
