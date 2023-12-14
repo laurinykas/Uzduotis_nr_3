@@ -3,9 +3,6 @@
  vector <Studentai> stud;
  vector<Studentai> kieti;
  vector<Studentai> vargsai;
- list<Studentai> stud_list;
- list<Studentai> kieti_list;
- list<Studentai> vargsai_list;
 Studentai duomenys;
  int studentu_kiekis = 0;
 

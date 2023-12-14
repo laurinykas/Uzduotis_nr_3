@@ -87,11 +87,11 @@ public:
     void Galutinis (int input );
     void Vidurkis();
     void Mediana();
-   friend void ivedimas ( int studentu_kiekis);
-   friend void isvestis (vector<Studentai> vektorius,list<Studentai> listas, int pasirinkimas, int konteineris );
-   friend void readfromFile( string filename, vector<Studentai> &stud, list<Studentai> &stud_list, int konteineris);
+   friend void ivedimas (int studentu_kiekis);
+   friend void isvestis (vector<Studentai> vektorius, int pasirinkimas );
+   friend void readfromFile( string filename, vector<Studentai> &stud);
 
-    void Failu_kurimas (vector<Studentai> vektorius,list<Studentai>listas ,string failo_vardas, int pasirinkimas, int konteineris);
+   void Failu_kurimas (vector<Studentai> vektorius ,string failo_vardas, int pasirinkimas);
 
     friend std::istream& operator>>(std::istream& in, Studentai& s) {
         in >> s.Cvardas >> s.Cpavarde;
