@@ -3,30 +3,6 @@
 //
 
 #include "../Include/funkcijos.h"
-/*
-int List_Vektor(){
-    int konteineris;
-    cout<< "Koki konteineri norite naudoti?: 1 - List, 2 - Vector"<<endl;cin>>konteineris;
-    do{
-        if(konteineris == 1 or konteineris == 2){
-            return konteineris;
-
-
-        }
-        else{
-            cout<< "Neteisingai pasirinkote konteineri, turite ivesti 1 arba 2 "<<endl;cin.clear();
-            cin.ignore(10000,'\n');
-            cin>> konteineris;
-        }
-
-    }
-    while (konteineris!=1 and konteineris != 2);
-
-
-
-
-}
-*/
 
 int Studentu_kiekis() {
     int studentu_sk;
@@ -118,18 +94,7 @@ int Vid_ar_med(){
 
 
 }
-void Studentu_skaldymas() {
-    for (auto el : stud) {
-        if (el.getGalutinis() >= 5.00){
 
-            kieti.push_back(el);
-        } else {
-            vargsai.push_back(el);
-
-        }
-    }
-
-}
 
 
 
@@ -185,7 +150,7 @@ int Isvesties_pasirinkimas (){
     }while (pasirinkimas != 1 and pasirinkimas != 2 and pasirinkimas != 3);
 }
 
-void Koks_failo_pav (int konteineris){
+void Koks_failo_pav (){
     Studentai st;
     system("dir *.txt");
     string failo_pavadinimas;
@@ -197,7 +162,7 @@ void Koks_failo_pav (int konteineris){
             ifstream fileread(failo_pavadinimas);
             if (!fileread.fail()) {
                 auto start  = hrClock::now();
-                st.readfromFile(failo_pavadinimas,stud,stud_list,konteineris);
+                st.readfromFile(failo_pavadinimas,stud);
                 auto end  = hrClock::now();
                 laikas = end- start;
                 cout << failo_pavadinimas << " studentu failo nuskaitymas uztruko : " << laikas.count()<< "s" << endl;
@@ -290,7 +255,7 @@ void Skaldymas2(int konteineris ) {
 */
 
 
-void Skaldymas3( ) {
+void Skaldymas3() {
 
         auto partitionPredicate = [](const Studentai& el) {
             return el.getGalutinis() >= 5.00;
@@ -352,13 +317,13 @@ void Fake_main(){
                 int rusiavimo_tipas =  Rusiavimo_tipas();
                // int skirstymo_strat = SkirstymoStrategijosPas();
 
-
+                        std::istream& in = std::cin;
                     for (int eiles_nr = 0; eiles_nr < studentu_kiekis; eiles_nr++) {
-                        st.ivedimas(eiles_nr);
+                        st.ivedimas();
                         stud.push_back(st);
                     }
 
-                    Sortingas(konteineris,rusiavimo_tipas);
+                    Sortingas(rusiavimo_tipas);
                     char kieti_vargsai;
                     cout << "Ar norite isrusiuoti studentus studentus i vargsus ir kietus ?(T/N)" << endl;
                     cin >> kieti_vargsai;
@@ -367,20 +332,21 @@ void Fake_main(){
                                               kieti_vargsai == 'n')) {
                             if (kieti_vargsai == 'T' || kieti_vargsai == 't') {
                                 int med_ar_int = Vid_ar_med();
-                                Kategorija(studentu_kiekis, med_ar_int,konteineris);
-                                MegaSkirstymas(konteineris,skirstymo_strat);
+                                Kategorija(studentu_kiekis, med_ar_int);
+
+                                void Skaldymas3();
                                 int konsole_ar_failas = Konsole_ar_failas();
                                 if (konsole_ar_failas == 1) {
                                     int isvedimas = Isvesties_pasirinkimas();
                                     cout << "Isvesti vargsai studentai" << endl;
-                                    st.isvestis(vargsai,stud_list, isvedimas,konteineris);
+                                    st.isvestis(vargsai, isvedimas);
                                     cout << "Isvesti kieti studentai" << endl;
-                                    st.isvestis(kieti,stud_list, isvedimas,konteineris);
+                                    st.isvestis(kieti, isvedimas);
                                 } else {
                                     int isvedimas = Isvesties_pasirinkimas();
 
-                                    st.Failu_kurimas(vargsai,stud_list, "vargsai.txt", isvedimas,konteineris);
-                                    st.Failu_kurimas(kieti,stud_list, "kieti.txt", isvedimas,konteineris);
+                                    st.Failu_kurimas(vargsai, "vargsai.txt", isvedimas);
+                                    st.Failu_kurimas(kieti, "kieti.txt", isvedimas);
 
                                 }
                             } else {
@@ -389,10 +355,10 @@ void Fake_main(){
                                 if (konsole_ar_failas == 1) {
 
                                     cout << "Isvesti visi studentai :" << endl;
-                                    st.isvestis(stud,stud_list, isvedimas,konteineris);
+                                    st.isvestis(stud, isvedimas);
                                 } else {
                                     cout << "Sukelti i faila studentai.txt. " << endl;
-                                    st.Failu_kurimas(stud,stud_list, "studentai.txt", isvedimas,konteineris);
+                                    st.Failu_kurimas(stud, "studentai.txt", isvedimas);
                                 }
                             }
                         } else {
@@ -426,47 +392,47 @@ void Fake_main(){
                 int kons_ar_failas = Konsole_ar_failas();
                 int isvedimas = Isvesties_pasirinkimas();
                 int med_ar_vid = Vid_ar_med();
-                int list_vector = List_Vektor();
+
                 int rusiavimo_tipas = Rusiavimo_tipas();
-                int skirstymo_strat = SkirstymoStrategijosPas();
 
 
 
-                    Koks_failo_pav (list_vector);// laikas suskaiciuotas
+
+                    Koks_failo_pav ();// laikas suskaiciuotas
                     studentu_kiekis = stud.size() -1 ;
                     stud.erase(stud.begin());
 
 
 
-                    Kategorija(studentu_kiekis,med_ar_vid,list_vector);
+                    Kategorija(studentu_kiekis,med_ar_vid);
                     auto start = hrClock::now();
-                    Sortingas(list_vector,rusiavimo_tipas);
+                    Sortingas(rusiavimo_tipas);
                     auto end = hrClock::now();laikas = end - start ;
                     cout << studentu_kiekis <<" studentu failo surusiavimas  uztruko : " << laikas.count() << " s"<< endl;
                     start = hrClock::now();
-                    //Studentu_skaldymas();
-                    MegaSkirstymas(list_vector,skirstymo_strat);
+
+                    Skaldymas3();
                     end = hrClock::now(); laikas= end - start;
                     cout << studentu_kiekis <<" studentu failo surusiavimas i atskirus vektorius uztriko : " << laikas.count() << " s"<< endl;
 
                     if(kons_ar_failas == 1){
                         start = hrClock ::now();
-                        st.isvestis(vargsai, vargsai_list,isvedimas,list_vector);
+                        st.isvestis(vargsai,isvedimas);
                         end = hrClock ::now();
                         laikas = end - start; cout << "vargsu isvedimas truko :" << laikas.count()<<" s"<<endl;
                         start = hrClock ::now();
-                        st.isvestis(kieti,kieti_list,isvedimas,list_vector);
+                        st.isvestis(kieti,isvedimas);
                         end = hrClock ::now();laikas = end - start;
                         cout << "kietu isvedimas truko :" << laikas.count()<<" s"<<endl;
 
                     }
                     else{
                         start = hrClock ::now();
-                        st.Failu_kurimas(vargsai,vargsai_list,"vargsai.txt",isvedimas,list_vector);
+                        st.Failu_kurimas(vargsai,"vargsai.txt",isvedimas);
                         end = hrClock ::now();laikas = end - start;
                         cout << "vargsu isvedimas truko :" << laikas.count()<<" s"<<endl;
                         start = hrClock ::now();
-                        st.Failu_kurimas(kieti,kieti_list,"kieti.txt",isvedimas,list_vector);
+                        st.Failu_kurimas(kieti,"kieti.txt",isvedimas);
                         end = hrClock ::now();laikas = end - start;
                         cout << "kietu isvedimas truko :" << laikas.count()<<" s"<<endl;
 
@@ -474,7 +440,7 @@ void Fake_main(){
 
 
             }
-            else if(ranka_failas == 't' || ranka_failas == 'T'){
+            else if(ranka_failas == 't' || ranka_failas == 'T'){/*
                 std::chrono::duration<double> rez;
                 std::chrono::duration<double> rez2;
                 int med_ar_vid = 1;// Vid_ar_med();
@@ -530,7 +496,7 @@ void Fake_main(){
                     printf("%-40s %-20.8lf \n", (to_string(test_fdydziai[i]) +" studentu sukelimas i failus").c_str(), info1);
                     // rezultato printas
                 }
-
+*/
             }
             else{/*
                 std::chrono::duration<double> rez;
@@ -609,7 +575,7 @@ void Fake_main(){
 
 
 
-            }
+
         } else {
             cout << "Iveskite R arba f arba G arba T arba S" << endl;
             cin.clear();

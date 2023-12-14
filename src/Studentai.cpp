@@ -35,9 +35,46 @@ void Studentai::Mediana() {
     setMed(0.4 * getMed() + 0.6 * getEgzaminas())  ;
 }
 
+std::istream& operator>>(std::istream& in, Studentai& s) {
+    string vardas;
+    string pavarde;
+    vector<int> nd;
+    int egzaminas;
+    int ndBalai;
 
 
-void Studentai::ivedimas ( int studentu_kiekis) {
+        in >> vardas >> pavarde;
+        s.setVardas(vardas);
+        s.setPavarde(pavarde);
+
+
+        while (in >> ndBalai) {
+            nd.push_back(ndBalai);
+        }
+
+       // in.clear();
+        in >> egzaminas;
+
+        s.addNd(ndBalai);
+        s.setEgzaminas(egzaminas);
+        s.Vidurkis();
+        s.Mediana();
+
+        return in;
+    }
+
+std::ostream& operator<<(std::ostream& out, const Studentai& s) {
+    out << "Vardas: " << s.getVardas()
+        << ", Pavarde: " << s.getPavarde()
+        << ", Egzaminas: " << s.getEgzaminas()
+        << ", Vidurkis : " << s.getVid()
+        << ", Mediana : " << s.getMed();
+
+    // You can format the output as needed and include other student details
+    return out;
+}
+/*
+void Studentai:: ivedimas ( ) {
 
     char bent_vienas_nd_ranka;
     string name;
@@ -199,8 +236,8 @@ void Studentai::ivedimas ( int studentu_kiekis) {
     Vidurkis();
     Mediana();
 }
-
-void isvestis (vector<Studentai> vektorius, int pasirinkimas ) {
+*/
+void Studentai::isvestis (vector<Studentai> vektorius, int pasirinkimas ) {
 
     stringstream buffer;
     if (pasirinkimas == 1) {
@@ -236,7 +273,7 @@ void isvestis (vector<Studentai> vektorius, int pasirinkimas ) {
 
     cout<<buffer.str();
 }
- void readfromFile( string filename, vector<Studentai> &stud){
+ void Studentai :: readfromFile( string filename, vector<Studentai> &stud){
     try {
         ifstream fileread(filename);
         if (!fileread.fail()) {

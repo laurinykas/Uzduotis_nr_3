@@ -5,7 +5,7 @@
 #define STRUKTUROS_H_INCLUDED
 
 #include "bibliotekos.h"
-
+#include "funkcijos.h"
 class Studentai {
 
 
@@ -29,6 +29,7 @@ public:
         Cvid = 0;
         Cmed = 0;
         Cgalutinis = 0;
+        Cnd.clear();
 
     }
 
@@ -83,46 +84,24 @@ public:
 
         inline double getGalutinis() const { return Cgalutinis; }
     void setGalutinis(float galutinis) { Cgalutinis = galutinis; }
-
+    void inputData(std::istream& in);
     void Galutinis (int input );
     void Vidurkis();
     void Mediana();
-   friend void ivedimas (int studentu_kiekis);
-   friend void isvestis (vector<Studentai> vektorius, int pasirinkimas );
-   friend void readfromFile( string filename, vector<Studentai> &stud);
+    void ivedimas ();
+    void isvestis (vector<Studentai> vektorius, int pasirinkimas);
+    void readfromFile( string filename, vector<Studentai> &stud);
 
    void Failu_kurimas (vector<Studentai> vektorius ,string failo_vardas, int pasirinkimas);
+   friend std::ostream& operator<<(std::ostream& out, const Studentai& student);
+   friend std::istream& operator>>(std::istream& in,Studentai& s);
 
-    friend std::istream& operator>>(std::istream& in, Studentai& s) {
-        in >> s.Cvardas >> s.Cpavarde;
-        s.clearNd();
-        int laikNd;
-        while (in >> laikNd) {
-            s.Cnd.push_back(laikNd);
-        }
-
-
-        in.clear();
-        in.ignore(5000, '\n');
-        in >> s.Cegzaminas;
-        s.Mediana();s.Vidurkis();
-        s.Cgalutinis = s.Cvid;
-        return in;
-    }
-    friend std::ostream& operator<<(std::ostream& out, const Studentai& student) {
-        out << std::left << std::setw(15) << student.Cvardas
-            << std::setw(15) << student.Cpavarde;
- //           << "Homeworks: ";
- //            out << hw << " ";
- //       }
- //       out << "Exam: " << student.exam << " "
-           out << "Vidurkis.: " << student.Cvid << " "
-            << "Med.: " << student.Cmed;
-        return out;
-    }
 
 
 };
+
+
+// Modify the friend function
 
 
 bool palyginimas_vardas( Studentai a, Studentai b);

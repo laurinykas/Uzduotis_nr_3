@@ -12,15 +12,15 @@
 int Studentu_kiekis();
 int Nd_kiekis();
 void studentu_generavimas(int st_k, int  namu_d);
-void Studentu_skaldymas();
-void Kategorija(int studentu_k,int med_ar_vid, int konteineris);
+void Kategorija(int studentu_k,int med_ar_vid);
 int Konsole_ar_failas ();
 int Isvesties_pasirinkimas ();
-void Koks_failo_pav (int konteineris);
+void Koks_failo_pav ();
 void Fake_main();
 int Vid_ar_med();
 void Sortingas ( int sortingo_tipas);
 int Rusiavimo_tipas();
+void Skaldymas3();
 
 
 extern vector <Studentai> stud;
