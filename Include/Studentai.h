@@ -116,7 +116,7 @@ public:
  //            out << hw << " ";
  //       }
  //       out << "Exam: " << student.exam << " "
-           out << "Avg.: " << student.Cvid << " "
+           out << "Vidurkis.: " << student.Cvid << " "
             << "Med.: " << student.Cmed;
         return out;
     }
