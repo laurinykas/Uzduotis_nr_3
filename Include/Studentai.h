@@ -32,7 +32,7 @@ public:
 
 
 
-class Studentai {
+class Studentai: public Zmogus {
 
 
 
