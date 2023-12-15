@@ -7,7 +7,7 @@
 #include "bibliotekos.h"
 #include "funkcijos.h"
 
-class Zmogus
+ class Zmogus
 {
 protected:
     string Cvardas_;
@@ -85,11 +85,9 @@ public:
         void setPavarde(string pavarde) { Cpavarde= std::move(pavarde); }
 
         double getNd(int i) const { return Cnd.at(i); }
-        void setNd(int nd,int index) { Cnd[index]=nd; }
         void addNd(int nd){
             Cnd.reserve(Cnd.size() + 1);
             Cnd.push_back(nd); }
-        void clearNd() { Cnd.clear(); }
         inline int getNdSize() { return Cnd.size(); }
         void sortNd() { sort(Cnd.begin(), Cnd.end()); }
 
