@@ -25,6 +25,27 @@ rūšiuoti vargšus ir kietus, kokį failą norėsite nuskaityti... Tai reiškia
 
 ```
 # Uzduotis-nr-2
+## v1.2
+### nauji dalykai 
+* Nebenaudojamas list konteineris
+* Realizuota "Rule of 3"
+* Sukurti pagal tai išvesties ir įvesties operatoriai  
+### Rule of 3 implementacija 
+![2](https://github.com/laurinykas/Uzduotis-nr-2/assets/112711939/a6b68eaf-4532-4dcb-af5d-1a8343860eab)
+### Rule of 3 demonstravimas 
+![4](https://github.com/laurinykas/Uzduotis-nr-2/assets/112711939/4ff5a097-27cd-48f8-9c67-f0a6124e58dd)
+### Įvedimas ir išvedimas
+![3](https://github.com/laurinykas/Uzduotis-nr-2/assets/112711939/d7075419-00c5-47ae-8a84-d643312ca69f)
+### Įvesties operatorius 
+![5](https://github.com/laurinykas/Uzduotis-nr-2/assets/112711939/19010912-394a-46c6-aeab-1c3bf496dd43)
+### Išvesties operatorius 
+![6](https://github.com/laurinykas/Uzduotis-nr-2/assets/112711939/c3303235-1251-4623-9c09-b45952994f00)
+
+
+
+
+
+
 ## v1.1
 ### nauji dalykai 
 * Pereita iš struktūros į klasę
