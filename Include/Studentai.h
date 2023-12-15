@@ -6,6 +6,32 @@
 
 #include "bibliotekos.h"
 #include "funkcijos.h"
+
+class Zmogus
+{
+protected:
+    string Cvardas_;
+    string Cpavarde_;
+public:
+    virtual void setVardas(string vardas) = 0;
+    virtual void setPavarde(string pavarde) = 0;
+    inline string getVardas() const { return Cvardas_; }
+    inline string getPavarde() const { return Cpavarde_; }
+
+    Zmogus()
+    {
+        Cvardas_ = "";
+        Cpavarde_ = "";
+    }
+};
+
+
+
+
+
+
+
+
 class Studentai {
 
 
