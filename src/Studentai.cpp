@@ -33,11 +33,62 @@ void Studentai::Mediana() {
         setMed(0)  ;
     }
     setMed(0.4 * getMed() + 0.6 * getEgzaminas())  ;
+}/*
+std::istream& ivedejas(string filename, Studentai& s, bool ivedimoTipas  ){
+
+    try {
+        ifstream fileread(filename);
+        if (!fileread.fail()) {
+
+            ifstream fileread(filename);
+            int sk;
+            string line;
+            string temp,pirmaEil;
+            int kiekNd = -3;
+            getline(fileread >> std::ws, pirmaEil);
+            stringstream iss(pirmaEil);
+            while(iss >> temp)
+            {
+
+                kiekNd++;
+            }
+            while((std::getline(fileread >> std::ws, line))){
+                Studentai s ;
+                stringstream iss(line);
+                iss >> temp;
+                s.setVardas(temp);
+                iss >> temp;
+                s.setPavarde(temp);
+                for(int i = 0; i < kiekNd; i++){
+                    iss>> sk;
+                    s.addNd(sk);
+                }
+                iss >> sk;
+                s.setEgzaminas(sk);
+                s.Vidurkis();
+                s.Mediana();
+                studentu_kiekis++;
+
+                stud.push_back(s);
+
+            }
+        }else{
+
+            throw std::runtime_error(filename);
+
+        }
+
+
+    } catch(std::exception &e) {
+        cout << "Failas "  << e.what() << "neegzistuoja arba neteisingai irasete pavadinima, paleiskite dar karta programa" << endl;
+        std::exit(0);
+
+    }
+
 }
+*/
+std::istream& operator>>(std::istream& in,Studentai& s ){
 
-std::istream& ivedejas(std::istream& in, Studentai& s, bool ivedimoTipas  ) {
-
-    if(ivedimoTipas == true){
     char bent_vienas_nd_ranka;
     cout << "Iveskite studento varda : " << endl;
     string vardas;
@@ -199,42 +250,9 @@ std::istream& ivedejas(std::istream& in, Studentai& s, bool ivedimoTipas  ) {
     while(bent_vienas_egz != 'T' and bent_vienas_egz != 't' and bent_vienas_egz != 'N' and  bent_vienas_egz != 'n');
 
     s.Vidurkis();
-    s.Mediana();
-    }
-    else{
-        int sk;
-        string line, temp;
-
-        // Read Vardas and Pavarde
-        in >> temp;
-        s.setVardas(temp);
-        in >> temp;
-        s.setPavarde(temp);
-
-        // Read namu darbai
-        for (int i = 0; i < s.getNdSize(); i++) {
-            in >> sk;
-            s.setNd(sk, i);
-        }
-
-        // Read egzaminas
-        in >> sk;
-        s.setEgzaminas(sk);
-
-        // Calculate Vidurkis and Mediana
-        s.Vidurkis();
-        s.Mediana();
-
-        return in;
-
-
-
-    }
-}
-std::istream& operator>>(std::istream& in,Studentai& s ){
-
-    return ivedejas(in, s, true); //skirta nuskaityti ranka
-
+    s.Mediana(); //skirta nuskaityti ranka
+    //stud.push_back(s);
+    return in;
 }
 
 
@@ -242,23 +260,10 @@ std::istream& operator>>(std::istream& in,Studentai& s ){
 
 
 
-std::ostream& operator<<(std::ostream& out, const Studentai& s) {
-    out << "Vardas Pavarde: " << s.Cvardas << " " << s.Cpavarde;
-    out << " Pazymiai: ";
-    for (int paz : s.Cnd)
-    {
-        out << paz << " ";
-    }
-
-    out << "Egzaminas: " << s.Cegzaminas << " " << "Rezultatas: " << s.Cgalutinis << endl;
-    return out;
-
-}
 void Studentai::ivedimas(int studentu_kiekis) {
 
     for (int i = 0; i < studentu_kiekis; i++) {
         Studentai s;
-        cout << "Iveskite studento varda : " << endl;
         cin >> s ;  // This will call the overloaded operator>> for Student
         stud.push_back(s);
 
@@ -269,42 +274,34 @@ void Studentai::ivedimas(int studentu_kiekis) {
 
 }
 
-void Studentai::isvestis (vector<Studentai> vektorius, int pasirinkimas ) {
+void Studentai::isvestis (vector<Studentai> vectorius ) {
 
-    stringstream buffer;
-    if (pasirinkimas == 1) {
-        buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)"<<setw(20)<< "Objekto adresas" << endl;
-        buffer << "____________________________________________________________________" << endl;
-        for (int i = 0; vektorius.size() > i; i++) {
-            buffer << setw(20) << vektorius[i].getVardas() << setw(20) << vektorius[i].getPavarde() << setw(17) << std::fixed
-                   << std::setprecision(2) << vektorius[i].getVid() << setw(23) <<std::addressof(vektorius[i])<< endl;
-        }
+   // stringstream buffer;
 
+
+    cout << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)" << setw(20)
+           << "Galutinis(med)" << setw(20)
+           << "Objekto adresas" << endl;
+    cout << "___________________________________________________________________________________________" << endl;
+    for (const auto& student : vectorius) {
+        cout << student;  // Using the overloaded operator<< for individual Studentai objects
     }
-
-    else if (pasirinkimas == 2) {
-        buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(20) << "Galutinis(med)"<<setw(20)<< "Objekto adresas" << endl;
-        buffer << "_____________________________________________________________________" << endl;
-        for (int i = 0; vektorius.size() > i; i++) {
-            buffer << setw(20) << vektorius[i].getVardas() << setw(20) << vektorius[i].getPavarde() << setw(17) << std::fixed
-                   << std::setprecision(2) << vektorius[i].getMed()<< setw(23) <<std::addressof(vektorius[i]) << endl;
-        }
-
-    }
-    else {
-        buffer << setw(20) << "Vardas" << setw(20) << "Pavarde" << setw(17) << "Galutinis(vid)"<<setw(20)<< "Galutinis(med)" << setw(20)
-               <<  "Objekto adresas"<< endl;
-        buffer << "___________________________________________________________________________________________" << endl;
-        for (int i = 0; vektorius.size() > i; i++) {
-            buffer << setw(20) << vektorius[i].getVardas() << setw(20) << vektorius[i].getPavarde() << setw(17) << std::fixed
-                   << std::setprecision(2) << vektorius[i].getVid() << setw(17) << vektorius[i].getMed() << setw(23) <<std::addressof(vektorius[i]) << endl;
-        }
-
-    }
-
-
-    cout<<buffer.str();
 }
+
+
+
+
+    std::ostream& operator<<(std::ostream& out, const Studentai& student) {
+        out << std::setw(20) << student.getVardas() << std::setw(20) << student.getPavarde();
+
+        out << std::setw(17) << std::fixed << std::setprecision(2) << student.getVid()
+            << std::setw(17) << student.getMed();
+
+        out << std::setw(23) << std::addressof(student) << std::endl;
+
+        return out;
+    }
+
  void Studentai :: readfromFile( string filename, vector<Studentai> &stud){
     try {
         ifstream fileread(filename);

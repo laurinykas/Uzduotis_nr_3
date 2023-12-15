@@ -17,7 +17,6 @@ private:
     int Cegzaminas;
     float Cvid ;
     float Cmed ;
-    //int studentu_kiekis = 0;
     float Cgalutinis;
 
 
@@ -32,16 +31,11 @@ public:
         Cnd.clear();
 
     }
+    // move
 
-    Studentai(const Studentai& s) {
-        Cvardas = s.Cvardas;
-        Cpavarde = s.Cpavarde;
-        copy(s.Cnd.begin(), s.Cnd.end(), back_inserter(Cnd));
-        Cegzaminas = s.Cegzaminas;
-        Cvid = s.Cvid;
-        Cmed = s.Cmed;
-        Cgalutinis = s.Cgalutinis;
-    }
+    Studentai(const Studentai& s):Cvardas(s.Cvardas),Cpavarde(s.Cpavarde),Cnd(s.Cnd),Cegzaminas(s.Cegzaminas),Cvid(s.Cvid),Cmed(s.Cmed),Cgalutinis(s.Cgalutinis){}
+
+
     // Copy assignment operator
 
     Studentai& operator=(const Studentai& s) {
@@ -56,7 +50,7 @@ public:
         }
         return *this;
     }
-    ~Studentai(){ clearNd(); }// destructor
+    ~Studentai(){ }// destructor
 
         inline string getVardas() const
         { return Cvardas; }
@@ -89,13 +83,12 @@ public:
     void Vidurkis();
     void Mediana();
 
-    void isvestis (vector<Studentai> vektorius, int pasirinkimas);
+    void isvestis (vector<Studentai> vektorius);
     void readfromFile( string filename, vector<Studentai> &stud);
-    void ivedimas(int studentu_kiekis);
+    static void ivedimas(int studentu_kiekis);
    void Failu_kurimas (vector<Studentai> vektorius ,string failo_vardas, int pasirinkimas);
-  // friend std::ostream& operator<<(std::ostream& out, const Studentai& student);
    friend std::istream& operator>>(std::istream& in,Studentai& s );
-    friend std::istream& ivedejas(std::istream& in, Studentai& s, bool ivedimoTipas  );
+   friend std::ostream& operator<<(std::ostream& out,const Studentai& student);
 
 
 
