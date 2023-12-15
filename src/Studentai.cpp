@@ -33,60 +33,7 @@ void Studentai::Mediana() {
         setMed(0)  ;
     }
     setMed(0.4 * getMed() + 0.6 * getEgzaminas())  ;
-}/*
-std::istream& ivedejas(string filename, Studentai& s, bool ivedimoTipas  ){
-
-    try {
-        ifstream fileread(filename);
-        if (!fileread.fail()) {
-
-            ifstream fileread(filename);
-            int sk;
-            string line;
-            string temp,pirmaEil;
-            int kiekNd = -3;
-            getline(fileread >> std::ws, pirmaEil);
-            stringstream iss(pirmaEil);
-            while(iss >> temp)
-            {
-
-                kiekNd++;
-            }
-            while((std::getline(fileread >> std::ws, line))){
-                Studentai s ;
-                stringstream iss(line);
-                iss >> temp;
-                s.setVardas(temp);
-                iss >> temp;
-                s.setPavarde(temp);
-                for(int i = 0; i < kiekNd; i++){
-                    iss>> sk;
-                    s.addNd(sk);
-                }
-                iss >> sk;
-                s.setEgzaminas(sk);
-                s.Vidurkis();
-                s.Mediana();
-                studentu_kiekis++;
-
-                stud.push_back(s);
-
-            }
-        }else{
-
-            throw std::runtime_error(filename);
-
-        }
-
-
-    } catch(std::exception &e) {
-        cout << "Failas "  << e.what() << "neegzistuoja arba neteisingai irasete pavadinima, paleiskite dar karta programa" << endl;
-        std::exit(0);
-
-    }
-
 }
-*/
 std::istream& operator>>(std::istream& in,Studentai& s ){
 
     char bent_vienas_nd_ranka;
@@ -255,11 +202,6 @@ std::istream& operator>>(std::istream& in,Studentai& s ){
     return in;
 }
 
-
-
-
-
-
 void Studentai::ivedimas(int studentu_kiekis) {
 
     for (int i = 0; i < studentu_kiekis; i++) {
@@ -288,10 +230,7 @@ void Studentai::isvestis (vector<Studentai> vectorius ) {
     }
 }
 
-
-
-
-    std::ostream& operator<<(std::ostream& out, const Studentai& student) {
+std::ostream& operator<<(std::ostream& out, const Studentai& student) {
         out << std::setw(20) << student.getVardas() << std::setw(20) << student.getPavarde();
 
         out << std::setw(17) << std::fixed << std::setprecision(2) << student.getVid()

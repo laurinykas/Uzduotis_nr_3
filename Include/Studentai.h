@@ -27,11 +27,6 @@ public:
 
 
 
-
-
-
-
-
 class Studentai: public Zmogus {
 
 
@@ -117,8 +112,6 @@ public:
 
 
 };
-
-
 
 
 
