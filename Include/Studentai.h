@@ -84,24 +84,25 @@ public:
 
         inline double getGalutinis() const { return Cgalutinis; }
     void setGalutinis(float galutinis) { Cgalutinis = galutinis; }
-    void inputData(std::istream& in);
+
     void Galutinis (int input );
     void Vidurkis();
     void Mediana();
-    void ivedimas ();
+
     void isvestis (vector<Studentai> vektorius, int pasirinkimas);
     void readfromFile( string filename, vector<Studentai> &stud);
-
+    void ivedimas(int studentu_kiekis);
    void Failu_kurimas (vector<Studentai> vektorius ,string failo_vardas, int pasirinkimas);
-   friend std::ostream& operator<<(std::ostream& out, const Studentai& student);
-   friend std::istream& operator>>(std::istream& in,Studentai& s);
+  // friend std::ostream& operator<<(std::ostream& out, const Studentai& student);
+   friend std::istream& operator>>(std::istream& in,Studentai& s );
+    friend std::istream& ivedejas(std::istream& in, Studentai& s, bool ivedimoTipas  );
 
 
 
 };
 
 
-// Modify the friend function
+
 
 
 bool palyginimas_vardas( Studentai a, Studentai b);

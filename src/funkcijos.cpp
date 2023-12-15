@@ -317,11 +317,10 @@ void Fake_main(){
                 int rusiavimo_tipas =  Rusiavimo_tipas();
                // int skirstymo_strat = SkirstymoStrategijosPas();
 
-                        std::istream& in = std::cin;
-                    for (int eiles_nr = 0; eiles_nr < studentu_kiekis; eiles_nr++) {
-                        st.ivedimas();
-                        stud.push_back(st);
-                    }
+                        //std::istream& in = std::cin;
+                        ivedimas(studentu_kiekis);
+                        //stud.push_back(st);
+
 
                     Sortingas(rusiavimo_tipas);
                     char kieti_vargsai;

@@ -35,55 +35,20 @@ void Studentai::Mediana() {
     setMed(0.4 * getMed() + 0.6 * getEgzaminas())  ;
 }
 
-std::istream& operator>>(std::istream& in, Studentai& s) {
-    string vardas;
-    string pavarde;
-    vector<int> nd;
-    int egzaminas;
-    int ndBalai;
+std::istream& ivedejas(std::istream& in, Studentai& s, bool ivedimoTipas  ) {
 
-
-        in >> vardas >> pavarde;
-        s.setVardas(vardas);
-        s.setPavarde(pavarde);
-
-
-        while (in >> ndBalai) {
-            nd.push_back(ndBalai);
-        }
-
-       // in.clear();
-        in >> egzaminas;
-
-        s.addNd(ndBalai);
-        s.setEgzaminas(egzaminas);
-        s.Vidurkis();
-        s.Mediana();
-
-        return in;
-    }
-
-std::ostream& operator<<(std::ostream& out, const Studentai& s) {
-    out << "Vardas: " << s.getVardas()
-        << ", Pavarde: " << s.getPavarde()
-        << ", Egzaminas: " << s.getEgzaminas()
-        << ", Vidurkis : " << s.getVid()
-        << ", Mediana : " << s.getMed();
-
-    // You can format the output as needed and include other student details
-    return out;
-}
-/*
-void Studentai:: ivedimas ( ) {
-
+    if(ivedimoTipas == true){
     char bent_vienas_nd_ranka;
-    string name;
-    cout << "Iveskite studento varda : " << endl; cin >> name ;setVardas(name);
-    cout << "Iveskite studento pavarde : " << endl;cin >> name;setPavarde(name);
-
-
+    cout << "Iveskite studento varda : " << endl;
+    string vardas;
+    in >> vardas;
+    s.setVardas(vardas);
+    cout << "Iveskite studento pavarde : " << endl;
+    string pavarde;
+    in >> pavarde;
+    s.setPavarde(pavarde);
     do {
-        cout << "Ar bus bent 1 namu darbas?(T/N)" << endl;cin >> bent_vienas_nd_ranka;
+        cout << "Ar bus bent 1 namu darbas?(T/N)" << endl;in >> bent_vienas_nd_ranka;
         if (bent_vienas_nd_ranka && (bent_vienas_nd_ranka == 'T' || bent_vienas_nd_ranka == 't' || bent_vienas_nd_ranka == 'N' ||bent_vienas_nd_ranka == 'n')) {
             if (bent_vienas_nd_ranka == 'N' || bent_vienas_nd_ranka == 'n') {
                 continue;
@@ -91,16 +56,16 @@ void Studentai:: ivedimas ( ) {
                 char ranka_auto;
 
                 cout << "Kaip ivesite pazymius (jeigu ranka rasykite R, jei auto rasykite A :" << endl;
-                cin >> ranka_auto;
+                in >> ranka_auto;
                 do {
                     if (ranka_auto and
                         (ranka_auto == 'R' or ranka_auto == 'r' or ranka_auto == 'A' or ranka_auto == 'a')) {
                         continue;
                     } else {
                         cout << "Irasykite R arba A !" << endl;
-                        cin.clear();
-                        cin.ignore(10000, '\n');
-                        cin >> ranka_auto;
+                        in.clear();
+                        in.ignore(10000, '\n');
+                        in >> ranka_auto;
                     }
                 } while (!(ranka_auto and
                            (ranka_auto == 'R' or ranka_auto == 'r' or ranka_auto == 'A' or ranka_auto == 'a')));
@@ -113,14 +78,14 @@ void Studentai:: ivedimas ( ) {
                         int namu_d = 0;
 
                         do {
-                            int namu_d_eile = getNdSize();
+                            int namu_d_eile = s.getNdSize();
                             cout << "Iveskite nr. " << namu_d_eile + 1 << " pazymi: " << endl;
-                            cin >> namu_d;
+                            in >> namu_d;
                             //if(namu_d != 0){
                             if (namu_d > 0 and namu_d <= 10) {
-                                addNd(namu_d);
+                                s.addNd(namu_d);
                                 cout << "Ar bus dar pazymiu ? (T/N)" << endl;
-                                cin >> tp;
+                                in >> tp;
                                 do {
                                     if (tp and (tp == 'T' or tp == 't' or tp == 'n' or tp == 'N')) {
                                         if (tp == 'T' or tp == 't') {
@@ -131,14 +96,14 @@ void Studentai:: ivedimas ( ) {
                                         }
                                     } else {
                                         cout << "Iveskite tinkama atsakyma T arba N !" << endl;
-                                        cin.clear();
-                                        cin.ignore(10000, '\n');
+                                        in.clear();
+                                        in.ignore(10000, '\n');
                                     }
                                 } while (tp != 'T' and tp != 't' and tp != 'n' and tp != 'N');
                             } else {
                                 cout << "Iveskite tinkama skaicius nuo 1 iki 10!" << endl;
-                                cin.clear();
-                                cin.ignore(10000, '\n');
+                                in.clear();
+                                in.ignore(10000, '\n');
                             }
 
 
@@ -153,19 +118,19 @@ void Studentai:: ivedimas ( ) {
 
                     do {
                         cout << "Iveskite kiek namu darbu noresite sugeneruoti" << endl;
-                        cin >> nd_skaicius;
+                        in >> nd_skaicius;
                         srand((unsigned) time(0));
                         if (nd_skaicius and nd_skaicius > 0) {
                             for (int e = 0; e < nd_skaicius; e++) {
                                 sk = (rand() % 10) + 1;
-                                addNd(sk);
+                                s.addNd(sk);
 
                             }
 
                         } else {
                             cout << "Iveskite skaiciu didesni nei 1! : " << endl;
-                            cin.clear();
-                            cin.ignore(10000, '\n');
+                            in.clear();
+                            in.ignore(10000, '\n');
                         }
                     } while (nd_skaicius < 0 or nd_skaicius == 0);
                 }
@@ -176,47 +141,47 @@ void Studentai:: ivedimas ( ) {
 
         else{
             cout << "Iveskite T arba N !" << endl;
-            cin.clear();
-            cin.ignore(10000, '\n');
+            in.clear();
+            in.ignore(10000, '\n');
         }
     }while(bent_vienas_nd_ranka && (bent_vienas_nd_ranka != 'T' and bent_vienas_nd_ranka != 'N' and bent_vienas_nd_ranka != 'n' and bent_vienas_nd_ranka != 't'));
     char bent_vienas_egz;
 
     do{
-        cout<<" Ar turi studentas egzamino rezultata (T/N)?"<<endl; cin>>bent_vienas_egz;
+        cout<<" Ar turi studentas egzamino rezultata (T/N)?"<<endl; in>>bent_vienas_egz;
         if (bent_vienas_egz == 'T'|| bent_vienas_egz == 't'|| bent_vienas_egz == 'N' || bent_vienas_egz == 'n'){
             if (bent_vienas_egz == 'T'|| bent_vienas_egz == 't'){
 
                 char egz_ivedimas; int egz = 0 ;
-                cout << "Ar norite ranka ivesti egzamina ar auto (R/A)"<<endl; cin>> egz_ivedimas;
+                cout << "Ar norite ranka ivesti egzamina ar auto (R/A)"<<endl; in>> egz_ivedimas;
                 do{
                     if(egz_ivedimas and( egz_ivedimas == 'R'|| egz_ivedimas == 'r'|| egz_ivedimas == 'A' || egz_ivedimas == 'a')){
                         if (egz_ivedimas=='R' or egz_ivedimas == 'r' )
                         {
 
                             do{
-                                cout << "Iveskite egzamino rezultata:"<< endl ; cin>> egz;
+                                cout << "Iveskite egzamino rezultata:"<< endl ; in>> egz;
                                 if(egz and egz > 0 and egz <=10){
-                                    setEgzaminas(egz);
+                                    s.setEgzaminas(egz);
 
                                 }
                                 else{
-                                    cout<< "Iveskite nenulini skaiciu, nuo 1 iki 10!"<<endl ;cin.clear();
-                                    cin.ignore(10000, '\n'); }}
+                                    cout<< "Iveskite nenulini skaiciu, nuo 1 iki 10!"<<endl ;in.clear();
+                                    in.ignore(10000, '\n'); }}
                             while(!egz or egz > 10 or egz <0 );
 
                         }
                         else{
                             srand((unsigned )time(0));
                             egz = (rand() % 10) + 1;
-                            setEgzaminas(egz);
+                            s.setEgzaminas(egz);
                         }
                     }
                     else{
                         cout<<"Iveskite tinkama pasirinkima (R/A)!"<<endl;
-                        cin.clear();
-                        cin.ignore(10000, '\n');
-                        cin >> egz;
+                        in.clear();
+                        in.ignore(10000, '\n');
+                        in >> egz;
 
                     }
 
@@ -224,19 +189,86 @@ void Studentai:: ivedimas ( ) {
                 }while(egz_ivedimas != 'A' && egz_ivedimas != 'a' && egz_ivedimas != 'R' && egz_ivedimas != 'r');
             }
             else {
-                setEgzaminas(0);
+                s.setEgzaminas(0);
             }
         }
         else{
-            cout<< "Iveskite T arba N! "<<endl; cin.clear();cin.ignore(10000,'\n');
+            cout<< "Iveskite T arba N! "<<endl; in.clear();in.ignore(10000,'\n');
         }
     }
     while(bent_vienas_egz != 'T' and bent_vienas_egz != 't' and bent_vienas_egz != 'N' and  bent_vienas_egz != 'n');
 
-    Vidurkis();
-    Mediana();
+    s.Vidurkis();
+    s.Mediana();
+    }
+    else{
+        int sk;
+        string line, temp;
+
+        // Read Vardas and Pavarde
+        in >> temp;
+        s.setVardas(temp);
+        in >> temp;
+        s.setPavarde(temp);
+
+        // Read namu darbai
+        for (int i = 0; i < s.getNdSize(); i++) {
+            in >> sk;
+            s.setNd(sk, i);
+        }
+
+        // Read egzaminas
+        in >> sk;
+        s.setEgzaminas(sk);
+
+        // Calculate Vidurkis and Mediana
+        s.Vidurkis();
+        s.Mediana();
+
+        return in;
+
+
+
+    }
 }
-*/
+std::istream& operator>>(std::istream& in,Studentai& s ){
+
+    return ivedejas(in, s, true); //skirta nuskaityti ranka
+
+}
+
+
+
+
+
+
+std::ostream& operator<<(std::ostream& out, const Studentai& s) {
+    out << "Vardas Pavarde: " << s.Cvardas << " " << s.Cpavarde;
+    out << " Pazymiai: ";
+    for (int paz : s.Cnd)
+    {
+        out << paz << " ";
+    }
+
+    out << "Egzaminas: " << s.Cegzaminas << " " << "Rezultatas: " << s.Cgalutinis << endl;
+    return out;
+
+}
+void Studentai::ivedimas(int studentu_kiekis) {
+
+    for (int i = 0; i < studentu_kiekis; i++) {
+        Studentai s;
+        cout << "Iveskite studento varda : " << endl;
+        cin >> s ;  // This will call the overloaded operator>> for Student
+        stud.push_back(s);
+
+    }
+
+
+
+
+}
+
 void Studentai::isvestis (vector<Studentai> vektorius, int pasirinkimas ) {
 
     stringstream buffer;
