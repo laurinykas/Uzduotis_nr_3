@@ -449,79 +449,7 @@ void Fake_main(){
 
 
             }
-            else{/*
-                std::chrono::duration<double> rez;
-                std::chrono::duration<double> rez2;
-                int med_ar_vid = Vid_ar_med();
-                //int isvedimas = Isvesties_pasirinkimas();
-                int rusiavimo_tipas = Rusiavimo_tipas();
-                int test_fdydziai[5] = {1000, 10000, 100000, 1000000, 10000000};
-                printf("%-40s %-20s %+5s \n", "Veiksmas","Vector laikas (s.)", "List laikas (s.)");
-                string filename;
-                for (int i = 0; i < 5; i++) {
-                    filename ="student" + to_string(test_fdydziai[i]) + ".txt";cout << string(70,'-') << "\n";
 
-
-                    st.readfromFile(filename,stud,); // failo nuskaitymas vector
-
-                    // failo nuskaitymas list
-
-                    //auto info1 = rez.count();
-                    //auto info2 = rez2.count();
-                    //printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu failo nuskaitymas").c_str(), info1,info2);// rezultato printas
-
-                    Kategorija(test_fdydziai[i], med_ar_vid,2);
-                    Sortingas(2,rusiavimo_tipas);
-                    auto  tempstud = stud;
-
-                    Kategorija(test_fdydziai[i],med_ar_vid,1);
-                    Sortingas(1,rusiavimo_tipas);
-                    auto tempstud_list = stud_list;
-
-                    auto start = hrClock::now();
-                    MegaSkirstymas(2,1);
-                    auto end = hrClock::now();
-                    stud = tempstud;
-                    rez = end- start;
-                    // laiko skaiciavimas vector 1 strategija
-
-                    start = hrClock::now();
-                    MegaSkirstymas(1,1);
-                    end = hrClock::now();
-                    rez2 = end- start;
-                    stud_list = tempstud_list;
-                    // laiko skaiciavimas list 1 strategija
-
-                    auto info1 = rez.count(); auto info2 = rez2.count();
-                    printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu dalijimas i grupes (1 strategija)").c_str(), info1,info2);
-
-                    start = hrClock::now();
-                    MegaSkirstymas(2,2);
-                    end = hrClock::now();
-                    stud = tempstud;
-                    rez = end- start;
-                    // laiko skaiciavimas vector 2 strategija
-
-                    start = hrClock::now();
-                    MegaSkirstymas(1,2);
-                    end = hrClock::now();
-                    rez2 = end- start;
-                    stud_list = tempstud_list;
-                    // laiko skaiciavimas list 2 strategija
-
-                    info1 = rez.count();  info2 = rez2.count();
-                    printf("%-40s %-20.8lf %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu dalijimas i grupes (2 strategija)").c_str(), info1,info2);
-
-                    start = hrClock::now();
-                    MegaSkirstymas(2,3);
-                    end = hrClock::now();
-                    stud = tempstud;
-                    rez = end- start;
-                    // laiko skaiciavimas vector 2 strategija
-                    info1 = rez.count();
-                    printf("%-40s %-20.8lf\n", (to_string(test_fdydziai[i]) +" studentu dalijimas i grupes (3 strategija)").c_str(), info1);
-*/
-                }
 
 
 
