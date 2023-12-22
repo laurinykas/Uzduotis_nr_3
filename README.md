@@ -25,6 +25,18 @@ rūšiuoti vargšus ir kietus, kokį failą norėsite nuskaityti... Tai reiškia
 
 ```
 # Uzduotis-nr-2
+## v1.5 
+### nauji dalykai 
+* Implementuota abstrakti "Zmogus" klasė.
+* Ankščiau naudota "Studentai" klasė dabar yra derived tipo klasė
+
+### Naujosios klasės "Zmogus" realizacija 
+![Screenshot_2](https://github.com/laurinykas/Uzduotis-nr-2/assets/112711939/4f2c206b-1d7d-4281-9917-1d17a6f4469c)
+
+### Įrodymas, kad "Zmogus" klasės objektų kūrimas yra negalimas
+![Screenshot_1](https://github.com/laurinykas/Uzduotis-nr-2/assets/112711939/0b7d5ad9-80b2-4c24-ad8b-934914efcb65)
+
+
 ## v1.2
 ### nauji dalykai 
 * Nebenaudojamas list konteineris
