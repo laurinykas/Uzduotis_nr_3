@@ -6,32 +6,12 @@
 
 #include "bibliotekos.h"
 #include "funkcijos.h"
-/*
- class Zmogus
-{
-protected:
-    string Cvardas;
-    string Cpavarde;
-public:
-    virtual void setVardas(string vardas) = 0;
-    virtual void setPavarde(string pavarde) = 0;
-    //inline string getVardas() const { return Cvardas; }
-    //inline string getPavarde() const { return Cpavarde; }
 
-    Zmogus()
-    {
-        Cvardas = "";
-        Cpavarde = "";
-    }
-};
-
-*/
 class Zmogus {
 protected:
     string Cvardas;
     string Cpavarde;
 public:
-
 
     virtual void setVardas(string vardas) = 0;
     virtual void setPavarde(string pavarde) = 0;
@@ -44,10 +24,6 @@ public:
         Cpavarde = "";
     }
 };
-
-
-
-
 
 class Studentai: public Zmogus {
 
@@ -69,7 +45,7 @@ public:
         Cgalutinis = 0;
         Cnd.clear();
     }
-    // move
+
 
     Studentai(const Studentai& s){
     Cvardas = s.Cvardas;
@@ -81,7 +57,7 @@ public:
     Cgalutinis = s.Cgalutinis;
 }
 
-    // Copy assignment operator
+
 
     Studentai& operator=(const Studentai& s) {
         if (this != &s) {

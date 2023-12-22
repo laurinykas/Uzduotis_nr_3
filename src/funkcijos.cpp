@@ -306,19 +306,15 @@ void Fake_main(){
 
     char ranka_failas;
     do {
-        cout << "Ar duomenis rasytite ranka , nuskaitysite is failo ar noresite sugeneruoti atsitiktini ar testuoti?(R - ranka, F- is failo, G - generuoti, T - testuoti , S - testuoti strategijas )?" << endl;
+        cout << "Ar duomenis rasytite ranka , nuskaitysite is failo ar noresite sugeneruoti atsitiktini ar testuoti?(R - ranka, F- is failo, G - generuoti, T - testuoti )?" << endl;
         cin >> ranka_failas;
         Studentai st ;
         if (ranka_failas &&
-            (ranka_failas == 'R' || ranka_failas == 'r' || ranka_failas == 'F' || ranka_failas == 'f'|| ranka_failas == 'G'||ranka_failas == 'g' ||ranka_failas == 'T'||ranka_failas == 't'||ranka_failas == 'S'||ranka_failas =='s')) {
+            (ranka_failas == 'R' || ranka_failas == 'r' || ranka_failas == 'F' || ranka_failas == 'f'|| ranka_failas == 'G'||ranka_failas == 'g' ||ranka_failas == 'T'||ranka_failas == 't')) {
             if (ranka_failas == 'R' || ranka_failas == 'r') {
                 int studentu_kiekis = Studentu_kiekis();
-               // int konteineris = List_Vektor();
-                int rusiavimo_tipas =  Rusiavimo_tipas();
-               // int skirstymo_strat = SkirstymoStrategijosPas();
 
-                        //std::istream& in = std::cin;
-                        //stud.push_back(st);
+                int rusiavimo_tipas =  Rusiavimo_tipas();
 
                     st.ivedimas(studentu_kiekis);
                     Sortingas(rusiavimo_tipas);
@@ -467,7 +463,7 @@ void Fake_main(){
             cin.clear();
             cin.ignore(10000, '\n');
         }
-    } while (ranka_failas != 'R' and ranka_failas != 'r' and ranka_failas != 'F' and ranka_failas != 'f' and ranka_failas != 'g' and ranka_failas != 'G' and ranka_failas != 'T' and ranka_failas != 't' and ranka_failas != 's' and ranka_failas != 'S');
+    } while (ranka_failas != 'R' and ranka_failas != 'r' and ranka_failas != 'F' and ranka_failas != 'f' and ranka_failas != 'g' and ranka_failas != 'G' and ranka_failas != 'T' and ranka_failas != 't' );
 
 
 }
