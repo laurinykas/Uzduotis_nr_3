@@ -6,34 +6,53 @@
 
 #include "bibliotekos.h"
 #include "funkcijos.h"
-
+/*
  class Zmogus
 {
 protected:
-    string Cvardas_;
-    string Cpavarde_;
+    string Cvardas;
+    string Cpavarde;
 public:
     virtual void setVardas(string vardas) = 0;
     virtual void setPavarde(string pavarde) = 0;
-    inline string getVardas() const { return Cvardas_; }
-    inline string getPavarde() const { return Cpavarde_; }
+    //inline string getVardas() const { return Cvardas; }
+    //inline string getPavarde() const { return Cpavarde; }
 
     Zmogus()
     {
-        Cvardas_ = "";
-        Cpavarde_ = "";
+        Cvardas = "";
+        Cpavarde = "";
+    }
+};
+
+*/
+class Zmogus {
+protected:
+    string Cvardas;
+    string Cpavarde;
+public:
+
+
+    virtual void setVardas(string vardas) = 0;
+    virtual void setPavarde(string pavarde) = 0;
+    inline string getVardas() const { return Cvardas; }
+    inline string getPavarde() const { return Cpavarde; }
+
+    Zmogus()
+    {
+        Cvardas = "";
+        Cpavarde = "";
     }
 };
 
 
 
+
+
 class Studentai: public Zmogus {
 
-
-
 private:
-    string Cvardas ;
-    string Cpavarde ;
+
     vector<int> Cnd; //namu darbai
     int Cegzaminas;
     float Cvid ;
@@ -43,19 +62,24 @@ private:
 
 public:
     Studentai(){
-        Cvardas = "";
-        Cpavarde = "";
+
         Cegzaminas = 0;
         Cvid = 0;
         Cmed = 0;
         Cgalutinis = 0;
         Cnd.clear();
-
     }
     // move
 
-    Studentai(const Studentai& s):Cvardas(s.Cvardas),Cpavarde(s.Cpavarde),Cnd(s.Cnd),Cegzaminas(s.Cegzaminas),Cvid(s.Cvid),Cmed(s.Cmed),Cgalutinis(s.Cgalutinis){}
-
+    Studentai(const Studentai& s){
+    Cvardas = s.Cvardas;
+    Cpavarde = s.Cpavarde;
+    copy(s.Cnd.begin(), s.Cnd.end(), back_inserter(Cnd));
+    Cegzaminas = s.Cegzaminas;
+    Cvid = s.Cvid;
+    Cmed = s.Cmed;
+    Cgalutinis = s.Cgalutinis;
+}
 
     // Copy assignment operator
 
@@ -71,13 +95,12 @@ public:
         }
         return *this;
     }
-    ~Studentai(){ }// destructor
+    ~Studentai()= default;// destructor
 
-        inline string getVardas() const
-        { return Cvardas; }
-        void setVardas(string vardas) { Cvardas = std::move(vardas); }
-        inline string getPavarde() const { return Cpavarde; }
-        void setPavarde(string pavarde) { Cpavarde= std::move(pavarde); }
+
+      void setVardas(string vardas)  { Cvardas = std::move(vardas); }
+      void setPavarde(string pavarde)  { Cpavarde = std::move(pavarde); }
+
 
         double getNd(int i) const { return Cnd.at(i); }
         void addNd(int nd){

@@ -438,6 +438,13 @@ void Fake_main(){
             }
             else if(ranka_failas == 't' || ranka_failas == 'T'){
 
+            // Zmogus z1;
+            // cin>> z1;
+            // cout<< z1;
+
+
+
+
             cout<<"Rule of 3 demonstravimas "<<endl;
             Studentai s1;
             cin >> s1;
@@ -456,7 +463,7 @@ void Fake_main(){
 
 
         } else {
-            cout << "Iveskite R arba f arba G arba T arba S" << endl;
+            cout << "Iveskite R arba f arba G arba T " << endl;
             cin.clear();
             cin.ignore(10000, '\n');
         }
