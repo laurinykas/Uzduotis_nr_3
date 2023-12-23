@@ -362,4 +362,3 @@ void Studentai::Failu_kurimas (vector<Studentai> vektorius ,string failo_vardas,
 
 }
 
-//baigta
