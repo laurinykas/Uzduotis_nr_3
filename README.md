@@ -1,29 +1,40 @@
 # Instaliacija 
 ```
-- Instaliuokite "make", jei naudojate MAC ar Linux susiraskite tutorial, jei naudojate Windows galite naudoti šitą nuorodą :
-https://earthly.dev/blog/makefiles-on-windows/
+- Parsisiųskite Uzduotis_nr_3 realease aplanką
 
-- Parsisiųskite ir "išextractinkite" šitą github release
+- "Išextractinkite" šitą github release
 
-- Aplanke kur yra "extractinti" failai atsidarykite cmd
+- Aplanke kur yra "extractinti" failai palesikite ProgramInstallSetup.msi
 
-- cmd suveskite "make" komandą (be kabučių)
+- Pirmame žingsnyje spauskite "Next"
 
-- Jūsų aplanke bus sugeneruotas failas "main", kuris jau yra tinkamas naudoti
+- Pasirinkite kur norite, kad būtų instaliuota jūsų programa, o pasirinkus spauskite "Next"
+
+- Spauskite "Next"
+
+- Tada programa prašys atlikti pakeitimus kompiuteryje, spauskite "Yes" arba "Taip"
+
+- Spauskite "Next"
+
+- Instalicija baigta, rasite savo darbaulaukyje ir "Start screen" piktogramas, per kurias galėsite paleisti programą 
 
 ```
 # Naudojimosi instrukcija 
 ```
-- Pirmos programos paleidimo metu rekomenduojama pasirinkti generuoti studentų failą, kad būtų galima sužinoti, kur bus saugomi
-sukurti failai (ten bus ir nuskaitomi failai).
 
-- Galima rinktis iš 5 pasirinkimu R- studentų įrašymas ranka, F - nuskaitymas iš failo, G- studentų failo generavimas, T - konteinerių testavimas,
-S - rūšiavimo strategijų testavimas.(KAD VEIKTŲ T IR S REIKIA SUGENERUOTI 1k,10k,100k,1mil,10mil STUDENTŲ FAILUS).
+- Galima rinktis iš 4 pasirinkimu R- studentų įrašymas ranka, F - nuskaitymas iš failo, G- studentų failo generavimas, T - 3 taisyklės testavimas.
 
 - Įvedimo metu gali reikti įvesti: studentų skaičių, namų darbų kiekį, norėsite skaičiuoti mediana ar vidurkį, kokią strategiją norėsite naudoti
 rūšiuoti vargšus ir kietus, kokį failą norėsite nuskaityti... Tai reiškia jūsų programa prašys ką reikia įvesti.
 
 ```
+# Uzduotis-nr-3
+## v3.0 
+### nauji dalykai 
+* Sukurti programos instaliacijos failai
+* Nebereikia naudoti CMake ar Makefile failų kūrimo metodų
+* Supaprastinta naudotojo instrukcija
+
 # Uzduotis-nr-2
 ## v1.5 
 ### nauji dalykai 
