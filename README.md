@@ -36,6 +36,15 @@ rūšiuoti vargšus ir kietus, kokį failą norėsite nuskaityti... Tai reiškia
 * Supaprastinta naudotojo instrukcija
 
 # Uzduotis-nr-2
+## v2.0 
+### nauji dalykai 
+* Sukurta Doxygen dokumentacija
+* Sukurtas naujas failas test.cpp, kuris testuoja medianos ir vidurkio funkcijos išvedimą
+* Buvo naudota Google Test testavimo framework
+
+### Testų rezultatai
+* Buvo rasta, kad Mediana() netinkamai skaičiavo medianas, o tai pastebėjus problema buvo ištaisyta.
+  
 ## v1.5 
 ### nauji dalykai 
 * Implementuota abstrakti "Zmogus" klasė.
